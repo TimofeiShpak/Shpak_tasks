@@ -1,0 +1,382 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+    font-style: italic;
+    font-weight: normal;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+.wrapper {
+    width: 1080px;
+    margin: 45px auto 0;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+/* aside aside-menu*/
+
+.wrapper, aside, .aside-menu, .aside-menu a, .button-tweet, .aside-text, .aside-title, 
+.title-banner, .text-banner, .title-tab, .text-tab, footer {
+    display: flex;
+}
+
+aside, .aside-menu {
+    flex-direction: column;
+    width: 140px;
+}
+
+.aside-menu a, .button-tweet, .aside-text, .aside-title, .title-banner, 
+.text-banner, .title-tab, .text-tab, .card-title, .card-link a, .footer-links a {
+    align-items: center;
+    color: #34ACA7;
+}
+
+aside {
+    height: fit-content;
+}
+
+.logo-img {
+    width: 120px;
+    margin: auto;
+}
+
+.aside-menu img {
+    margin-right: 10px;
+}
+
+.aside-menu li {
+    padding: 5px 0 29px 3px;
+}
+
+.aside-menu a {
+    font-size: 14px;
+    line-height: 14px;
+    width: fit-content;
+}
+
+.aside-menu a:hover {
+    color: black;
+}
+
+/* aside-tweet */
+
+.aside-tweet .aside-title {
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.aside-title {
+    font-family: Verdana;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 12px;
+    text-transform: uppercase;
+    height: 22px;
+    border-bottom: 1px dashed #E5E5E5;
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+.button-tweet {
+    border: 1px solid #E5E5E5;
+    box-sizing: border-box;
+    border-radius: 5px;
+    width: 100%;
+    height: 30px;
+    font-size: 10px;
+    line-height: 12px;
+    background-color: white;
+}
+
+.twitter-image {
+    margin: 7px;
+}
+
+.aside-text, .text-tab {   
+    line-height: 19px;
+    font-size: 10px;
+}
+
+.aside-text {
+    color: #000000;
+    margin-bottom: 15px;
+}
+
+/* main banner*/
+
+.tabs, .subscribe-box, .subscribe-form, .subscribe-box, .cards, .card  {
+    display: flex;
+}
+
+main {
+    width: 896px;
+    margin-bottom: 26px;
+}
+
+.banner {
+    background: url('assets/baner.svg');
+    width: 100%;
+    height: 444px;
+    background-repeat: no-repeat;
+}
+
+.title-banner, .text-banner, .subscribe-button, .subscribe-input-text {
+    box-sizing: border-box;
+}
+
+.title-banner, .text-banner {
+    position: relative;
+    top: 64%;
+    padding-left: 24px;
+}
+
+.title-banner {
+    width: 272px;
+    height: 49px;
+    font-size: 22px;
+    line-height: 22px;
+    text-align: center;
+    letter-spacing: 0.01em;
+    color: black;
+    background: #FFFFFF;
+}
+
+.text-banner {
+    background: #000000;
+    width: 487px;
+    height: 42px;
+    font-style: italic;
+    font-size: 14px;
+    line-height: 14px;
+    color: #FFFFFF;
+}
+
+/* tabs */
+
+button, .tabs, a {
+    cursor: pointer;
+}
+
+.tabs, .subscribe-box {
+    margin-bottom: 30px;
+}
+
+.tabs li {
+    width: 100%;
+    padding: 26px 0 22px 20px;
+    background: #EFF8F7;
+}
+
+.title-tab {
+    font-style: normal;
+    font-size: 18px;
+    line-height: 18px;
+}
+
+.tabs li:hover {
+    background: #D9EFEC;
+}
+
+/* subscribe-box */
+
+.subscribe-box {
+    height: 50px;
+    border-bottom: 1px dashed #E5E5E5;
+    border-top: 1px dashed #E5E5E5;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.mail-image {
+    width: 32px; 
+}
+
+.subscribe-text {
+    font-size: 14px;
+    line-height: 16px;
+    color: #000000;
+    width: 530px;
+}
+
+.subscribe-button, .subscribe-input-text {
+    height: 22px;
+    font-style: normal;
+    font-size: 10px;
+    line-height: 10px;
+}
+
+.subscribe-button {
+    font-size: 10px;
+    line-height: 10px;
+    width: 80px;
+    background: linear-gradient(180deg, #F4F3F3 0%, #BBB9B9 100%);
+    border: 1px solid #E5E5E5;
+    box-sizing: border-box;
+    border-radius: 2px;
+}
+
+.subscribe-input-text {
+    width: 160px;
+    border: 1px solid #E5E5E5;
+    border-radius: 0;
+    padding-left: 6px;
+}
+
+.subscribe-form :nth-child(2){
+    margin-left: 18px; 
+}
+
+/* cards */
+
+.cards, .card {
+    justify-content: space-between;
+}
+
+.card {
+    width: min-content;
+    flex-direction: column;
+}
+
+.card-chips {
+    height: 336px;
+}
+
+.card-dish {
+    height: 356px;
+}
+
+.card-greens {
+    height: 255px;
+}
+
+.card-plants {
+    height: 371px;
+}
+ 
+.image-wrapper {
+    border: 1px solid #E5E5E5;
+    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.25));
+}
+
+.card img {
+    display: block;
+}
+
+
+.card-title, .card-description, .card-date, .card-link a {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.02em;
+    font-style: normal;
+}
+
+.card-title {
+    font-size: 16px;
+    line-height: 21px;
+}
+
+.card-date {
+    color: #E5E5E5;
+}
+
+.card-dish .card-title {
+    height: 42px;
+}
+
+.card-dish .card-description {
+    height: 120px;
+}
+
+.card-plants .card-description {
+    height: 135px;
+}
+
+.card a:hover {
+    color: rgb(51, 192, 114);
+}
+
+/* footer */
+
+footer {
+    box-sizing: border-box;
+    border-top: 2px solid #E5E5E5;;
+    width: 100%;
+    height: 92px;
+    justify-content: space-between;
+    padding-top: 25px;
+}
+
+.footer-info :nth-child(2) {
+    margin-top: 5px;
+} 
+
+.footer-info, .footer-links a, .footer-info p {
+    font-style: normal;
+    font-size: 12px;
+    line-height: 12px;
+    letter-spacing: -0.02em;
+}
+
+.footer-info {
+    color: #E5E5E5;
+}
+
+.footer-info a:hover {
+    color: black;
+}
+
+.footer-icons {
+    display: flex;
+}
+
+.footer-fb, .footer-twitter, .footer-rss {
+    width: 32px;
+    height: 32px;
+    margin: 0 2px;
+}
+
+.footer-twitter {
+    background: url('assets/twitter-icon-footer.svg');
+}
+.footer-fb {
+    background: url('assets/fb-icon.svg');
+}
+
+.footer-rss {
+    background: url('assets/rss-icon.svg');
+}
+
+.footer-twitter:hover {
+    background: url('assets/twitter-icon-black.svg');
+}
+.footer-fb:hover {
+    background: url('assets/fb-icon-black.svg');
+}
+
+.footer-rss:hover {
+    background: url('assets/rss-icon-black.svg');
+}
+
+::-webkit-input-placeholder { 
+    color: #E5E5E5;
+    opacity: 1;
+}
+:-ms-input-placeholder { 
+    color: #E5E5E5;
+    opacity: 1;
+}
+::-moz-placeholder { 
+    color: #E5E5E5;
+    opacity: 1;
+}
+:-moz-placeholder { 
+    color: #E5E5E5;
+    opacity: 1;
+}
