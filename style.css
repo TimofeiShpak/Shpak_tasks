@@ -265,6 +265,8 @@ button, .tabs, a {
 
 .card img {
     display: block;
+    width: 205px;
+    height: 141px;
 }
 
 
