@@ -34,7 +34,7 @@ aside, .aside-menu {
 }
 
 .aside-menu a, .button-tweet, .aside-text, .aside-title, .title-banner, 
-.text-banner, .title-tab, .text-tab, .card-title, .card-link a, .footer-links a {
+.text-banner, .title-tab, .text-tab, .card-title, .card-link, .footer-links a {
     align-items: center;
     color: #34ACA7;
 }
@@ -56,10 +56,33 @@ aside {
     padding: 5px 0 29px 3px;
 }
 
+.link-tastemakers {
+    background: url('assets/food-icon.svg');
+}
+
+.link-blog {
+    background: url('assets/blog-icon.svg');
+}
+
+.link-list {
+    background: url('assets/a-list-icon.svg');
+}
+
+.link-camera {
+    background: url('assets/camera-icon.svg');
+}
+
+.link-about {
+    background: url('assets/about-icon.svg');
+}
+
 .aside-menu a {
     font-size: 14px;
     line-height: 14px;
     width: fit-content;
+    background-repeat: no-repeat;  
+    height: 32px;
+    padding-left: 40px;
 }
 
 .aside-menu a:hover {
@@ -270,7 +293,7 @@ button, .tabs, a {
 }
 
 
-.card-title, .card-description, .card-date, .card-link a {
+.card-title, .card-description, .card-date, .card-link {
     font-size: 14px;
     line-height: 20px;
     letter-spacing: -0.02em;
@@ -330,6 +353,12 @@ footer {
 
 .footer-info a:hover {
     color: black;
+}
+
+.footer-links :not(.footer-links :first-child) {
+    background: url('assets/separator.svg');
+    background-repeat: no-repeat;
+    padding-left: 4px;
 }
 
 .footer-icons {
