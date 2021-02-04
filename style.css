@@ -155,8 +155,7 @@ main {
 }
 
 .title-banner, .text-banner {
-    position: relative;
-    top: 64%;
+    transform: translateY(285px);
     padding-left: 24px;
 }
 
