@@ -51,7 +51,7 @@
     padding: 8px 5px 8px 29px;
     line-height: 12px;
     background-color:	#FFF;
-    background: url('assets/twitter-icon.svg') 7px 50% no-repeat;
+    background: url('../icons/twitter-icon.svg') 7px 50% no-repeat;
     font: normal italic 10px Arial;
     color: #34ACA7;
     text-align: left;
@@ -74,7 +74,7 @@
 }
 
 .banner {
-    background: url('assets/baner.svg') no-repeat;
+    background: url('../images/baner.svg') no-repeat;
     width: 100%;
     height: 444px;
     position: relative;
@@ -139,7 +139,7 @@
     border-top: 1px dashed #E5E5E5;
     align-items: center;
     justify-content: space-between;
-    background: url(assets/mail-icon.svg) 18px 10px no-repeat;
+    background: url('../icons/mail-icon.svg') 18px 10px no-repeat;
 }
 
 .subscribe > :not(.subscribe :first-child) {
@@ -246,7 +246,7 @@
 }
  
 .footer__nav :not(.footer__nav :first-child) {
-    background: url('assets/separator.svg') no-repeat;
+    background: url('../images/separator.svg') no-repeat;
 }
 
 .footer__link {
@@ -256,7 +256,7 @@
 
 @media screen and (max-width: 1176px) {
     .banner {
-        background: url('assets/baner-m.png') no-repeat;
+        background: url('../images/baner-m.png') no-repeat;
     }
 
     .card__img {
@@ -315,6 +315,7 @@
 
     .banner {
         height: 353px;
+        background-size: cover;
     }
 
     .banner__text {
@@ -400,7 +401,8 @@
     }
 
     .banner {
-        background: url('assets/baner-sm.png') no-repeat;
+        background: url('../images/baner-sm.png') no-repeat;
+        background-size: cover;
     }
 
     .subscribe {

@@ -1,4 +1,4 @@
-@import url('base.css');
-@import url('layout.css');
-@import url('module.css');
-@import url('state.css');
+@import url('assets/styles/base.css');
+@import url('assets/styles/layout.css');
+@import url('assets/styles/state.css');
+@import url('assets/styles/module.css');
