@@ -385,6 +385,10 @@
         width: 78%;
     }
 
+    .banner {
+        height: 63vw;
+    }
+
     .card__img {
         width: 100%;
     }
@@ -403,6 +407,7 @@
     .banner {
         background: url('../images/baner-sm.png') no-repeat;
         background-size: cover;
+        height: 78vw;
     }
 
     .subscribe {
