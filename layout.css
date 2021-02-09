@@ -1,0 +1,98 @@
+.wrapper {
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1080px;
+    width: 100%;
+    margin: 45px auto 0;
+}
+
+.main-wrapper > :not(.main-wrapper :last-child) {
+    margin-right: 44px;
+}
+
+.main-wrapper {
+    width: 100%;
+}
+
+.wrapper, .main-wrapper, .header, .footer {
+    display: flex;
+}
+
+.footer {
+    border-top: 2px solid #E5E5E5;;
+    width: 100%;
+    justify-content: space-between;
+    padding-top: 25px;
+    padding-bottom: 33px;
+}
+
+.header {
+    width: 140px;
+    height: fit-content;
+    flex-direction: column;
+}
+
+.header > :not(.header :last-child) {
+    margin-bottom: 9px;
+}
+
+.main {
+    width: 100%;
+    margin-bottom: 12px;
+    flex: 1;
+}
+
+@media screen and (max-width: 1176px) {
+    .wrapper {
+        max-width: 896px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .wrapper {
+        max-width: 710px;
+        margin: auto;
+    }
+
+    .main-wrapper {
+        flex-direction: column;
+    }
+
+    .main-wrapper > :not(.main-wrapper :last-child) {
+        margin-bottom: 31px;
+        margin-right: 0;
+    }
+
+    .header > :not(.header :last-child) {
+        margin: auto 0;
+    }
+
+    .header {
+        width: 100%;
+        justify-content: space-between;
+        flex-direction: row;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .wrapper {
+        max-width: 560px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .wrapper {
+        max-width: 560px;
+    }
+
+    .header {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .footer {
+        flex-direction: column;
+    }
+}
