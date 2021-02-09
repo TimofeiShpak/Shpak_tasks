@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #000;
+}
+
+li {
+    list-style: none;
+}
+
+::-webkit-input-placeholder { 
+    color: #E5E5E5;
+    opacity: 1;
+}
+:-ms-input-placeholder { 
+    color: #E5E5E5;
+    opacity: 1;
+}
+::-moz-placeholder { 
+    color: #E5E5E5;
+    opacity: 1;
+}
+:-moz-placeholder { 
+    color: #E5E5E5;
+    opacity: 1;
+}
