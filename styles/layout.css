@@ -72,6 +72,7 @@
         width: 100%;
         justify-content: space-between;
         flex-direction: row;
+        padding: 20px 0;
     }
 
     .footer {
@@ -94,10 +95,12 @@
     .header {
         flex-direction: column-reverse;
         align-items: center;
+        padding: 0;
     }
 
     .footer {
-        padding: 22px 6%;
+        padding: 22px 0;
+        margin: 0 6%;
     }
 }
 

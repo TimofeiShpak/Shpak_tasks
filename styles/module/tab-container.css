@@ -2,10 +2,6 @@
     color: #34ACA7;
 }
 
-.three-dots::after {
-    content: '...';
-}
-
 .tab-container {
     cursor: pointer;
     display: flex;
