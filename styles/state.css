@@ -26,7 +26,7 @@
     background: #D9EFEC;
 }
 
-.card__link:hover {
+.card .card__link:hover {
     color: rgb(51, 192, 114);
 }
 

@@ -23,11 +23,6 @@
     background: url('../../assets/images/separator.svg') no-repeat;
 }
 
-.social-icon {
-    width: 32px;
-    height: 32px;
-}
-
 .footer__link {
     margin: 0 4px;
     color: #34ACA7;
