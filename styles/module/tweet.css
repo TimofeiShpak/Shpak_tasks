@@ -1,0 +1,39 @@
+.tweet > :not(.tweet :last-child), 
+.tweet__title {
+    margin-bottom: 9px;
+}
+
+.tweet__title {
+    font: normal 12px Verdana;
+    text-transform: uppercase;
+    border-bottom: 1px dashed #E5E5E5;
+    padding: 5px 0;
+}
+
+.tweet__button {
+    border: 1px solid #E5E5E5;
+    border-radius: 5px;
+    width: 100%;
+    padding: 8px 5px 8px 29px;
+    line-height: 12px;
+    background-color:	#FFF;
+    background: url('../../assets/icons/twitter-icon.svg') 7px 50% no-repeat;
+    font: normal italic 10px Arial;
+    color: #34ACA7;
+    text-align: left;
+}
+
+.tweet__text, .tab__subtitle {   
+    font: normal italic 10px Arial;
+    line-height: 19px;
+}
+
+.tweet__text {
+    margin-bottom: 15px;
+}
+
+@media screen and (max-width: 992px) {
+    .tweet {
+        display: none;
+    }
+}

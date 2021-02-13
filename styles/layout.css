@@ -3,7 +3,8 @@
     flex-wrap: wrap;
     max-width: 1080px;
     width: 100%;
-    margin: 45px auto 0;
+    margin: auto;
+    padding-top: 45px;
 }
 
 .main-wrapper > :not(.main-wrapper :last-child) {
@@ -22,8 +23,7 @@
     border-top: 2px solid #E5E5E5;;
     width: 100%;
     justify-content: space-between;
-    padding-top: 25px;
-    padding-bottom: 33px;
+    padding: 22px 0 33px;
 }
 
 .header {
@@ -52,6 +52,7 @@
     .wrapper {
         max-width: 710px;
         margin: auto;
+        padding-top: 0;
     }
 
     .main-wrapper {
@@ -72,27 +73,41 @@
         justify-content: space-between;
         flex-direction: row;
     }
+
+    .footer {
+        padding: 22px 0;
+    }
 }
 
 @media screen and (max-width: 768px) {
     .wrapper {
-        max-width: 560px;
+        margin: 0 6%;
+        width: fit-content;
     }
 }
 
 @media screen and (max-width: 480px) {
     .wrapper {
-        max-width: 560px;
+        margin: 0;
     }
 
     .header {
         flex-direction: column-reverse;
         align-items: center;
     }
+
+    .footer {
+        padding: 22px 6%;
+    }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 340px) {
     .footer {
         flex-direction: column;
+        align-items: center;
+    }
+
+    .footer > :not(:last-child) {
+        margin-bottom: 10px;
     }
 }

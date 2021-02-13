@@ -1,0 +1,35 @@
+.footer__nav, .footer__icons {
+    flex-wrap: wrap;
+}
+
+.footer__info > :not(.footer__info :first-child) {
+    margin-top: 5px;
+} 
+
+.footer__info, .footer__link, .footer__copyright {
+    font: normal 12px Arial;
+    letter-spacing: -0.02em;
+}
+
+.footer__info {
+    color: #E5E5E5;
+}
+
+.footer__nav, .footer__icons {
+    display: flex;
+}
+ 
+.footer__nav :not(.footer__nav :first-child) {
+    background: url('../../assets/images/separator.svg') no-repeat;
+}
+
+.social-icon {
+    width: 32px;
+    height: 32px;
+}
+
+.footer__link {
+    margin: 0 4px;
+    color: #34ACA7;
+    display: block;
+}

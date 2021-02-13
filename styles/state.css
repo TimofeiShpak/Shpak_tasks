@@ -1,21 +1,21 @@
 .link-tastemakers {
-    background: url('../assets/icons/food-icon.svg') 0 50% no-repeat;
+    background: url('../assets/icons/food-icon.svg') no-repeat;
 }
 
 .link-blog {
-    background: url('../assets/icons/blog-icon.svg') 0 50% no-repeat;
+    background: url('../assets/icons/blog-icon.svg') no-repeat;
 }
 
 .link-list {
-    background: url('../assets/icons/a-list-icon.svg') 0 50% no-repeat;
+    background: url('../assets/icons/a-list-icon.svg') no-repeat;
 }
 
 .link-camera {
-    background: url('../assets/icons/camera-icon.svg') 0 50% no-repeat;
+    background: url('../assets/icons/camera-icon.svg') no-repeat;
 }
 
 .link-about {
-    background: url('../assets/icons/about-icon.svg') 0 50% no-repeat;
+    background: url('../assets/icons/about-icon.svg') no-repeat;
 }
 
 .tweet__title_shadow {
