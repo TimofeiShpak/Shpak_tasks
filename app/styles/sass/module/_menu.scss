@@ -6,6 +6,10 @@
     display: flex;
 }
 
+.menu .menu__link:hover {
+   color: #000;
+}
+
 .menu {
     flex-direction: column;
 }
