@@ -4,29 +4,29 @@
     height: 444px;
     position: relative;
     font: normal italic 14px Arial;
-}
 
-.banner__text {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    bottom: 70px;
-}
+    &__text {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        bottom: 70px;
+    }
 
-.banner__title, .banner__subtitle {
-    padding: 14px 20px;
-    width: fit-content;
-}
+    &__title, &__subtitle {
+        padding: 14px 20px;
+        width: fit-content;
+    }
 
-.banner__title {
-    font-size: 22px;
-    letter-spacing: 0.01em;
-    background: #FFFFFF;
-}
+    &__title {
+        font-size: 22px;
+        letter-spacing: 0.01em;
+        background-color: $white;
+    }
 
-.banner__subtitle {
-    background: #000;
-    color: #FFFFFF;
+    &__subtitle {
+        background-color: $black;
+        color: $white;
+    }
 }
 
 @media screen and (max-width: 1176px) {
@@ -39,22 +39,21 @@
     .banner {
         height: 353px;
         background-size: cover;
-    }
 
-    .banner__text {
-        bottom: 0;
-        width: 100%;
-    }
+        &__text {
+            bottom: 0;
+            width: 100%;
+        }
 
-    .banner__title {
-        background: #FFFFFF;
-        opacity: 0.6;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    }
+        &__title {
+            opacity: 0.6;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        }
 
-    .banner__title, .banner__subtitle {
-        padding: 14px 8px;
-        width: auto;
+        &__title, &__subtitle {
+            padding: 14px 8px;
+            width: auto;
+        }
     }
 }
 
@@ -66,8 +65,7 @@
 
 @media screen and (max-width: 480px) {
     .banner {
-        background: url('../assets/images/baner-sm.png') no-repeat;
-        background-size: cover;
+        background-image: url('../assets/images/baner-sm.png') no-repeat;
         height: 78vw;
     }
 }

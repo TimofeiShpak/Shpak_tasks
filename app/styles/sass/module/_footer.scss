@@ -1,31 +1,41 @@
-.footer__nav, .footer__icons {
-    display: flex;
-    flex-wrap: wrap;
-}
+.footer {
+    &__info, &__link, &__copyright {
+        font: normal 12px Arial;
+        letter-spacing: -0.02em;
+    }
 
-.footer__info > :not(.footer__info :first-child) {
-    margin-top: 5px;
-} 
+    &__nav, &__icons {
+        display: flex;
+        flex-wrap: wrap;
+    }
 
-.footer__info, .footer__link, .footer__copyright {
-    font: normal 12px Arial;
-    letter-spacing: -0.02em;
-}
+    &__info > :nth-child(n) {
+        margin-bottom: 5px;
+    } 
 
-.footer__info {
-    color: #E5E5E5;
-}
+    &__info > :last-child {
+        margin-bottom: 0;
+    }
+
+    &__info {
+        color: #E5E5E5;
+    }
  
-.footer__nav :not(.footer__nav :first-child) {
-    background: url('../assets/images/separator.svg') no-repeat;
-}
+    &__nav > :nth-child(n) {
+        background: url('../assets/images/separator.svg') no-repeat;
+    }
 
-.footer__link {
-    margin: 0 4px;
-    color: #34ACA7;
-    display: block;
-}
+    &__nav > :first-child {
+        background: none;
+    }
 
-.footer__link:hover{
-    color: #000;
+    &__link {
+        margin: 0 4px;
+        color: #34ACA7;
+        display: block;
+    }
+
+    &__link:hover{
+        color: $black;
+    }
 }

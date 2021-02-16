@@ -2,9 +2,10 @@
 @import 'normalize/vertical-rhythm';
 @import 'normalize/normalize-mixin';
 
+@import 'colors';
 @import 'base';
 @import 'layout';
-@import'module/banner';
+@import 'module/banner';
 @import 'module/card-container';
 @import 'module/footer';
 @import 'module/menu';

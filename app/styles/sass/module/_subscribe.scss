@@ -1,8 +1,5 @@
-.subscribe__form, .subscribe  {
+.subscribe  {
     display: flex;
-}
-
-.subscribe {
     margin-bottom: 30px;
     padding: 8px 18px 8px 66px;
     border-bottom: 1px dashed #E5E5E5;
@@ -10,68 +7,74 @@
     align-items: center;
     justify-content: space-between;
     background: url('../assets/icons/mail-icon.svg') 18px 10px no-repeat;
-}
 
-.subscribe > :not(.subscribe :first-child) {
-    margin-left: 18px;
-}
+    & > :nth-child(n),
+    &__form > :nth-child(n) {
+        margin-left: 18px;
+    }
 
-.subscribe__text {
-    font: normal italic 14px Arial;
-    line-height: 16px;
-}
+    & > :first-child, &__form > :first-child {
+        margin-left: 0;
+    }
 
-.subscribe__button, .subscribe__input-text {
-    padding: 5px 0;
-    font: normal 10px Arial;
-}
+    &__text {
+        font: normal italic 14px Arial;
+        line-height: 16px;
+    }
 
-.subscribe__button {
-    width: 80px;
-    background: linear-gradient(180deg, #F4F3F3 0%, #BBB9B9 100%);
-    border: 1px solid #E5E5E5;
-    border-radius: 2px;
-}
+    &__button, &__input-text {
+        padding: 5px 0;
+        font: normal 10px Arial;
+    }
 
-.subscribe__input-text {
-    width: 152px;
-    border: 1px solid #E5E5E5;
-    border-radius: 0;
-    padding-left: 6px;
-}
+    &__button {
+        width: 80px;
+        background: linear-gradient(180deg, #F4F3F3 0%, #BBB9B9 100%);
+        border: 1px solid #E5E5E5;
+        border-radius: 2px;
+    }
 
-.subscribe__form :not(.subscribe__form :first-child){
-    margin-left: 18px; 
+    &__input-text {
+        width: 152px;
+        border: 1px solid #E5E5E5;
+        border-radius: 0;
+        padding-left: 6px;
+    }
+
+    &__form {
+        display: flex;
+    }
 }
 
 @media screen and (max-width: 768px) {
     .subscribe {
         flex-direction: column;
         padding: 8px 18px 0 18px;
-    }
 
-    .subscribe__text {
-        padding-left: 48px;
-    }
+        &__text {
+            padding-left: 48px;
+        }
 
-    .subscribe > :not(.subscribe :first-child) {
-        margin-left: 0;
-    }
+        & > :nth-child(n) {
+            margin-left: 0;
+            margin-bottom: 15px;
+        }
 
-    .subscribe__form :not(.subscribe__form :first-child) {
-        margin-left: 36px;
-    }
+        &__form > :nth-child(n) {
+            margin-left: 36px;
+        }
 
-    .subscribe__form {
-        width: 100%;
-    }
+        & > :first-child, &__form > :first-child {
+            margin-left: 0;
+        }
 
-    .subscribe__input-text {
-        flex: 1;
-    }
-    
-    .subscribe :nth-child(n) {
-        margin-bottom: 15px;
+        &__form {
+            width: 100%;
+        }
+
+        &__input-text {
+            flex: 1;
+        }
     }
 }
 
@@ -79,10 +82,10 @@
     .subscribe {
         flex-direction: column;
         padding-right: 10%;
-    }
 
-    .subscribe__input-text {
-        max-width: 211px;
-        width: 100%;
+        &__input-text {
+            max-width: 211px;
+            width: 100%;
+        }
     }
 }

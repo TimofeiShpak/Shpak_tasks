@@ -5,41 +5,54 @@
     width: 100%;
     margin: auto;
     padding-top: 45px;
-}
-
-.main-wrapper > :not(.main-wrapper :last-child) {
-    margin-right: 44px;
-}
-
-.main-wrapper {
-    width: 100%;
-}
-
-.wrapper, .main-wrapper, .header, .footer {
     display: flex;
-}
 
-.footer {
-    border-top: 2px solid #E5E5E5;;
-    width: 100%;
-    justify-content: space-between;
-    padding: 22px 0 33px;
-}
+    &__content > :nth-child(n) {
+        margin-right: 44px;
+    }
 
-.header {
-    width: 140px;
-    height: fit-content;
-    flex-direction: column;
-}
+    &__content > :last-child {
+        margin-right: 0;
+    }
 
-.header > :not(.header :last-child) {
-    margin-bottom: 9px;
-}
+    &__content {
+        width: 100%;
+    }
 
-.main {
-    width: 100%;
-    margin-bottom: 12px;
-    flex: 1;
+    &__content, .header, .footer {
+        display: flex;
+    }
+
+    .header > :nth-child(n) {
+        margin-bottom: 9px;
+    }
+
+    .header > :last-child, .header > :first-child {
+        margin-bottom: 0;
+    }
+
+    .footer {
+        border-top: 2px solid #E5E5E5;;
+        width: 100%;
+        justify-content: space-between;
+        padding: 22px 0 33px;
+    }
+
+    .header {
+        width: 140px;
+        height: fit-content;
+        flex-direction: column;
+    }
+
+    .main {
+        width: 100%;
+        margin-bottom: 12px;
+        flex: 1;
+    }
+
+    .slider {
+        margin-bottom: 30px;
+    }
 }
 
 @media screen and (max-width: 1176px) {
@@ -53,30 +66,34 @@
         max-width: 710px;
         margin: auto;
         padding-top: 0;
-    }
 
-    .main-wrapper {
-        flex-direction: column;
-    }
+        &__content {
+            flex-direction: column;
+        }
 
-    .main-wrapper > :not(.main-wrapper :last-child) {
-        margin-bottom: 31px;
-        margin-right: 0;
-    }
+        &__content > :nth-child(n) {
+            margin-bottom: 31px;
+            margin-right: 0;
+        }
 
-    .header > :not(.header :last-child) {
-        margin: auto 0;
-    }
+        &__content > :last-child {
+            margin-bottom: 0;
+        }
 
-    .header {
-        width: 100%;
-        justify-content: space-between;
-        flex-direction: row;
-        padding: 20px 0;
-    }
+        .header > :nth-child(n) {
+            margin: auto 0;
+        }
 
-    .footer {
-        padding: 22px 0;
+        .header {
+            width: 100%;
+            justify-content: space-between;
+            flex-direction: row;
+            padding: 20px 0;
+        }
+
+        .footer {
+            padding: 22px 0;
+        }
     }
 }
 
@@ -84,23 +101,31 @@
     .wrapper {
         margin: 0 6%;
         width: fit-content;
+
+        & &__content > :nth-child(n) {
+            margin-bottom: 20px;
+        }
     }
 }
 
 @media screen and (max-width: 480px) {
     .wrapper {
         margin: 0;
-    }
 
-    .header {
-        flex-direction: column-reverse;
-        align-items: center;
-        padding: 0;
-    }
+        .header {
+            flex-direction: column-reverse;
+            align-items: center;
+            padding: 0;
+        }
 
-    .footer {
-        padding: 22px 0;
-        margin: 0 6%;
+        .footer {
+            padding: 22px 0;
+            margin: 0 6%;
+        }
+
+        & &__content > :nth-child(n) {
+            margin-bottom: 10px;
+        }
     }
 }
 
@@ -108,9 +133,13 @@
     .footer {
         flex-direction: column;
         align-items: center;
-    }
 
-    .footer > :not(:last-child) {
-        margin-bottom: 10px;
+        & > :nth-child(n) {
+            margin-bottom: 10px;
+        }
+
+        & > :last-child {
+            margin-bottom: 0;
+        }
     }
 }

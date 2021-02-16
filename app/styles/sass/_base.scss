@@ -16,19 +16,7 @@ button {
     cursor: pointer;
 }
 
-::-webkit-input-placeholder { 
-    color: #E5E5E5;
-    opacity: 1;
-}
-:-ms-input-placeholder { 
-    color: #E5E5E5;
-    opacity: 1;
-}
-::-moz-placeholder { 
-    color: #E5E5E5;
-    opacity: 1;
-}
-:-moz-placeholder { 
+.subscribe__input-text::placeholder { 
     color: #E5E5E5;
     opacity: 1;
 }

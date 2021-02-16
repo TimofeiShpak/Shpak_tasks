@@ -1,33 +1,24 @@
-.link-tastemakers {
-    background: url('../assets/icons/food-icon.svg') no-repeat;
+@each $name in tastemakers, blog, list, camera, about {
+    .link-#{$name} {
+        background: url('../assets/icons/#{$name}-icon.svg') no-repeat;
+    }
 }
 
-.link-blog {
-    background: url('../assets/icons/blog-icon.svg') no-repeat;
+@each $name in twitter, fb, rss {
+    .footer-#{$name} {
+        background: url('../assets/icons/#{$name}-icon.svg');
+    }
 }
 
-.link-list {
-    background: url('../assets/icons/a-list-icon.svg') no-repeat;
+@each $name in twitter, fb, rss {
+    .footer-#{$name}:hover {
+        background: url('../assets/icons/#{$name}-icon-black.svg');
+    }
 }
 
-.link-camera {
-    background: url('../assets/icons/camera-icon.svg') no-repeat;
-}
-
-.link-about {
-    background: url('../assets/icons/about-icon.svg') no-repeat;
-}
 
 .tweet__title_shadow {
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.tab:hover {
-    background: #D9EFEC;
-}
-
-.card .card__link:hover {
-    color: rgb(51, 192, 114);
 }
 
 .three-dots::after {
@@ -38,27 +29,4 @@
     width: 32px;
     height: 32px;
     margin: 0 2px;
-}
-
-.footer-twitter {
-    background: url('../assets/icons/twitter-icon-footer.svg');
-}
-
-.footer-fb {
-    background: url('../assets/icons/fb-icon.svg');
-}
-
-.footer-rss {
-    background: url('../assets/icons/rss-icon.svg');
-}
-
-.footer-twitter:hover {
-    background: url('../assets/icons/twitter-icon-black.svg');
-}
-.footer-fb:hover {
-    background: url('../assets/icons/fb-icon-black.svg');
-}
-
-.footer-rss:hover {
-    background: url('../assets/icons/rss-icon-black.svg');
 }
