@@ -16,7 +16,9 @@
     }
 
     &__content {
+        align-items: flex-start;
         width: 100%;
+        margin-bottom: 35px;
     }
 
     &__content, .header, .footer {
@@ -40,13 +42,11 @@
 
     .header {
         width: 140px;
-        height: fit-content;
         flex-direction: column;
     }
 
     .main {
         width: 100%;
-        margin-bottom: 12px;
         flex: 1;
     }
 
@@ -68,7 +68,7 @@
         padding-top: 0;
 
         &__content {
-            flex-direction: column;
+            display: block;
         }
 
         &__content > :nth-child(n) {
@@ -91,6 +91,10 @@
             padding: 20px 0;
         }
 
+        .navigation {
+            height: 100%;
+        }
+
         .footer {
             padding: 22px 0;
         }
@@ -99,23 +103,34 @@
 
 @media screen and (max-width: 768px) {
     .wrapper {
-        margin: 0 6%;
-        width: fit-content;
+        width: 88%;
 
         & &__content > :nth-child(n) {
             margin-bottom: 20px;
+        }
+
+        & &__content > :last-child {
+            margin-bottom: 0;
+        }
+
+        &__content {
+            margin-bottom: 25px;
         }
     }
 }
 
 @media screen and (max-width: 480px) {
     .wrapper {
-        margin: 0;
+        width: 100%;
 
         .header {
             flex-direction: column-reverse;
             align-items: center;
             padding: 0;
+        }
+
+        .header > :first-child {
+            margin-bottom: 30px;
         }
 
         .footer {
@@ -126,10 +141,18 @@
         & &__content > :nth-child(n) {
             margin-bottom: 10px;
         }
+
+        & &__content > :last-child {
+            margin-bottom: 0;
+        }
+
+        &__content {
+            margin-bottom: 0;
+        }
     }
 }
 
-@media screen and (max-width: 340px) {
+@media screen and (max-width: 360px) {
     .footer {
         flex-direction: column;
         align-items: center;

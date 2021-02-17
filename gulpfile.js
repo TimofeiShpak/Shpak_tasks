@@ -30,7 +30,6 @@ function styles() {
 function minimizeStyles() {
 	return src(['app/styles/style.css'])
 		.pipe(cleancss({ level: { 1: { specialComments: 0 } },}))
-		.pipe(rename({ suffix: ".min" }))
 		.pipe(dest('dist/styles'))
 }
 
@@ -51,5 +50,5 @@ function startwatch() {
 	watch(`app/**/*.{${fileswatch}}`, { usePolling: true }).on('change', browserSync.reload)
 }
 
-exports.build   = series(cleandist, minimizeStyles, buildcopy)
+exports.build   = series(cleandist, styles, minimizeStyles, buildcopy)
 exports.default = series(styles, parallel(browsersync, startwatch))

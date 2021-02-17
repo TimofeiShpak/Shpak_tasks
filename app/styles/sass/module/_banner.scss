@@ -14,7 +14,7 @@
 
     &__title, &__subtitle {
         padding: 14px 20px;
-        width: fit-content;
+        align-self: flex-start;
     }
 
     &__title {
@@ -52,7 +52,8 @@
 
         &__title, &__subtitle {
             padding: 14px 8px;
-            width: auto;
+            width: 100%;
+            box-sizing: border-box;
         }
     }
 }
