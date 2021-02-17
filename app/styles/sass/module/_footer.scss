@@ -18,7 +18,7 @@
     }
 
     &__info {
-        color: #E5E5E5;
+        color: $gray;
     }
  
     &__nav > :nth-child(n) {
@@ -31,7 +31,7 @@
 
     &__link {
         margin: 0 4px;
-        color: #34ACA7;
+        color: $teal;
         display: block;
     }
 

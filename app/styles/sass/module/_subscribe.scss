@@ -2,8 +2,8 @@
     display: flex;
     margin-bottom: 30px;
     padding: 8px 18px 8px 66px;
-    border-bottom: 1px dashed #E5E5E5;
-    border-top: 1px dashed #E5E5E5;
+    border-bottom: 1px dashed $gray;
+    border-top: 1px dashed $gray;
     align-items: center;
     justify-content: space-between;
     background: url('../assets/icons/mail-icon.svg') 18px 10px no-repeat;
@@ -29,20 +29,25 @@
 
     &__button {
         width: 80px;
-        background: linear-gradient(180deg, #F4F3F3 0%, #BBB9B9 100%);
-        border: 1px solid #E5E5E5;
+        background: $shadow-button;
+        border: 1px solid $gray;
         border-radius: 2px;
     }
 
     &__input-text {
         width: 152px;
-        border: 1px solid #E5E5E5;
+        border: 1px solid $gray;
         border-radius: 0;
         padding-left: 6px;
     }
 
     &__form {
         display: flex;
+    }
+
+    &__input-text::placeholder { 
+        color: $gray;
+        opacity: 1;
     }
 }
 

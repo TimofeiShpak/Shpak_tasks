@@ -6,10 +6,10 @@
 .tab {
     width: 100%;
     padding: 26px 0 22px 20px;
-    background: #EFF8F7;
+    background: $light-teal;
 
     &__title, &__subtitle {
-        color: #34ACA7;
+        color: $teal;
     }
 
     &__subtitle {   
@@ -22,7 +22,7 @@
     }
 
     &:hover {
-        background: #D9EFEC;
+        background-color: $gray-teal;
     }
 }
 

@@ -4,6 +4,24 @@
 // You can override the default values by setting the variables in your Sass
 // before importing the normalize-scss library.
 
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+button {
+    cursor: pointer;
+}
+
 // The font size set on the root html element.
 $base-font-size: 16px !default;
 
@@ -34,3 +52,4 @@ $indent-amount: 40px !default;
 // However, changing any of the variables above will cause
 // $normalize-vertical-rhythm to be automatically set to true.
 $normalize-vertical-rhythm: false !default;
+

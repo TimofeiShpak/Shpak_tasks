@@ -7,12 +7,12 @@
     &__title {
         font: normal 12px Verdana;
         text-transform: uppercase;
-        border-bottom: 1px dashed #E5E5E5;
+        border-bottom: 1px dashed $gray;
         padding: 5px 0;
     }
 
     &__button {
-        border: 1px solid #E5E5E5;
+        border: 1px solid $gray;
         border-radius: 5px;
         width: 100%;
         padding: 8px 5px 8px 29px;
@@ -20,7 +20,7 @@
         background-color: $white;
         background: url('../assets/icons/twitter-icon-button.svg') 7px 50% no-repeat;
         font: normal italic 10px Arial;
-        color: #34ACA7;
+        color: $teal;
         text-align: left;
     }
 

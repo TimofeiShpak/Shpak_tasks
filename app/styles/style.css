@@ -12,26 +12,6 @@ li {
 button {
   cursor: pointer; }
 
-.subscribe__input-text::-webkit-input-placeholder {
-  color: #E5E5E5;
-  opacity: 1; }
-
-.subscribe__input-text::-moz-placeholder {
-  color: #E5E5E5;
-  opacity: 1; }
-
-.subscribe__input-text:-ms-input-placeholder {
-  color: #E5E5E5;
-  opacity: 1; }
-
-.subscribe__input-text::-ms-input-placeholder {
-  color: #E5E5E5;
-  opacity: 1; }
-
-.subscribe__input-text::placeholder {
-  color: #E5E5E5;
-  opacity: 1; }
-
 .wrapper {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
@@ -444,6 +424,21 @@ button {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex; }
+  .subscribe__input-text::-webkit-input-placeholder {
+    color: #E5E5E5;
+    opacity: 1; }
+  .subscribe__input-text::-moz-placeholder {
+    color: #E5E5E5;
+    opacity: 1; }
+  .subscribe__input-text:-ms-input-placeholder {
+    color: #E5E5E5;
+    opacity: 1; }
+  .subscribe__input-text::-ms-input-placeholder {
+    color: #E5E5E5;
+    opacity: 1; }
+  .subscribe__input-text::placeholder {
+    color: #E5E5E5;
+    opacity: 1; }
 
 @media screen and (max-width: 768px) {
   .subscribe {
@@ -497,7 +492,7 @@ button {
   .tab__title {
     font: normal 18px Arial; }
   .tab:hover {
-    background: #D9EFEC; }
+    background-color: #D9EFEC; }
 
 @media screen and (max-width: 1176px) {
   .tab {
