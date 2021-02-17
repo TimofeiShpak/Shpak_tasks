@@ -2,7 +2,8 @@
 @import 'normalize/vertical-rhythm';
 @import 'normalize/normalize-mixin';
 
-@import 'colors';
+@import 'references/colors';
+
 @import 'components/layout';
 @import 'components/banner';
 @import 'components/card-container';
