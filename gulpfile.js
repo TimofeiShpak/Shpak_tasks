@@ -5,9 +5,9 @@ const browserSync  = require('browser-sync').create();
 const bssi         = require('browsersync-ssi');
 const sass         = require('gulp-sass');
 const cleancss     = require('gulp-clean-css');
-const autoprefixer = require('gulp-autoprefixer');
+const autoprefixer = require('autoprefixer');
 const rename       = require('gulp-rename');
-const del          = require('del');
+const postcss    = require('gulp-postcss')
 
 function browsersync() {
 	browserSync.init({
@@ -22,27 +22,11 @@ function browsersync() {
 function styles() {
 	return src(['app/styles/sass/**/*.scss', '!app/styles/sass/**/_*.scss'])
 		.pipe(sass())
-		.pipe(autoprefixer({ overrideBrowserslist: ['last 10 versions'] }))
+		.pipe(postcss([ autoprefixer({ overrideBrowserslist: ['last 10 versions'] }) ]))
+		.pipe(cleancss({ level: { 1: { specialComments: 0 } },}))
+		.pipe(rename({ suffix: ".min" }))
 		.pipe(dest('app/styles'))
 		.pipe(browserSync.stream())
-}
-
-function minimizeStyles() {
-	return src(['app/styles/style.css'])
-		.pipe(cleancss({ level: { 1: { specialComments: 0 } },}))
-		.pipe(dest('dist/styles'))
-}
-
-function buildcopy() {
-	return src([
-		'app/index.html',
-		'app/assets/**/*',
-	], { base: 'app/' })
-	.pipe(dest('dist'))
-}
-
-function cleandist() {
-	return del('dist/**/*', { force: true })
 }
 
 function startwatch() {
@@ -50,5 +34,4 @@ function startwatch() {
 	watch(`app/**/*.{${fileswatch}}`, { usePolling: true }).on('change', browserSync.reload)
 }
 
-exports.build   = series(cleandist, styles, minimizeStyles, buildcopy)
 exports.default = series(styles, parallel(browsersync, startwatch))

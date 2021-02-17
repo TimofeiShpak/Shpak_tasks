@@ -3,12 +3,12 @@
 @import 'normalize/normalize-mixin';
 
 @import 'colors';
-@import 'layout';
-@import 'module/banner';
-@import 'module/card-container';
-@import 'module/footer';
-@import 'module/menu';
-@import 'module/subscribe';
-@import 'module/tab-container';
-@import 'module/tweet';
-@import 'state';
+@import 'components/layout';
+@import 'components/banner';
+@import 'components/card-container';
+@import 'components/footer';
+@import 'components/menu';
+@import 'components/subscribe';
+@import 'components/tab-container';
+@import 'components/tweet';
+@import 'components/helpers';
