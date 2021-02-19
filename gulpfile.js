@@ -6,6 +6,7 @@ const sass         = require('gulp-sass');
 const cleancss     = require('gulp-clean-css');
 const autoprefixer = require('gulp-autoprefixer');
 const rename       = require('gulp-rename');
+const del          = require('del');
 
 function browsersync() {
 	browserSync.init({
@@ -32,4 +33,18 @@ function startwatch() {
 	watch(`src/**/*.{${fileswatch}}`, { usePolling: true }).on('change', browserSync.reload)
 }
 
+function cleandist() {
+	return del('dist/**/*', { force: true })
+}
+
+function buildcopy() {
+	return src([
+		'src/styles/style.min.css',
+		'src/index.html',
+		'src/assets/**/*.*'
+	], { base: 'src/' })
+	.pipe(dest('dist'))
+}
+
+exports.build   = series(cleandist, styles, buildcopy)
 exports.default = series(styles, parallel(browsersync, startwatch))
