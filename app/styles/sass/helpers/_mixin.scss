@@ -28,3 +28,12 @@
         @content;
     }
 }
+
+@mixin font-source($size: false, $colour: false, $style: false, $family: false, $lh: false, $lp: false) {
+    @if $size { font-size: $size; }
+    @if $colour { color: $colour; }
+    @if $style { font-style: $style; }
+    @if $family { font-family: $family;}
+    @if $lh { line-height: $lh; }
+    @if $lp { letter-spacing: $lp;}
+  }

@@ -17,14 +17,14 @@
     flex-direction: column;
 
     &__link {
+        @include font-source(14px, $teal, italic, Arial);
+        
         align-items: center;
         display: flex;
         width: fit-content; 
         min-height: 32px;
         padding-left: 40px;
         background-position: 0 50%;
-        color: $teal;
-        font: normal italic 14px Arial;
     }
 
     &__item {

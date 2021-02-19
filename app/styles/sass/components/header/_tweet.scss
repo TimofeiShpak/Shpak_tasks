@@ -5,13 +5,16 @@
     }
 
     &__title {
+        @include font-source(12px, $black, normal, Verdana);
+
         border-bottom: 1px dashed $gray;
-        font: normal 12px Verdana;
         text-transform: uppercase;
         padding: 5px 0;
     }
 
     &__button {
+        @include font-source(10px, $teal, italic, Arial);
+
         border: 1px solid $gray;
         border-radius: 5px;
         background-color: $white;
@@ -20,13 +23,10 @@
         padding: 8px 5px 8px 29px;
         width: 100%;
         line-height: 12px;
-        font: italic 10px Arial;
-        color: $teal;
     }
 
     &__text {   
-        font: italic 10px Arial;
-        line-height: 19px;
+        @include font-source(10px, $black, italic, Arial, 19px);
     }
 
     &__text {

@@ -12,18 +12,12 @@
     padding: 26px 0 22px 20px;
     width: 100%;
 
-    &__title, 
-    &__subtitle {
-        color: $teal;
-    }
-
     &__subtitle {   
-        font: normal italic 10px Arial;
-        line-height: 19px;
+        @include font-source(10px, $teal, italic, Arial, 19px);
     }
 
     &__title {
-        font: normal 18px Arial;
+        @include font-source(18px, $teal, normal, Arial);
     }
 
     &:hover {

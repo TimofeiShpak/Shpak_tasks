@@ -20,25 +20,25 @@
 
     &__button, 
     &__input-text {
-        font: normal 10px Arial;
+        @include font-source(10px, $black, normal, Arial);
+
+        border: 1px solid $gray;
         padding: 5px 0;
     }
 
     &__text {
-        font: normal italic 14px Arial;
-        line-height: 16px;
+        @include font-source(14px, $black, italic, Arial, 16px);
+        
         flex: 1;
     }
 
     &__button {
         background: $shadow-button;
-        border: 1px solid $gray;
         border-radius: 2px;
         width: 80px;
     }
 
     &__input-text {
-        border: 1px solid $gray;
         border-radius: 0;
         padding-left: 6px;
         width: 152px;
@@ -69,7 +69,7 @@
         &__form > :nth-child(n) {
             margin-left: 36px;
         }
-         
+
         &__form > :first-child {
             margin-left: 0;
         }
