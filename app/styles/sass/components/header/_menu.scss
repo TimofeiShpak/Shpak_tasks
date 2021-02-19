@@ -1,10 +1,14 @@
 .navigation {
     width: 100%;
+
+    @include _992 {
+        height: 100%;
+    }
 }
 
 .link-logo {
-    justify-content: center;
     align-self: center;
+    justify-content: center;
     margin: auto;
 }
 
@@ -13,14 +17,14 @@
     flex-direction: column;
 
     &__link {
-        display: flex;
-        font: normal italic 14px Arial;
         align-items: center;
+        display: flex;
         width: fit-content; 
         min-height: 32px;
         padding-left: 40px;
-        color: $teal;
         background-position: 0 50%;
+        color: $teal;
+        font: normal italic 14px Arial;
     }
 
     &__item {
@@ -30,49 +34,43 @@
     &__link:hover {
         color: $black;
     }
-}
 
-@media screen and (max-width: 992px) {
-    .menu {
+    @include _992 {
         flex-direction: row;
         padding: 22px 0;
-
+    
         &__item {
-            margin: 0 auto;
             display: flex;
             justify-content: center;
+            margin: 0 auto;
         }
-
+    
         & &__link {
-            padding: 45px 0 3px;
             background-position: 50% 0;
+            padding: 45px 0 3px;
         }
     }
-}
 
-@media screen and (max-width: 768px) {
-    .menu {
-        flex-wrap: wrap;
+    @include _768 {
         align-content: center;
+        flex-wrap: wrap;
 
         & &__link {
-            padding: 0;
             background: none;
+            padding: 0;
         }
     }
-}
 
-@media screen and (max-width: 480px) {
-    .menu {
+    @include _480 {
         min-height: 40px;
 
         &__link {
             padding: 0 6px;
-            background: none;
         }
 
         &__item {
             margin: auto;
+            padding: 0 4px;
         }
     }
 }

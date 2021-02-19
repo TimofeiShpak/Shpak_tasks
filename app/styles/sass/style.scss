@@ -2,14 +2,17 @@
 @import 'normalize/vertical-rhythm';
 @import 'normalize/normalize-mixin';
 
-@import 'references/colors';
+@import 'variables/colors';
 
-@import 'components/layout';
-@import 'components/banner';
-@import 'components/card-container';
-@import 'components/footer';
-@import 'components/menu';
-@import 'components/subscribe';
-@import 'components/tab-container';
-@import 'components/tweet';
-@import 'components/helpers';
+@import "helpers/mixin";
+@import 'helpers/state';
+
+@import 'components/header/header';
+@import 'components/header/menu';
+@import 'components/header/tweet';
+@import 'components/main/banner';
+@import 'components/main/card-container';
+@import 'components/main/subscribe';
+@import 'components/main/tab-container';
+@import 'components/footer/footer';
+@import 'components/wrapper/wrapper';

@@ -1,0 +1,35 @@
+.header {
+    display: flex;
+    flex-direction: column;
+    width: 140px;
+
+    & > :last-child, 
+    & > :first-child {
+        margin-bottom: 0;
+    }
+
+    & > :nth-child(n) {
+        margin-bottom: 9px;
+    }
+
+    @include _992 {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 20px 0;
+        width: 100%;
+
+        & > :nth-child(n) {
+            margin: auto 0;
+        }
+    }
+
+    @include _480 {
+        align-items: center;
+        flex-direction: column-reverse;
+        padding: 0;
+
+        & > :first-child {
+            margin-bottom: 30px;
+        }
+    }
+}

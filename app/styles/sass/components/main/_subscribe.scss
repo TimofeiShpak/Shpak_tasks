@@ -1,11 +1,11 @@
 .subscribe  {
-    display: flex;
-    margin-bottom: 30px;
-    padding: 8px 18px 8px 66px;
     border-bottom: 1px dashed $gray;
     border-top: 1px dashed $gray;
+    display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 30px;
+    padding: 8px 18px 8px 66px;
     background: url('../assets/icons/mail-icon.svg') 18px 10px no-repeat;
 
     & > :nth-child(n),
@@ -13,8 +13,15 @@
         margin-left: 18px;
     }
 
-    & > :first-child, &__form > :first-child {
+    & > :first-child, 
+    &__form > :first-child {
         margin-left: 0;
+    }
+
+    &__button, 
+    &__input-text {
+        font: normal 10px Arial;
+        padding: 5px 0;
     }
 
     &__text {
@@ -23,23 +30,18 @@
         flex: 1;
     }
 
-    &__button, &__input-text {
-        padding: 5px 0;
-        font: normal 10px Arial;
-    }
-
     &__button {
-        width: 80px;
         background: $shadow-button;
         border: 1px solid $gray;
         border-radius: 2px;
+        width: 80px;
     }
 
     &__input-text {
-        width: 152px;
         border: 1px solid $gray;
         border-radius: 0;
         padding-left: 6px;
+        width: 152px;
     }
 
     &__form {
@@ -50,13 +52,11 @@
         color: $gray;
         opacity: 1;
     }
-}
 
-@media screen and (max-width: 768px) {
-    .subscribe {
+    @include _768 {
         flex-direction: column;
         padding: 8px 18px 0 18px;
-
+        
         &__text {
             padding-left: 48px;
         }
@@ -69,8 +69,8 @@
         &__form > :nth-child(n) {
             margin-left: 36px;
         }
-
-        & > :first-child, &__form > :first-child {
+         
+        &__form > :first-child {
             margin-left: 0;
         }
 
@@ -87,10 +87,8 @@
             width: 90%;
         }
     }
-}
 
-@media screen and (max-width: 480px) {
-    .subscribe {
+    @include _480 {
         flex-direction: column;
         padding-right: 10%;
 

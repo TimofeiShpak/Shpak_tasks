@@ -17,14 +17,16 @@
 }
 
 .tweet__title_shadow {
-    text-shadow: 0px 4px 4px transparentize($black, 0.75);
+    text-shadow: 0px 4px 4px rgba($black, 0.25);
 }
 
 .three-dots::after {
     content: '...';
 }
 
-.footer-fb, .footer-twitter, .footer-rss {
+.footer-fb, 
+.footer-twitter, 
+.footer-rss {
     width: 32px;
     height: 32px;
     margin: 0 2px;
