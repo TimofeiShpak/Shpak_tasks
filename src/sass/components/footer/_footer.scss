@@ -1,4 +1,5 @@
 .footer {
+    @include margin(__info, bottom, 5px, true);
     display: flex;
     border-top: 2px solid $gray;
     justify-content: space-between;
@@ -10,17 +11,10 @@
         display: flex;
         flex-wrap: wrap;
     }
-
-    &__info > :nth-child(n) {
-        margin-bottom: 5px;
-    } 
-
-    &__info > :last-child {
-        margin-bottom: 0;
-    }
  
     &__nav > :nth-child(n) {
         background: url('../assets/images/separator.svg') no-repeat;
+        padding: 0 4px;
     }
 
     &__nav > :first-child {
@@ -32,35 +26,26 @@
     }
 
     &__link {
-        @include font-source(12px, $teal, normal, Arial);
-        
+        @include font-source(12px, $primary, normal, Arial);
         display: block;
-        margin: 0 4px;
     }
 
     &__link:hover{
         color: $black;
     }
 
-    @include _992 {
+    @include mediaQueries($large) {
         padding: 22px 0;
     }
 
-    @include _480 {
+    @include mediaQueries($small) {
         margin: 0 6%;
         padding: 22px 0;
     }
 
-    @include _360 {
+    @include mediaQueries($extra-small) {
+        @include margin('', bottom, 10px, true);
         flex-direction: column;
         align-items: center;
-
-        & > :nth-child(n) {
-            margin-bottom: 10px;
-        }
-
-        & > :last-child {
-            margin-bottom: 0;
-        }
     }
 }

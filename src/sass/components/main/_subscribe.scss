@@ -1,34 +1,25 @@
 .subscribe  {
+    @include margin('', left, 18px, false, true);
+    @include margin(__form, left, 18px, false, true);
     border-bottom: 1px dashed $gray;
     border-top: 1px dashed $gray;
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 30px;
-    padding: 8px 18px 8px 66px;
+    padding: 8px 18px 8px 18px;
     background: url('../assets/icons/mail-icon.svg') 18px 10px no-repeat;
-
-    & > :nth-child(n),
-    &__form > :nth-child(n) {
-        margin-left: 18px;
-    }
-
-    & > :first-child, 
-    &__form > :first-child {
-        margin-left: 0;
-    }
 
     &__button, 
     &__input-text {
         @include font-source(10px, $black, normal, Arial);
-
         border: 1px solid $gray;
         padding: 5px 0;
     }
 
     &__text {
         @include font-source(14px, $black, italic, Arial, 16px);
-        
+        padding-left: 46px;
         flex: 1;
     }
 
@@ -53,26 +44,12 @@
         opacity: 1;
     }
 
-    @include _768 {
+    @include mediaQueries($medium) {
+        @include margin('', left, 0);
+        @include margin('', bottom, 15px);
+        @include margin(__form, left, 36px, false, true);
         flex-direction: column;
-        padding: 8px 18px 0 18px;
-        
-        &__text {
-            padding-left: 48px;
-        }
-
-        & > :nth-child(n) {
-            margin-left: 0;
-            margin-bottom: 15px;
-        }
-
-        &__form > :nth-child(n) {
-            margin-left: 36px;
-        }
-
-        &__form > :first-child {
-            margin-left: 0;
-        }
+        padding-bottom: 0;
 
         &__form {
             width: 100%;
@@ -88,9 +65,10 @@
         }
     }
 
-    @include _480 {
+    @include mediaQueries($small) {
         flex-direction: column;
         padding-right: 10%;
+        padding-bottom: 15px;
 
         &__input-text {
             max-width: 211px;

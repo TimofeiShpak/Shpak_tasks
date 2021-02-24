@@ -1,0 +1,32 @@
+@mixin mediaQueries($width) {
+    @media only screen and (max-width: $width) {
+        @content;
+    }
+}
+
+@mixin font-source($size: false, $colour: false, $style: false, $family: false, $lh: false, $ls: false) {
+    @if $size { font-size: $size; }
+    @if $colour { color: $colour; }
+    @if $style { font-style: $style; }
+    @if $family { font-family: $family;}
+    @if $lh { line-height: $lh; }
+    @if $ls { letter-spacing: $ls;}
+}
+
+@mixin margin($element, $direction, $value, $isLastChild: false, $isFirstChild: false) {
+    &#{$element} > :nth-child(n) {
+        margin-#{$direction}: $value;
+    }
+
+    @if $isLastChild {
+        &#{$element} > :last-child {
+            margin-#{$direction}: 0;
+        }
+    }
+
+    @if $isFirstChild {
+        &#{$element} > :first-child {
+            margin-#{$direction}: 0;
+        }
+    }
+}

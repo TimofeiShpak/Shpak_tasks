@@ -8,34 +8,22 @@
         height: fit-content;
     }
 
-    @include _992 {
-        & > :nth-child(n) {
-            margin-bottom: 14px;
-        }
+    @include mediaQueries($large) {
+        @include margin('', bottom, 14px);
     }
 
-    @include _480 {
+    @include mediaQueries($small) {
+        @include margin('', bottom, 30px);
         align-items: center;
         flex-direction: column;
-    
-        & > :nth-child(n) {
-            margin-bottom: 30px;
-        }
     }
 }
 
 .card {
+    @include margin('', bottom, 10px, true);
     flex-direction: column;
     justify-content: flex-start;
     width: 207px;
- 
-    & > :nth-child(n) {
-        margin-bottom: 10px;
-    }
-
-    & > :last-child {
-        margin-bottom: 0;
-    }
 
     &__img {
         border: 1px solid $gray;
@@ -45,11 +33,11 @@
     }
 
     &__link {
-        color: $teal;
+        color: $primary;
     }
 
     &__title {
-        @include font-source(16px, $teal, normal, Arial, 20px, -0.02em);
+        @include font-source(16px, $primary, normal, Arial, 20px, -0.02em);
     }
 
     &__text {
@@ -61,10 +49,10 @@
     }
 
     & &__link:hover {
-        color: $light-green;
+        color: $black;
     }
 
-    @include _1176 {
+    @include mediaQueries($extra-large) {
         width: 159px;
     
         &__img {
@@ -72,7 +60,7 @@
         }
     }
 
-    @include _768 {
+    @include mediaQueries($medium) {
         width: 47%;
     
         &__img {
@@ -80,7 +68,7 @@
         }
     }
 
-    @include _480 {    
+    @include mediaQueries($small) {    
         width: 78%;
     }
 }

@@ -19,21 +19,19 @@
 
     &__title {
         @include font-source(22px, $black, italic, Arial, 22px, 0.01em);
-
         background-color: $white;
     }
 
     &__subtitle {
         @include font-source(14px, $white, italic, Arial);
-        
         background-color: $black;
     }
 
-    @include _1176 {
+    @include mediaQueries($extra-large) {
         background: url('../assets/images/baner-m.png') no-repeat;
     }
 
-    @include _768 {
+    @include mediaQueries($medium) {
         background-size: cover;
         height: 353px;
 
@@ -55,11 +53,11 @@
         }
     }
 
-    @include _560  {
+    @include mediaQueries($between-medium-small)  {
         height: 63vw;
     }
 
-    @include _480 {
+    @include mediaQueries($small) {
         background-image: url('../assets/images/baner-sm.png') no-repeat;
         height: 78vw;
     }

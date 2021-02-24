@@ -1,20 +1,16 @@
 .tweet {
-    & > :nth-child(n), 
-    &__title {
-        margin-bottom: 9px;
-    }
+    @include margin('', bottom, 9px, true);
 
     &__title {
         @include font-source(12px, $black, normal, Verdana);
-
+        margin-bottom: 9px;
         border-bottom: 1px dashed $gray;
         text-transform: uppercase;
         padding: 5px 0;
     }
 
     &__button {
-        @include font-source(10px, $teal, italic, Arial);
-
+        @include font-source(10px, $primary, italic, Arial);
         border: 1px solid $gray;
         border-radius: 5px;
         background-color: $white;
@@ -33,7 +29,7 @@
         margin-bottom: 15px;
     }
 
-    @include _992 {
+    @include mediaQueries($large) {
         display: none;
     }
 }

@@ -1,7 +1,7 @@
 .navigation {
     width: 100%;
 
-    @include _992 {
+    @include mediaQueries($large) {
         height: 100%;
     }
 }
@@ -17,8 +17,7 @@
     flex-direction: column;
 
     &__link {
-        @include font-source(14px, $teal, italic, Arial);
-        
+        @include font-source(14px, $primary, italic, Arial);
         align-items: center;
         display: flex;
         width: fit-content; 
@@ -35,7 +34,7 @@
         color: $black;
     }
 
-    @include _992 {
+    @include mediaQueries($large) {
         flex-direction: row;
         padding: 22px 0;
     
@@ -51,7 +50,7 @@
         }
     }
 
-    @include _768 {
+    @include mediaQueries($medium) {
         align-content: center;
         flex-wrap: wrap;
 
@@ -61,7 +60,7 @@
         }
     }
 
-    @include _480 {
+    @include mediaQueries($small) {
         min-height: 40px;
 
         &__link {

@@ -2,29 +2,29 @@
     cursor: pointer;
     display: flex;
 
-    @include _768 {
+    @include mediaQueries($medium) {
         display: none;
     }
 }
 
 .tab {
-    background: $light-teal;
+    background: $light;
     padding: 26px 0 22px 20px;
     width: 100%;
 
     &__subtitle {   
-        @include font-source(10px, $teal, italic, Arial, 19px);
+        @include font-source(10px, $primary, italic, Arial, 19px);
     }
 
     &__title {
-        @include font-source(18px, $teal, normal, Arial);
+        @include font-source(18px, $primary, normal, Arial);
     }
 
     &:hover {
-        background-color: $gray-teal;
+        background-color: $light-active;
     }
 
-    @include _1176 {
+    @include mediaQueries($extra-large) {
         font-size: 14px;
         padding: 10px 0;
         text-align: center;

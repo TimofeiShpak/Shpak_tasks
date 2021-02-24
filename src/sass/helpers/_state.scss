@@ -7,6 +7,9 @@
 @each $name in twitter, fb, rss {
     .footer-#{$name} {
         background: url('../assets/icons/#{$name}-icon.svg');
+        width: 32px;
+        height: 32px;
+        margin: 0 2px;
     }
 }
 
@@ -22,12 +25,4 @@
 
 .three-dots::after {
     content: '...';
-}
-
-.footer-fb, 
-.footer-twitter, 
-.footer-rss {
-    width: 32px;
-    height: 32px;
-    margin: 0 2px;
 }
