@@ -67,17 +67,17 @@ const Module = (function () {
     };
 
     myModule.secondExample.alphabetPosition = function(str) {
-        let result = "";
+        let result = [];
         let letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 
             'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
         let lowerStr = checkStr(str);
         for (let i = MIN_NUMBER; i < lowerStr.length; i++) {
             let index = letters.findIndex(letter => letter === lowerStr[i]) + NUMBER_FOR_INDEX;
             if (index > MIN_NUMBER) {
-                result += `${index} `
+                result.push(index);
             }
         }
-        return result.trim();
+        return result.join(' ');
     };
 
     myModule.thirdExample.alphabetPosition = function(str) {
@@ -89,10 +89,13 @@ const Module = (function () {
         }
         for (let i = MIN_NUMBER; i < lowerStr.length; i++) {
             if (letters[lowerStr[i]]) {
-                result += `${letters[lowerStr[i]]} `
+                result += `${letters[lowerStr[i]]}`;
+                if (i !== lowerStr.length - ONE_ELEMENT) {
+                    result += ' ';
+                }
             }
         }
-        return result.trim();
+        return result;
     };
 
     myModule.firstExample.squareEveryDigit = function(number) {
@@ -115,7 +118,7 @@ const Module = (function () {
                 result += String(rest * rest);
             }
         }
-        return Number(result);
+        return +result;
     }
 
     myModule.thirdExample.squareEveryDigit = function(number) {
@@ -123,7 +126,7 @@ const Module = (function () {
         if (isFinite(number)) {
             result = [...number+''].map(num => Math.pow(num, DEGREE_FOR_SQUARE)).join('');
         }
-        return Number(result);
+        return result - 0;
     }
 
     return myModule;
