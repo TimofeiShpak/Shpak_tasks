@@ -1,15 +1,13 @@
 .footer {
     @include margin(__info, bottom, 5px, true);
-    display: flex;
+    @include flex(('j-c':'space-between'));
     border-top: 2px solid $gray;
-    justify-content: space-between;
     padding: 22px 0 33px;
     width: 100%;
 
     &__nav, 
     &__icons {
-        display: flex;
-        flex-wrap: wrap;
+        @include flex('wrap');
     }
  
     &__nav > :nth-child(n) {
@@ -45,7 +43,6 @@
 
     @include mediaQueries($extra-small) {
         @include margin('', bottom, 10px, true);
-        flex-direction: column;
-        align-items: center;
+        @include flex('column', ('a-i':'center'));
     }
 }

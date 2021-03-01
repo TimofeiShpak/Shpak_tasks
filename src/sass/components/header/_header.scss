@@ -1,12 +1,10 @@
 .header {
     @include margin('', bottom, 10px, true, true);
-    display: flex;
-    flex-direction: column;
+    @include flex(column);
     width: 140px;
 
     @include mediaQueries($large) {
-        flex-direction: row;
-        justify-content: space-between;
+        @include flex('row', ('j-c':'space-between'));
         padding: 20px 0;
         width: 100%;
 
@@ -16,8 +14,7 @@
     }
 
     @include mediaQueries($small) {
-        align-items: center;
-        flex-direction: column-reverse;
+        @include flex(column-reverse);
         padding: 0;
 
         & > :first-child {

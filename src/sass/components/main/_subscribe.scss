@@ -1,14 +1,11 @@
 .subscribe  {
     @include margin('', left, 18px, false, true);
     @include margin(__form, left, 18px, false, true);
+    @include flex(('j-c':'space-between', 'a-i':'center'));
     border-bottom: 1px dashed $gray;
     border-top: 1px dashed $gray;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     margin-bottom: 30px;
     padding: 8px 18px 8px 18px;
-    background: url('../assets/icons/mail-icon.svg') 18px 10px no-repeat;
 
     &__button, 
     &__input-text {
@@ -21,6 +18,7 @@
         @include font-source(14px, $black, italic, Arial, 16px);
         padding-left: 46px;
         flex: 1;
+        background: url('../assets/icons/mail-icon.svg') 0 50% no-repeat;
     }
 
     &__button {
@@ -48,7 +46,7 @@
         @include margin('', left, 0);
         @include margin('', bottom, 15px);
         @include margin(__form, left, 36px, false, true);
-        flex-direction: column;
+        @include flex(column);
         padding-bottom: 0;
 
         &__form {
@@ -66,7 +64,7 @@
     }
 
     @include mediaQueries($small) {
-        flex-direction: column;
+        @include flex(column);
         padding-right: 10%;
         padding-bottom: 15px;
 

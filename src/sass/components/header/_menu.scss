@@ -8,22 +8,19 @@
 
 .link-logo {
     align-self: center;
-    justify-content: center;
-    margin: auto;
 }
 
 .menu {
-    display: flex;
-    flex-direction: column;
+    @include flex(column);
 
     &__link {
         @include font-source(14px, $primary, italic, Arial);
-        align-items: center;
-        display: flex;
+        @include flex(('a-i':'center'));
         width: fit-content; 
         min-height: 32px;
         padding-left: 40px;
         background-position: 0 50%;
+        background-repeat: no-repeat;
     }
 
     &__item {
@@ -35,12 +32,11 @@
     }
 
     @include mediaQueries($large) {
-        flex-direction: row;
+        @include flex(row);
         padding: 22px 0;
     
         &__item {
-            display: flex;
-            justify-content: center;
+            @include flex(('j-c':'center'));
             margin: 0 auto;
         }
     
@@ -51,8 +47,7 @@
     }
 
     @include mediaQueries($medium) {
-        align-content: center;
-        flex-wrap: wrap;
+        @include flex('wrap', ('a-c':'center'));
 
         & &__link {
             background: none;

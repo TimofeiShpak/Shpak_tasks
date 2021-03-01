@@ -11,8 +11,7 @@
     }
 
     &__text {
-        display: flex;
-        flex-direction: column;
+        @include flex(column);
         position: absolute;
         bottom: 70px;
     }

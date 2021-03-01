@@ -1,20 +1,14 @@
 .wrapper {
     @include margin(__content, right, 44px, true);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    @include flex('wrap', ('j-c':'space-between'));
     max-width: 1080px;
     width: 100%;
     margin: auto;
     padding-top: 45px;
 
     &__content {
-        display: flex;
-    }
-
-    &__content {
-        align-items: flex-start;
-        margin-bottom: 35px;
+        @include flex(('a-i':'flex-start'));
+        margin-bottom: 25px;
         width: 100%;
     }
 

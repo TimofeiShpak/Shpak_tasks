@@ -1,22 +1,27 @@
 @each $name in tastemakers, blog, list, camera, about {
     .link-#{$name} {
-        background: url('../assets/icons/#{$name}-icon.svg') no-repeat;
+        background-image: url('../assets/icons/#{$name}-icon.svg');
     }
 }
 
 @each $name in twitter, fb, rss {
     .footer-#{$name} {
-        background: url('../assets/icons/#{$name}-icon.svg');
-        width: 32px;
-        height: 32px;
-        margin: 0 2px;
+        background-image: url('../assets/icons/#{$name}-icon.svg');
     }
 }
 
 @each $name in twitter, fb, rss {
     .footer-#{$name}:hover {
-        background: url('../assets/icons/#{$name}-icon-black.svg');
+        background-image: url('../assets/icons/#{$name}-icon-black.svg');
     }
+}
+
+.footer-fb, 
+.footer-twitter, 
+.footer-rss {
+    width: 32px;	    
+    height: 32px;	  
+    margin: 0 2px;	   
 }
 
 .tweet__title_shadow {
