@@ -28,7 +28,8 @@ const Module = (function () {
 
     myModule.firstExample.arrayDiff = function(a, b) {
         let [firstArr, secondArr] = checkArray(a, b);
-        for (let i = firstArr.length - ONE_ELEMENT; i >= MIN_NUMBER; i--) {
+        let firstIndex = firstArr.length - ONE_ELEMENT;
+        for (let i = firstIndex; i >= MIN_NUMBER; i--) {
             if(secondArr.includes(firstArr[i])) {
                 firstArr.splice(i, ONE_ELEMENT);
             }
@@ -55,9 +56,10 @@ const Module = (function () {
     };
 
     myModule.firstExample.alphabetPosition = function(str) {
+        const lowerStr = checkStr(str);
+        const length = lowerStr.length;
         let result = "";
-        let lowerStr = checkStr(str);
-        for (let i = MIN_NUMBER; i < lowerStr.length; i++) {
+        for (let i = MIN_NUMBER; i < length; i++) {
             let code = lowerStr[i].charCodeAt(MIN_NUMBER) - CODE_FOR_LETTER;
             if (code > MIN_NUMBER) {
                 result += `${code} `
@@ -67,11 +69,12 @@ const Module = (function () {
     };
 
     myModule.secondExample.alphabetPosition = function(str) {
+        const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 
+        'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+        const lowerStr = checkStr(str);
+        const length = lowerStr.length;
         let result = [];
-        let letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 
-            'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-        let lowerStr = checkStr(str);
-        for (let i = MIN_NUMBER; i < lowerStr.length; i++) {
+        for (let i = MIN_NUMBER; i < length; i++) {
             let index = letters.findIndex(letter => letter === lowerStr[i]) + NUMBER_FOR_INDEX;
             if (index > MIN_NUMBER) {
                 result.push(index);
@@ -81,16 +84,17 @@ const Module = (function () {
     };
 
     myModule.thirdExample.alphabetPosition = function(str) {
+        const lowerStr = checkStr(str);
+        const length = lowerStr.length;
         let result = "";
         let letters = {};
-        let lowerStr = checkStr(str);
         for (let i = ONE_ELEMENT; i <=NUMBER_LETTERS_ALPHABET; i++) {
             letters[`${String.fromCodePoint(CODE_FOR_LETTER+i)}`] = i;
         }
-        for (let i = MIN_NUMBER; i < lowerStr.length; i++) {
+        for (let i = MIN_NUMBER; i < length; i++) {
             if (letters[lowerStr[i]]) {
                 result += `${letters[lowerStr[i]]}`;
-                if (i !== lowerStr.length - ONE_ELEMENT) {
+                if (i !== length - ONE_ELEMENT) {
                     result += ' ';
                 }
             }
@@ -121,10 +125,11 @@ const Module = (function () {
         return +result;
     }
 
-    myModule.thirdExample.squareEveryDigit = function(number) {
+    myModule.thirdExample.squareEveryDigit = function(number, degree) {
         let result = MIN_NUMBER;
+        degree = degree || DEGREE_FOR_SQUARE;
         if (isFinite(number)) {
-            result = [...number+''].map(num => Math.pow(num, DEGREE_FOR_SQUARE)).join('');
+            result = [...number+''].map(num => Math.pow(num, degree)).join('');
         }
         return result - 0;
     }
