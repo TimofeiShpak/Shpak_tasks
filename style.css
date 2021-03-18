@@ -4,6 +4,7 @@
     border: none;
     font-family: monospace;
     font-size: 20px;
+    outline: none;
 }
 
 .wrapper-game {
@@ -23,6 +24,7 @@
 .header__title {
     color: #fff;
     font-size: 30px;
+    user-select: none;
 }
 
 .main {
@@ -44,6 +46,7 @@
     margin-bottom: 20px;
     border-radius: 5px;
     background-color: #fff;
+    user-select: none;
 }
 
 .field-wrapper {
@@ -76,24 +79,26 @@
     height: 40px;
     border-radius: 50%;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -20px;
-    margin-left: -20px;
 }
 
 .score {
     color: #fff;
     font-size: 30px;
-    margin: 0 10px;
+    margin: 0 20px;
+    user-select: none;
 }
 
-.player {
+.racket__area {
+    width: 20px;
+}
+
+.racket {
     width: 20px;
     height: 60px;
     border-radius: 4px;
     background-color: #fff;
     pointer-events: all;
+    position: absolute;
 }
 
 .player:hover,
