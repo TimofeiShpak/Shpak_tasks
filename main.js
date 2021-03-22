@@ -11,9 +11,12 @@ const Module = (function () {
     const INTERVAL_TIME_BALL = 50;
     const RACKET_MARGIN = 30;
     const INTERVAL_TIME = 25;
-    const COEFFICIENT_SPEED_ENEMY = 0.9;
-    const MAX_SCORE = 5;
+    const COEFFICIENT_SPEED_ENEMY = 0.8;
+    const BONUS_HEIGHT = 40;
+    const INIT_VALUE = 0;
+    const NORMAL_COEFFICIENT = 1;
     const TIME_BONUS = 5000;
+    const MAX_SCORE = 5;
 
     let speedValue = 5;
     let difference = 1;
@@ -94,10 +97,10 @@ const Module = (function () {
         deleteBallClone();
         changeIsStart(false);
         moveAllElementsToCenter();
-        scoreRight.textContent = 0;
-        scoreLeft.textContent = 0;
+        scoreRight.textContent = INIT_VALUE;
+        scoreLeft.textContent = INIT_VALUE;
         ball.speed = getRandomSpeed();
-        coefficientSpeedBall = 1;
+        coefficientSpeedBall = NORMAL_COEFFICIENT;
         stopButton.classList.remove('hide');
         invulnerability = '';
         fieldElement.classList.remove('left-side', 'right-side');
@@ -122,8 +125,8 @@ const Module = (function () {
         clearTimeout(timeoutBonus);
         isStart = false;
         ball.speed = getRandomSpeed();
-        difference = 1;
-        coefficientSpeedBall = 1;
+        difference = NORMAL_COEFFICIENT;
+        coefficientSpeedBall = NORMAL_COEFFICIENT;
         setTimeout(() => moveBallToCenter());
         setTimeout(() => isStart = true, TIMER_IS_START);
     }
@@ -331,7 +334,7 @@ const Module = (function () {
     }
 
     function getChangedEnemyTop() {
-        let enemyTop = +enemy.style.top.slice(0, -2) || 0;
+        let enemyTop = parseFloat(enemy.style.top) || INIT_VALUE;
         let newEnemyTop = checkEnemyTop(enemyTop); 
         return newEnemyTop;
     }
@@ -382,7 +385,7 @@ const Module = (function () {
     }
 
     function getRandomTop() {
-        let randomHeight = Math.random() * (field.height - 40);
+        let randomHeight = Math.random() * (field.height - BONUS_HEIGHT);
         let topBonus = randomHeight + field.fieldTop;
         return topBonus;
     }

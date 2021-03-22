@@ -180,7 +180,10 @@
     height: 80px;
 }
 
-.left-side,
-.right-side {
+.left-side {
     border-left-color: #fff;
+}
+
+.right-side {
+    border-right-color: #fff;
 }
