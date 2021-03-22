@@ -378,7 +378,7 @@ const Module = (function () {
     function getNames() {
         let names = ['sm', 'bg', 'sd', 's+', 's-', 'db'];
         let randomIndex = Math.floor(Math.random() * names.length);
-        return names[3];
+        return names[randomIndex];
     }
 
     function getRandomTop() {
