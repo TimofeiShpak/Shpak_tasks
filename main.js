@@ -1,166 +1,221 @@
-class Game {
-    isStart = false;
-    player = document.querySelector('.player');
-    enemy = document.querySelector('.enemy');
-    ball = document.querySelector('.ball');
-    startButton = document.querySelector('.start');
-    modalWrapper = document.querySelector('.modal-wrapper');
-    modalBtn = document.querySelector('.modal__btn');
-    field = {};
-    speed = {};
+const Module = (function () {
+    const TEXT_WIN = 'Поздравляем вы выиграли';
+    const TEXT_LOSE = 'К сожалению вы проиграли';
+    const TEXT_SCORE = 'со счетом';
+    const START_GAME_TEXT = 'Продолжить игру';
+    const STOP_GAME_TEXT = 'Остановить игру';
+    const TIMER_IS_START = 500;
+    const MIN_SPEED_Y = 1;
+    const TIME_IS_REVERSE = 400;
+    const RACKET_MARGIN = 30;
+    const INTERVAL_TIME = 25;
+    const COEFFICIENT_SPEED_ENEMY = 0.8;
+    const MAX_SCORE = 5;
+    const TIME_BONUS = 5000;
 
-    toggleModal() {
-        this.modalBtn.addEventListener('click', () => {
-            this.modalWrapper.classList.toggle('hide');
+    let speedValue = 5;
+    let difference = 1;
+    let scoreLeft = 0;
+    let scoreRight = 0;
+    let speedBonus = 0;
+    let myModule = {};
+    let field = {};
+    let speed = {};
+    let isReverseHorizontal = false;
+    let isStart = false;
+    let isBonus = false;
+    let invulnerability = '';
+    let name = '';
+    let player = document.querySelector('.player');
+    let enemy = document.querySelector('.enemy');
+    let ball = document.querySelector('.ball');
+    let startButton = document.querySelector('.start');
+    let stopButton = document.querySelector('.stop');
+    let modalWrapper = document.querySelector('.modal-wrapper');
+    let modalBtn = document.querySelector('.modal__btn');
+    let fieldElement = document.querySelector('.field');
+    let bonus;
+    let timeoutBonus;
+
+    function toggleModal() {
+        modalBtn.addEventListener('click', () => {
+            modalWrapper.classList.toggle('hide');
         });
     }
 
-    getTextForModal(winner, leftScore, rightScore) {
-        let result = '';
-        if (winner === 'player') {
-            result += 'Поздравляем вы выиграли';
-        } else if (winner === 'enemy') {
-            result += 'К сожалению вы проиграли'
-        }
-        result += ` со счетом ${leftScore}:${rightScore}`;
-        return result;
-    }
-
-    openModal(winner, leftScore, rightScore) {
-        let modalTextElement = document.querySelector('.modal__text');
-        modalTextElement.textContent = this.getTextForModal(winner, leftScore, rightScore);
-        this.modalBtn.click();
-    }
-
-    initScoreElement() {
+    function initScoreElement() {
         let scoreElements = document.querySelectorAll('.score');
-        this.scoreLeft = scoreElements[0];
-        this.scoreRight = scoreElements[1];
+        scoreLeft = scoreElements[0];
+        scoreRight = scoreElements[1];
     }
 
-    getCoordsField() {
-        let field = document.querySelector('.field');
-        let coords = field.getBoundingClientRect();
-        this.field.fieldTop = coords.top;
-        this.field.bottomEdge = coords.top + field.offsetHeight;
-        this.field.fieldLeft = coords.left;
-        this.field.rightEdge = coords.left + field.offsetWidth;
-        this.field.centerX = coords.left + field.offsetWidth / 2;
-        this.field.centerY = coords.top + field.offsetHeight / 2;
-        this.field.coefficient = 1.2 * field.offsetWidth / field.offsetHeight;
-        this.field.height = field.offsetHeight;
+    function getCoordsField() {
+        let coords = fieldElement.getBoundingClientRect();
+        field.fieldTop = coords.top;
+        field.bottomEdge = coords.bottom;
+        field.fieldLeft = coords.left;
+        field.rightEdge = coords.right;
+        field.centerX = coords.left + coords.width / 2;
+        field.centerY = coords.top + coords.height / 2;
+        field.coefficient = coords.width / coords.height;
+        field.height = coords.height;
     }
 
-    startGame() {
-        const START_GAME_TEXT = 'Start game';
-        const STOP_GAME_TEXT = 'Stop game';
+    function moveBallToCenter() {
+        ball.style.left = field.centerX - ball.offsetWidth / 2 + 'px';
+        ball.style.top = field.centerY - ball.offsetHeight / 2 + 'px';
+    }
 
-        this.startButton.addEventListener('click', () => {
-            this.isStart = !this.isStart;
-            this.startButton.textContent = this.isStart ? STOP_GAME_TEXT : START_GAME_TEXT;
+    function moveAllElementsToCenter() {
+        player.style.top = field.centerY - player.offsetWidth / 2 + 'px';
+        enemy.style.top = field.centerY - enemy.offsetWidth / 2 + 'px';
+        setTimeout(() => moveBallToCenter());
+    }
+
+    function changeIsStart(value) {
+        isStart = value;
+        stopButton.textContent = isStart ? STOP_GAME_TEXT : START_GAME_TEXT;
+    }
+    
+    function continueGame() {
+        changeIsStart(false)
+        setTimeout(() => {
+            changeIsStart(true)
+        }, TIMER_IS_START);
+    }
+
+    function resetGame() {
+        deleteBonus();
+        changeIsStart(false);
+        moveAllElementsToCenter();
+        scoreRight.textContent = 0;
+        scoreLeft.textContent = 0;
+        speed = getRandomSpeed();
+        stopButton.classList.remove('hide');
+        invulnerability = '';
+        fieldElement.classList.remove('left-side', 'right-side');
+        player.classList.remove('sm', 'bg');
+        enemy.classList.remove('sm', 'bg');
+    }
+
+    function startGame() {
+        startButton.addEventListener('click', () => {
+            resetGame();
+            continueGame();
         });
     }
 
-    moveAllElementsToCenter() {
-        this.player.style.top = this.field.centerY - this.player.offsetWidth / 2 + 'px';
-        this.enemy.style.top = this.field.centerY - this.enemy.offsetWidth / 2 + 'px';
-        setTimeout(() => this.moveBallToCenter());
+    function stopGame() {
+        stopButton.addEventListener('click', () => {
+            changeIsStart(!isStart);
+        });
     }
 
-    resetField() {
-        const TIMER_IS_START = 1000;
-        this.isStart = false;
-        this.speed = this.getRandomSpeed();
-        setTimeout(() => this.moveBallToCenter());
-        setTimeout(() => this.isStart = true, TIMER_IS_START);
+    function resetField() {
+        clearTimeout(timeoutBonus);
+        isStart = false;
+        speed = getRandomSpeed();
+        difference = 1;
+        setTimeout(() => moveBallToCenter());
+        setTimeout(() => isStart = true, TIMER_IS_START);
     }
 
-    getScoreElement(sideEdge) {
+    function getScoreElement(sideEdge) {
         let element;
         if (sideEdge === 'right') {
-            element = this.scoreLeft;
+            element = scoreLeft;
         } else if(sideEdge === 'left') {
-            element = this.scoreRight;
+            element = scoreRight;
         }
         return element;
     }
 
-    changeScore(sideEdge) {
-        let element = this.getScoreElement(sideEdge);
-        element.textContent = ++element.textContent;
+    function changeScore(sideEdge) {
+        let element = getScoreElement(sideEdge);
+        let valueScore = ++element.textContent;
+        element.textContent = valueScore;
+        checkScore(valueScore);
     }
 
-    resetGame() {
-        this.moveAllElementsToCenter();
-        this.scoreRight.textContent = this.scoreLeft.textContent = 0;
-        this.startButton.click();
-        this.speed = this.getRandomSpeed();
+    function getTextForModal(winner, leftScore, rightScore) {
+        let result = '';
+        if (winner === 'player') {
+            result += TEXT_WIN;
+        } else if (winner === 'enemy') {
+            result += TEXT_LOSE;
+        }
+        result += ` ${TEXT_SCORE} ${leftScore}:${rightScore}`;
+        return result;
     }
 
-    checkWin(leftScore, rightScore) {
+    function openModal(winner, leftScore, rightScore) {
+        let modalTextElement = document.querySelector('.modal__text');
+        modalTextElement.textContent = getTextForModal(winner, leftScore, rightScore);
+        modalBtn.click();
+    }
+
+    function checkWin(leftScore, rightScore) {
         let winner = leftScore > rightScore ? 'player' : 'enemy';
-        this.openModal(winner, leftScore, rightScore);
-        this.resetGame();
+        openModal(winner, leftScore, rightScore);
+        resetGame();
+        stopButton.classList.add('hide');
     }
 
-    checkScore() {
-        const REQUIRED_MAX_SCORE = 2;
-        let rightScore = +this.scoreRight.textContent;
-        let leftScore = +this.scoreLeft.textContent;
-        let maxScore = Math.max(leftScore, rightScore);
-        if (maxScore === REQUIRED_MAX_SCORE) {
-            this.checkWin(leftScore, rightScore);
+    function checkScore(valueScore) {
+        if (valueScore === MAX_SCORE) {
+            let leftScore = scoreLeft.textContent;
+            let rightScore = scoreRight.textContent;
+            checkWin(leftScore, rightScore);
         } else {
-            this.resetField();
+            resetField();
         }
     }
-}
 
-class Ball extends Game {
-    speedValue = 5;
-
-    moveBallToCenter() {
-        this.ball.style.left = this.field.centerX - this.ball.offsetWidth / 2 + 'px';
-        this.ball.style.top = this.field.centerY - this.ball.offsetHeight / 2 + 'px';
-    }
-
-    getCoordsBall() {
-        let coords = this.ball.getBoundingClientRect();
+    function getCoordsBall() {
+        let coords = ball.getBoundingClientRect();
         return {
             left : coords.left,
             top : coords.top,
         }
     }
 
-    getDirections(value) {
-        let x = value;
-        let y = x / this.field.coefficient;
+    function getDirections(valueX, valueY) {
+        let x = valueX;
+        let y = valueY;
         let directions = [{ x : x, y : y }, { x: -x, y: y },
             { x: -x, y: -y }, { x: x, y: -y }];
         return directions;
     }
 
-    getRandomSpeed() {
-        let directions = this.getDirections(this.speedValue);
+    function getRandomSpeed() {
+        let randomY = Math.random() * speedValue + MIN_SPEED_Y;
+        let directions = getDirections(speedValue, randomY);
         let randomIndex = Math.floor(Math.random() * directions.length);
         return directions[randomIndex];
     }
 
-    checkTopBall(top, bottomEdge, fieldTop) {
-        bottomEdge = bottomEdge - this.ball.offsetHeight;
-        if (top < fieldTop || top > bottomEdge) {
-            this.speed.y = -this.speed.y;
+    function checkTopBall(coords, bottomEdge, fieldTop) {
+        let top = coords.top;
+        let bottomEdgeForBall = bottomEdge - ball.offsetHeight;
+        if (top < fieldTop || top > bottomEdgeForBall) {
+            speed.y = -speed.y;
+            coords.top += speed.y;
         }
     }
 
-    changeSpeedX() {
-        const DIFFERENCE = 0.5;
-        let x = this.speed.x;
-        this.speed.x = x < 0 ? -x + DIFFERENCE : -x - DIFFERENCE;
+    function changeSpeedX() {
+        if (isReverseHorizontal) {
+            return false;
+        }
+        let x = speed.x;
+        speed.x = x < 0 ? -x + difference : -x - difference;
+        speed.y = getRandomSpeed().y;
+        isReverseHorizontal = true;
+        setTimeout(() => isReverseHorizontal = false, TIME_IS_REVERSE)
     }
 
-    checkTopRacket(top, element, func) {
-        let racket = this.speed.x > 0 ? this.enemy : this.player;
+    function checkTopRacket(top, element, speed, func) {
+        let racket = speed > 0 ? enemy : player;
         let minRequiredTop = parseInt(racket.style.top) - element.offsetHeight / 2;
         let maxRequiredTop = minRequiredTop + racket.offsetHeight + element.offsetHeight / 2;
         if (top <= maxRequiredTop && top >= minRequiredTop) {
@@ -168,68 +223,69 @@ class Ball extends Game {
         }
     }
 
-    getHorizontalValue(left, fieldLeft, rightEdge, element) {
-        const RACKET_MARGIN = 30;
-        let racketWidth = this.player.offsetWidth;
-        let minRequiredLeft = fieldLeft + racketWidth + RACKET_MARGIN;
+    function getHorizontalValue(left, fieldLeft, rightEdge, element, extraLeft = 0) {
+        let racketWidth = player.offsetWidth;
+        let minRequiredLeftRocket = fieldLeft + racketWidth + RACKET_MARGIN;
+        let maxRequiredLeftRocket = minRequiredLeftRocket + speed.x - extraLeft;
         let maxRequiredLeft = fieldLeft;
         let maxRequiredRight = rightEdge - element.offsetWidth;
-        let minRequiredRight = maxRequiredRight - racketWidth - RACKET_MARGIN;
-        let isNearHorizontalToRacket = (left <= minRequiredLeft) || (left >= minRequiredRight);
+        let minRequiredRightRocket = maxRequiredRight - racketWidth - RACKET_MARGIN;
+        let maxRequiredRightRocket = minRequiredRightRocket + speed.x + extraLeft;
+        let isNearHorizontalToRacket = (left <= minRequiredLeftRocket && left >= maxRequiredLeftRocket) 
+            || (left >= minRequiredRightRocket && left <= maxRequiredRightRocket);
         let isNearHorizontalToEdge = (left <= maxRequiredLeft) || (left >= maxRequiredRight);
-        let sideEdge = left <= minRequiredLeft ? 'left' : 'right';
+        let sideEdge = left <= minRequiredLeftRocket ? 'left' : 'right';
         return { isNearHorizontalToRacket, isNearHorizontalToEdge, sideEdge };
     }
 
-    checkBallHorizontal(left, fieldLeft, rightEdge, top) {
-        let values = this.getHorizontalValue(left, fieldLeft, rightEdge, this.ball);
-        let { isNearHorizontalToRacket, isNearHorizontalToEdge, sideEdge } = values;
-        if (isNearHorizontalToRacket) {
-            this.checkTopRacket(top, this.ball, this.changeSpeedX.bind(this));
-        }
-        if (isNearHorizontalToEdge) {
-            this.changeScore(sideEdge);
-            this.checkScore();
-        }
-    }
-
-    checkBallCoords(coords) {
+    function checkBallHorizontal(coords, fieldLeft, rightEdge) {
         let { top, left } = coords;
-        let { fieldTop, bottomEdge, fieldLeft, rightEdge } = this.field;
-        this.checkTopBall(top, bottomEdge, fieldTop);
-        this.checkBallHorizontal(left, fieldLeft, rightEdge, top);
+        let values = getHorizontalValue(left, fieldLeft, rightEdge, ball);
+        let { isNearHorizontalToRacket, isNearHorizontalToEdge, sideEdge } = values;
+
+        if (invulnerability === sideEdge && isNearHorizontalToEdge) {
+            changeSpeedX();
+        } else if (isNearHorizontalToEdge) {
+            changeScore(sideEdge);
+        } else if (isNearHorizontalToRacket) {
+            checkTopRacket(top, ball, speed.x, changeSpeedX);
+        }
     }
 
-    getChangedBallCoords() {
-        let coords = this.getCoordsBall();
-        coords.top += this.speed.y;
-        coords.left += this.speed.x;
-        this.checkBallCoords(coords);
+    function checkBallCoords(coords) {
+        let { fieldTop, bottomEdge, fieldLeft, rightEdge } = field;
+        checkTopBall(coords, bottomEdge, fieldTop);
+        checkBallHorizontal(coords, fieldLeft, rightEdge);
+    }
+
+    function getChangedBallCoords() {
+        let coords = getCoordsBall();
+        coords.top += speed.y;
+        coords.left += speed.x;
+        checkBallCoords(coords);
         return coords;
     }
 
-    moveBall() {
-        const INTERVAL_TIME = 25;
+    function moveBall() {
         setInterval(() => {
-            if (!this.isStart) {
+            if (!isStart) {
                 return false;
             }
-            let coords = this.getChangedBallCoords();
-            this.ball.style.top = coords.top + 'px'; 
-            this.ball.style.left = coords.left + 'px'; 
+            let coords = getChangedBallCoords();
+            ball.style.top = coords.top + 'px'; 
+            ball.style.left = coords.left + 'px'; 
         }, INTERVAL_TIME);
     }
 
-    initBall() {
-        this.moveBall();
-        this.speed = this.getRandomSpeed();
+    function initBall() {
+        moveBall();
+        speed = getRandomSpeed();
     }
-}
 
-class Enemy extends Ball {
-    checkTop(top) {
-        let { fieldTop, bottomEdge } = this.field;
-        let maxTop = bottomEdge - this.player.offsetHeight;
+
+    function checkTop(top) {
+        let { fieldTop, bottomEdge } = field;
+        let maxTop = bottomEdge - player.offsetHeight;
         if (top < fieldTop) {
             top = fieldTop;
         } else if (top > maxTop) {
@@ -238,18 +294,16 @@ class Enemy extends Ball {
         return top;
     }
 
-    getRequiredTopEnemy() {
-        let ballTop = this.getCoordsBall().top;
-        let top = ballTop + this.ball.offsetHeight / 2 - this.enemy.offsetHeight / 2;
-        let valueTop = parseInt(top);
-        return valueTop; 
+    function getRequiredTopEnemy() {
+        let ballTop = getCoordsBall().top;
+        let top = ballTop + ball.offsetHeight / 2 - enemy.offsetHeight / 2;
+        return top; 
     }
 
-    checkEnemyTop(enemyTop) {
-        let coefficientBallSpeed = this.field.coefficient / 2;
-        let stepSize = this.speedValue / coefficientBallSpeed;
-        let requiredTop = this.getRequiredTopEnemy();
-        let checkedEnemyTop = this.checkTop(enemyTop);
+    function checkEnemyTop(enemyTop) {
+        let stepSize = speedValue * COEFFICIENT_SPEED_ENEMY;
+        let requiredTop = getRequiredTopEnemy();
+        let checkedEnemyTop = checkTop(enemyTop);
         let result = checkedEnemyTop;
 
         if (checkedEnemyTop < requiredTop - stepSize) {
@@ -260,37 +314,31 @@ class Enemy extends Ball {
         return result;
     }
 
-    getChangedEnemyTop() {
-        let enemyTop = parseInt(this.enemy.style.top) || 0;
-        let newEnemyTop = this.checkEnemyTop(enemyTop); 
+    function getChangedEnemyTop() {
+        let enemyTop = parseInt(enemy.style.top) || 0;
+        let newEnemyTop = checkEnemyTop(enemyTop); 
         return newEnemyTop;
     }
 
-    moveEnemy() {
-        const INTERVAL_TIME = 50;
+    function moveEnemy() {
         setInterval(() => {
-            if (!this.isStart) {
+            if (!isStart) {
                 return false;
             }
-            let top = this.getChangedEnemyTop();
-            this.enemy.style.top = top + 'px'; 
+            let top = getChangedEnemyTop();
+            enemy.style.top = top + 'px'; 
         }, INTERVAL_TIME);
     }
-}
 
-class Player extends Enemy {
-    player = document.querySelector('.player');
-
-    mousemove(event) {
-        let top = event.clientY - this.shiftY;
-        let checkingTop = this.checkTop(top);
-        this.player.style.top = checkingTop + 'px';
+    function mousemove(event) {
+        let top = event.clientY - shiftY;
+        let checkingTop = checkTop(top);
+        player.style.top = checkingTop + 'px';
     }
 
-    controlRacket(event) {
-        let mousemove = this.mousemove.bind(this);
-        this.shiftY = event.clientY - this.player.getBoundingClientRect().top;
-        this.mousemove(event);
+    function controlRacket(event) {
+        shiftY = event.clientY - player.getBoundingClientRect().top;
+        mousemove(event);
         document.addEventListener('mousemove', mousemove);
         document.onmouseup = () => {
             document.removeEventListener('mousemove', mousemove);
@@ -298,31 +346,166 @@ class Player extends Enemy {
         };
     }
 
-    mouseDown() {
+    function mouseDown() {
         document.addEventListener('mousedown', (event) => {
             let elem = event.target;
             elem.ondragstart = () => false;
-            if (!this.isStart) {
+            if (!isStart) {
                 return false;
             }
             if (elem.classList.contains('player')) {
-                this.controlRacket(event);
+                controlRacket(event);
             }
         });
     }
 
-    init() {
-        this.toggleModal();
-        this.initScoreElement();
-        this.getCoordsField();
-        this.moveAllElementsToCenter();
-        this.startGame();
-        this.mouseDown();
-        this.moveEnemy();
-        this.initBall();
-        this.initBonus();
+    function getNames() {
+        let names = ['sm', 'bg', 'sd', 's+', 's-'];
+        let randomIndex = Math.floor(Math.random() * names.length);
+        return names[randomIndex];
     }
-}
 
-let player = new Player;
-player.init();
+    function getRandomTop() {
+        let randomHeight = Math.random() * (field.height - 40);
+        let topBonus = randomHeight + field.fieldTop;
+        return topBonus;
+    }
+
+    function changeSizeRocket(sideEdge) {
+        let element = sideEdge === 'left' ? player : enemy;
+        let className = name;
+        element.classList.add(className);
+        setTimeout(() => element.classList.remove(className), TIME_BONUS);
+    }
+
+    function setInvulnerability(sideEdge) {
+        fieldElement.classList.add(`${sideEdge}-side`);
+        invulnerability = sideEdge;
+        setTimeout(() => {
+            invulnerability = '';
+            fieldElement.classList.remove(`${sideEdge}-side`);
+        }, TIME_BONUS);
+    }
+
+    function changeValueSpeed(type) {
+        if (type === 's+') {
+            speed.x *= 2;
+            speed.y *= 2;
+            difference *= 2;
+        } else {
+            speed.x /= 2;
+            speed.y /= 2;
+            difference /= 2;
+        }
+    }
+
+    function deleteBonus() {
+        if (isBonus) {
+            clearInterval(intervalBonus);
+            bonus.remove();
+        }
+    }
+
+    function changeSpeedBall() {
+        let nameForChange = name === 's+' ? 's-' : 's+';
+        changeValueSpeed(name);
+        timeoutBonus = setTimeout(() => changeValueSpeed(nameForChange), TIME_BONUS);
+    }
+
+    function takeBonus(sideEdge) {
+        if (name === 'sm' || name === 'bg') {
+            changeSizeRocket(sideEdge);
+        } else if (name === 'sd') {
+            setInvulnerability(sideEdge);
+        } else if (name === 's+' || name === 's-') {
+            changeSpeedBall();
+        }
+        deleteBonus();
+    }
+
+    function checkBonusHorizontal(left) {
+        let top = parseInt(bonus.style.top);
+        let { fieldLeft, rightEdge } = field;
+        let values = getHorizontalValue(left, fieldLeft, rightEdge, bonus, RACKET_MARGIN);
+        let { isNearHorizontalToRacket, sideEdge } = values;
+        if (isNearHorizontalToRacket) {
+            checkTopRacket(top, bonus, speedBonus, takeBonus.bind(null, sideEdge));
+        }
+    }
+
+    function checkLeftBonus(left) {
+        const RACKET_MARGIN = 30;
+        let minLeft = field.fieldLeft - bonus.offsetWidth + RACKET_MARGIN;
+        let maxLeft = field.rightEdge - RACKET_MARGIN;
+        if (left < minLeft || left > maxLeft) {
+            deleteBonus();
+        }
+        checkBonusHorizontal(left);
+    }
+
+    function getChangedBonusCoords() {
+        let left = parseInt(bonus.style.left);
+        left += speedBonus;
+        checkLeftBonus(left);
+        return left; 
+    }
+
+    function moveBonus() {
+        const INTERVAL_TIME = 50;
+        speedBonus = -5 || getRandomSpeed().x;
+        intervalBonus = setInterval(() => {
+            if (!isStart && isBonus) {
+                return false;
+            }
+            let left = getChangedBonusCoords();
+            bonus.style.left = left + 'px'; 
+        }, INTERVAL_TIME);
+    }
+
+    function createBonus() {
+        name = getNames();
+        bonus = document.createElement('div');
+        bonus.classList.add('bonus');
+        bonus.textContent = name;
+        bonus.style.top = getRandomTop() + 'px';
+        bonus.style.left = field.centerX - bonus.offsetWidth / 2 + 'px';
+        fieldElement.prepend(bonus);
+        moveBonus();
+        isBonus = true;
+    }
+
+    function initBonus() {
+        const INTERVAL_TIME = 10000;
+        setInterval(() => {
+            if (!isStart) {
+                return false;
+            }
+            createBonus();
+        }, INTERVAL_TIME)
+    }
+
+    function resize() {
+        window.addEventListener('resize', () => {
+            getCoordsField();
+            moveAllElementsToCenter();
+        });
+    }
+
+    myModule.init = () => {
+        toggleModal();
+        initScoreElement();
+        getCoordsField();
+        resize();
+        moveAllElementsToCenter();
+        startGame();
+        mouseDown();
+        moveEnemy();
+        initBall();
+        stopGame();
+        initBonus();
+    }
+
+    return myModule;
+})();
+
+Module.init();
