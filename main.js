@@ -17,10 +17,10 @@ const Module = (function () {
     let difference = 1;
     let scoreLeft = 0;
     let scoreRight = 0;
-    let speedBonus = 0;
+    let coefficientSpeedBall = 1;
     let myModule = {};
     let field = {};
-    let speed = {};
+
     let isReverseHorizontal = false;
     let isStart = false;
     let isBonus = false;
@@ -36,6 +36,8 @@ const Module = (function () {
     let fieldElement = document.querySelector('.field');
     let bonus;
     let timeoutBonus;
+    let ballClone;
+    let intervalBallClone;
 
     function toggleModal() {
         modalBtn.addEventListener('click', () => {
@@ -85,12 +87,15 @@ const Module = (function () {
     }
 
     function resetGame() {
+        clearTimeout(timeoutBonus);
         deleteBonus();
+        deleteBallClone();
         changeIsStart(false);
         moveAllElementsToCenter();
         scoreRight.textContent = 0;
         scoreLeft.textContent = 0;
-        speed = getRandomSpeed();
+        ball.speed = getRandomSpeed();
+        coefficientSpeedBall = 1;
         stopButton.classList.remove('hide');
         invulnerability = '';
         fieldElement.classList.remove('left-side', 'right-side');
@@ -114,8 +119,9 @@ const Module = (function () {
     function resetField() {
         clearTimeout(timeoutBonus);
         isStart = false;
-        speed = getRandomSpeed();
+        ball.speed = getRandomSpeed();
         difference = 1;
+        coefficientSpeedBall = 1;
         setTimeout(() => moveBallToCenter());
         setTimeout(() => isStart = true, TIMER_IS_START);
     }
@@ -171,8 +177,8 @@ const Module = (function () {
         }
     }
 
-    function getCoordsBall() {
-        let coords = ball.getBoundingClientRect();
+    function getCoordsBall(element) {
+        let coords = element.getBoundingClientRect();
         return {
             left : coords.left,
             top : coords.top,
@@ -194,43 +200,45 @@ const Module = (function () {
         return directions[randomIndex];
     }
 
-    function checkTopBall(coords, bottomEdge, fieldTop) {
+    function checkTopBall(coords, bottomEdge, fieldTop, element) {
         let top = coords.top;
         let bottomEdgeForBall = bottomEdge - ball.offsetHeight;
         if (top < fieldTop || top > bottomEdgeForBall) {
-            speed.y = -speed.y;
-            coords.top += speed.y;
+            element.speed.y = -element.speed.y;
+            coords.top += element.speed.y;
         }
     }
 
-    function changeSpeedX() {
+    function changeSpeedX(element) {
         if (isReverseHorizontal) {
             return false;
         }
-        let x = speed.x;
-        speed.x = x < 0 ? -x + difference : -x - difference;
-        speed.y = getRandomSpeed().y;
+        let x = element.speed.x;
+        difference = coefficientSpeedBall;
+        element.speed.x = x < 0 ? -x + difference : -x - difference;
+        element.speed.y = getRandomSpeed().y;
         isReverseHorizontal = true;
         setTimeout(() => isReverseHorizontal = false, TIME_IS_REVERSE)
     }
 
-    function checkTopRacket(top, element, speed, func) {
-        let racket = speed > 0 ? enemy : player;
+    function checkTopRacket(top, element, func) {
+        let racket = element.speed.x > 0 ? enemy : player;
         let minRequiredTop = parseInt(racket.style.top) - element.offsetHeight / 2;
         let maxRequiredTop = minRequiredTop + racket.offsetHeight + element.offsetHeight / 2;
         if (top <= maxRequiredTop && top >= minRequiredTop) {
-            func();
+            func(element);
         }
     }
 
     function getHorizontalValue(left, fieldLeft, rightEdge, element, extraLeft = 0) {
+        let speedX = element.speed.x || 0;
         let racketWidth = player.offsetWidth;
         let minRequiredLeftRocket = fieldLeft + racketWidth + RACKET_MARGIN;
-        let maxRequiredLeftRocket = minRequiredLeftRocket + speed.x - extraLeft;
+        let maxRequiredLeftRocket = minRequiredLeftRocket + speedX - extraLeft;
         let maxRequiredLeft = fieldLeft;
         let maxRequiredRight = rightEdge - element.offsetWidth;
         let minRequiredRightRocket = maxRequiredRight - racketWidth - RACKET_MARGIN;
-        let maxRequiredRightRocket = minRequiredRightRocket + speed.x + extraLeft;
+        let maxRequiredRightRocket = minRequiredRightRocket + speedX + extraLeft;
         let isNearHorizontalToRacket = (left <= minRequiredLeftRocket && left >= maxRequiredLeftRocket) 
             || (left >= minRequiredRightRocket && left <= maxRequiredRightRocket);
         let isNearHorizontalToEdge = (left <= maxRequiredLeft) || (left >= maxRequiredRight);
@@ -238,48 +246,55 @@ const Module = (function () {
         return { isNearHorizontalToRacket, isNearHorizontalToEdge, sideEdge };
     }
 
-    function checkBallHorizontal(coords, fieldLeft, rightEdge) {
+    function checkBallHorizontal(coords, fieldLeft, rightEdge, element) {
         let { top, left } = coords;
-        let values = getHorizontalValue(left, fieldLeft, rightEdge, ball);
+        let values = getHorizontalValue(left, fieldLeft, rightEdge, element);
         let { isNearHorizontalToRacket, isNearHorizontalToEdge, sideEdge } = values;
 
         if (invulnerability === sideEdge && isNearHorizontalToEdge) {
-            changeSpeedX();
-        } else if (isNearHorizontalToEdge) {
+            changeSpeedX(element);
+        } else if (isNearHorizontalToEdge && top) {
+            if (ballClone) {
+                clearTimeout(intervalBallClone);
+                deleteBallClone();
+            }
             changeScore(sideEdge);
         } else if (isNearHorizontalToRacket) {
-            checkTopRacket(top, ball, speed.x, changeSpeedX);
+            checkTopRacket(top, element, changeSpeedX);
         }
     }
 
-    function checkBallCoords(coords) {
+    function checkBallCoords(coords, element) {
         let { fieldTop, bottomEdge, fieldLeft, rightEdge } = field;
-        checkTopBall(coords, bottomEdge, fieldTop);
-        checkBallHorizontal(coords, fieldLeft, rightEdge);
+        checkTopBall(coords, bottomEdge, fieldTop, element);
+        checkBallHorizontal(coords, fieldLeft, rightEdge, element);
     }
 
-    function getChangedBallCoords() {
-        let coords = getCoordsBall();
-        coords.top += speed.y;
-        coords.left += speed.x;
-        checkBallCoords(coords);
+    function getChangedBallCoords(element) {
+        let coords = getCoordsBall(element);
+        coords.top += element.speed.y * coefficientSpeedBall;
+        coords.left += element.speed.x * coefficientSpeedBall;
+        checkBallCoords(coords, element);
         return coords;
     }
 
-    function moveBall() {
-        setInterval(() => {
+    function moveBall(element) {
+        element.isPresent = true;
+        let intervalBallMove = setInterval(() => {
+            if (!element.isPresent) {
+                clearInterval(intervalBallMove);
+            }
             if (!isStart) {
                 return false;
             }
-            let coords = getChangedBallCoords();
-            ball.style.top = coords.top + 'px'; 
-            ball.style.left = coords.left + 'px'; 
+            let coords = getChangedBallCoords(element);
+            element.style.top = coords.top + 'px'; 
+            element.style.left = coords.left + 'px'; 
         }, INTERVAL_TIME);
     }
 
-    function initBall() {
-        moveBall();
-        speed = getRandomSpeed();
+    function initBall(element) {
+        moveBall(element);
     }
 
 
@@ -295,7 +310,7 @@ const Module = (function () {
     }
 
     function getRequiredTopEnemy() {
-        let ballTop = getCoordsBall().top;
+        let ballTop = getCoordsBall(ball).top;
         let top = ballTop + ball.offsetHeight / 2 - enemy.offsetHeight / 2;
         return top; 
     }
@@ -305,7 +320,6 @@ const Module = (function () {
         let requiredTop = getRequiredTopEnemy();
         let checkedEnemyTop = checkTop(enemyTop);
         let result = checkedEnemyTop;
-
         if (checkedEnemyTop < requiredTop - stepSize) {
             result += stepSize;
         }  else if (checkedEnemyTop > requiredTop + stepSize) {
@@ -315,7 +329,7 @@ const Module = (function () {
     }
 
     function getChangedEnemyTop() {
-        let enemyTop = parseInt(enemy.style.top) || 0;
+        let enemyTop = +enemy.style.top.slice(0, -2) || 0;
         let newEnemyTop = checkEnemyTop(enemyTop); 
         return newEnemyTop;
     }
@@ -360,9 +374,9 @@ const Module = (function () {
     }
 
     function getNames() {
-        let names = ['sm', 'bg', 'sd', 's+', 's-'];
+        let names = ['sm', 'bg', 'sd', 's+', 's-', 'db'];
         let randomIndex = Math.floor(Math.random() * names.length);
-        return names[randomIndex];
+        return names[5];
     }
 
     function getRandomTop() {
@@ -389,13 +403,9 @@ const Module = (function () {
 
     function changeValueSpeed(type) {
         if (type === 's+') {
-            speed.x *= 2;
-            speed.y *= 2;
-            difference *= 2;
+            coefficientSpeedBall *= 2;
         } else {
-            speed.x /= 2;
-            speed.y /= 2;
-            difference /= 2;
+            coefficientSpeedBall /= 2;
         }
     }
 
@@ -412,6 +422,29 @@ const Module = (function () {
         timeoutBonus = setTimeout(() => changeValueSpeed(nameForChange), TIME_BONUS);
     }
 
+    function deleteBallClone() {
+        if (ballClone) {
+            ballClone.remove(); 
+            ballClone.isPresent = false; 
+            ballClone = null;
+        }
+    }
+
+    function createCloneBall() {
+        let fieldWrapper = document.querySelector('.field-wrapper');
+        let coords = getCoordsBall(ball);
+        ballClone = document.createElement('div');
+        ballClone.classList.add('ball-clone');
+        ballClone.style.top = coords.top + 'px';
+        ballClone.style.left = coords.left + 'px';
+        fieldWrapper.append(ballClone);
+        initBall(ballClone, true);
+        ballClone.speed = {};
+        ballClone.speed.y =  -ball.speed.y;
+        ballClone.speed.x = -ball.speed.x;
+        intervalBallClone = setTimeout(() => deleteBallClone(), TIME_BONUS);
+    }
+
     function takeBonus(sideEdge) {
         if (name === 'sm' || name === 'bg') {
             changeSizeRocket(sideEdge);
@@ -419,6 +452,8 @@ const Module = (function () {
             setInvulnerability(sideEdge);
         } else if (name === 's+' || name === 's-') {
             changeSpeedBall();
+        } else if (name === 'db') {
+            createCloneBall();
         }
         deleteBonus();
     }
@@ -429,7 +464,7 @@ const Module = (function () {
         let values = getHorizontalValue(left, fieldLeft, rightEdge, bonus, RACKET_MARGIN);
         let { isNearHorizontalToRacket, sideEdge } = values;
         if (isNearHorizontalToRacket) {
-            checkTopRacket(top, bonus, speedBonus, takeBonus.bind(null, sideEdge));
+            checkTopRacket(top, bonus, takeBonus.bind(null, sideEdge));
         }
     }
 
@@ -445,14 +480,14 @@ const Module = (function () {
 
     function getChangedBonusCoords() {
         let left = parseInt(bonus.style.left);
-        left += speedBonus;
+        left += bonus.speed.x;
         checkLeftBonus(left);
         return left; 
     }
 
     function moveBonus() {
         const INTERVAL_TIME = 50;
-        speedBonus = -5 || getRandomSpeed().x;
+        bonus.speed.x = -5 || getRandomSpeed().x;
         intervalBonus = setInterval(() => {
             if (!isStart && isBonus) {
                 return false;
@@ -467,6 +502,7 @@ const Module = (function () {
         bonus = document.createElement('div');
         bonus.classList.add('bonus');
         bonus.textContent = name;
+        bonus.speed = {};
         bonus.style.top = getRandomTop() + 'px';
         bonus.style.left = field.centerX - bonus.offsetWidth / 2 + 'px';
         fieldElement.prepend(bonus);
@@ -500,7 +536,7 @@ const Module = (function () {
         startGame();
         mouseDown();
         moveEnemy();
-        initBall();
+        initBall(ball);
         stopGame();
         initBonus();
     }
