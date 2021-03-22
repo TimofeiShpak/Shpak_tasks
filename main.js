@@ -4,12 +4,14 @@ const Module = (function () {
     const TEXT_SCORE = 'со счетом';
     const START_GAME_TEXT = 'Продолжить игру';
     const STOP_GAME_TEXT = 'Остановить игру';
+    const INTERVAL_TIME_BONUS = 10000;
     const TIMER_IS_START = 500;
     const MIN_SPEED_Y = 1;
     const TIME_IS_REVERSE = 400;
+    const INTERVAL_TIME_BALL = 50;
     const RACKET_MARGIN = 30;
     const INTERVAL_TIME = 25;
-    const COEFFICIENT_SPEED_ENEMY = 0.8;
+    const COEFFICIENT_SPEED_ENEMY = 0.9;
     const MAX_SCORE = 5;
     const TIME_BONUS = 5000;
 
@@ -376,7 +378,7 @@ const Module = (function () {
     function getNames() {
         let names = ['sm', 'bg', 'sd', 's+', 's-', 'db'];
         let randomIndex = Math.floor(Math.random() * names.length);
-        return names[5];
+        return names[randomIndex];
     }
 
     function getRandomTop() {
@@ -469,7 +471,6 @@ const Module = (function () {
     }
 
     function checkLeftBonus(left) {
-        const RACKET_MARGIN = 30;
         let minLeft = field.fieldLeft - bonus.offsetWidth + RACKET_MARGIN;
         let maxLeft = field.rightEdge - RACKET_MARGIN;
         if (left < minLeft || left > maxLeft) {
@@ -486,15 +487,14 @@ const Module = (function () {
     }
 
     function moveBonus() {
-        const INTERVAL_TIME = 50;
-        bonus.speed.x = -5 || getRandomSpeed().x;
+        bonus.speed.x = getRandomSpeed().x;
         intervalBonus = setInterval(() => {
             if (!isStart && isBonus) {
                 return false;
             }
             let left = getChangedBonusCoords();
             bonus.style.left = left + 'px'; 
-        }, INTERVAL_TIME);
+        }, INTERVAL_TIME_BALL);
     }
 
     function createBonus() {
@@ -511,13 +511,12 @@ const Module = (function () {
     }
 
     function initBonus() {
-        const INTERVAL_TIME = 10000;
         setInterval(() => {
             if (!isStart) {
                 return false;
             }
             createBonus();
-        }, INTERVAL_TIME)
+        }, INTERVAL_TIME_BONUS)
     }
 
     function resize() {
