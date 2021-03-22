@@ -233,7 +233,7 @@ const Module = (function () {
     }
 
     function getHorizontalValue(left, fieldLeft, rightEdge, element, extraLeft = 0) {
-        let speedX = element.speed.x || 0;
+        let speedX = element.speed.x * coefficientSpeedBall || 0;
         let racketWidth = player.offsetWidth;
         let minRequiredLeftRocket = fieldLeft + racketWidth + RACKET_MARGIN;
         let maxRequiredLeftRocket = minRequiredLeftRocket + speedX - extraLeft;
@@ -378,7 +378,7 @@ const Module = (function () {
     function getNames() {
         let names = ['sm', 'bg', 'sd', 's+', 's-', 'db'];
         let randomIndex = Math.floor(Math.random() * names.length);
-        return names[randomIndex];
+        return names[3];
     }
 
     function getRandomTop() {
