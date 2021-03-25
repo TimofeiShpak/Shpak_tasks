@@ -7,18 +7,17 @@ const Module = (function () {
     const INTERVAL_TIME_BONUS = 10000;
     const TIMER_IS_START = 500;
     const MIN_SPEED_Y = 1;
-    const TIME_IS_REVERSE = 400;
     const INTERVAL_TIME_BALL = 50;
     const RACKET_MARGIN = 30;
     const INTERVAL_TIME = 25;
-    const COEFFICIENT_SPEED_ENEMY = 0.8;
+    const COEFFICIENT_SPEED_ENEMY = 4;
     const BONUS_HEIGHT = 40;
     const INIT_VALUE = 0;
     const NORMAL_COEFFICIENT = 1;
     const TIME_BONUS = 5000;
-    const MAX_SCORE = 5;
+    const MAX_SCORE = 2;
 
-    let speedValue = 5;
+    let speedValue = 1;
     let difference = 1;
     let scoreLeft = 0;
     let scoreRight = 0;
@@ -26,7 +25,6 @@ const Module = (function () {
     let myModule = {};
     let field = {};
 
-    let isReverseHorizontal = false;
     let isStart = false;
     let isBonus = false;
     let invulnerability = '';
@@ -91,21 +89,33 @@ const Module = (function () {
         }, TIMER_IS_START);
     }
 
-    function resetGame() {
+    function resetActivitiesAndValues() {
         clearTimeout(timeoutBonus);
         deleteBonus();
         deleteBallClone();
-        changeIsStart(false);
-        moveAllElementsToCenter();
-        scoreRight.textContent = INIT_VALUE;
-        scoreLeft.textContent = INIT_VALUE;
         ball.speed = getRandomSpeed();
+        difference = NORMAL_COEFFICIENT;
         coefficientSpeedBall = NORMAL_COEFFICIENT;
-        stopButton.classList.remove('hide');
         invulnerability = '';
         fieldElement.classList.remove('left-side', 'right-side');
         player.classList.remove('sm', 'bg');
         enemy.classList.remove('sm', 'bg');
+    }
+
+    function resetField() {
+        continueGame();
+        resetActivitiesAndValues();
+        setTimeout(() => moveBallToCenter());
+        setTimeout(() => isStart = true, TIMER_IS_START);
+    }
+
+    function resetGame() {
+        changeIsStart(false);
+        resetActivitiesAndValues();
+        moveAllElementsToCenter();
+        scoreRight.textContent = INIT_VALUE;
+        scoreLeft.textContent = INIT_VALUE;
+        stopButton.classList.remove('hide');
     }
 
     function startGame() {
@@ -119,16 +129,6 @@ const Module = (function () {
         stopButton.addEventListener('click', () => {
             changeIsStart(!isStart);
         });
-    }
-
-    function resetField() {
-        clearTimeout(timeoutBonus);
-        isStart = false;
-        ball.speed = getRandomSpeed();
-        difference = NORMAL_COEFFICIENT;
-        coefficientSpeedBall = NORMAL_COEFFICIENT;
-        setTimeout(() => moveBallToCenter());
-        setTimeout(() => isStart = true, TIMER_IS_START);
     }
 
     function getScoreElement(sideEdge) {
@@ -214,16 +214,18 @@ const Module = (function () {
         }
     }
 
-    function changeSpeedX(element) {
-        if (isReverseHorizontal) {
-            return false;
-        }
+    function changeSpeedX(sideEdge, element) {
         let x = element.speed.x;
         difference = coefficientSpeedBall;
-        element.speed.x = x < 0 ? -x + difference : -x - difference;
+        console.log(element.speed.x);
+        console.log(sideEdge)
+        if (sideEdge === 'left') {
+            element.speed.x = x > 0 ? x : -x + difference;
+        } else if (sideEdge === 'right') {
+            element.speed.x = x < 0 ? x : -x - difference;
+        }
+        console.log(element.speed.x)
         element.speed.y = getRandomSpeed().y;
-        isReverseHorizontal = true;
-        setTimeout(() => isReverseHorizontal = false, TIME_IS_REVERSE)
     }
 
     function checkTopRacket(top, element, func) {
@@ -231,7 +233,7 @@ const Module = (function () {
         let minRequiredTop = parseInt(racket.style.top) - element.offsetHeight / 2;
         let maxRequiredTop = minRequiredTop + racket.offsetHeight + element.offsetHeight / 2;
         if (top <= maxRequiredTop && top >= minRequiredTop) {
-            func(element);
+            func();
         }
     }
 
@@ -257,7 +259,7 @@ const Module = (function () {
         let { isNearHorizontalToRacket, isNearHorizontalToEdge, sideEdge } = values;
 
         if (invulnerability === sideEdge && isNearHorizontalToEdge) {
-            changeSpeedX(element);
+            changeSpeedX(sideEdge, element);
         } else if (isNearHorizontalToEdge && top) {
             if (ballClone) {
                 clearTimeout(intervalBallClone);
@@ -265,7 +267,7 @@ const Module = (function () {
             }
             changeScore(sideEdge);
         } else if (isNearHorizontalToRacket) {
-            checkTopRacket(top, element, changeSpeedX);
+            checkTopRacket(top, element, changeSpeedX.bind(null, sideEdge, element));
         }
     }
 
@@ -381,7 +383,7 @@ const Module = (function () {
     function getNames() {
         let names = ['sm', 'bg', 'sd', 's+', 's-', 'db'];
         let randomIndex = Math.floor(Math.random() * names.length);
-        return names[randomIndex];
+        return names[4];
     }
 
     function getRandomTop() {
@@ -412,6 +414,7 @@ const Module = (function () {
         } else {
             coefficientSpeedBall /= 2;
         }
+        console.log(type, coefficientSpeedBall)
     }
 
     function deleteBonus() {
@@ -445,7 +448,7 @@ const Module = (function () {
         fieldWrapper.append(ballClone);
         initBall(ballClone, true);
         ballClone.speed = {};
-        ballClone.speed.y =  -ball.speed.y;
+        ballClone.speed.y = -ball.speed.y;
         ballClone.speed.x = -ball.speed.x;
         intervalBallClone = setTimeout(() => deleteBallClone(), TIME_BONUS);
     }
@@ -490,7 +493,7 @@ const Module = (function () {
     }
 
     function moveBonus() {
-        bonus.speed.x = getRandomSpeed().x;
+        bonus.speed.x = getRandomSpeed().x * 5;
         intervalBonus = setInterval(() => {
             if (!isStart && isBonus) {
                 return false;
