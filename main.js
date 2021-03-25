@@ -10,14 +10,14 @@ const Module = (function () {
     const INTERVAL_TIME_BALL = 50;
     const RACKET_MARGIN = 30;
     const INTERVAL_TIME = 25;
-    const COEFFICIENT_SPEED_ENEMY = 4;
+    const COEFFICIENT_SPEED_ENEMY = 0.8;
     const BONUS_HEIGHT = 40;
     const INIT_VALUE = 0;
     const NORMAL_COEFFICIENT = 1;
     const TIME_BONUS = 5000;
-    const MAX_SCORE = 2;
+    const MAX_SCORE = 5;
 
-    let speedValue = 1;
+    let speedValue = 5;
     let difference = 1;
     let scoreLeft = 0;
     let scoreRight = 0;
@@ -217,14 +217,11 @@ const Module = (function () {
     function changeSpeedX(sideEdge, element) {
         let x = element.speed.x;
         difference = coefficientSpeedBall;
-        console.log(element.speed.x);
-        console.log(sideEdge)
         if (sideEdge === 'left') {
             element.speed.x = x > 0 ? x : -x + difference;
         } else if (sideEdge === 'right') {
             element.speed.x = x < 0 ? x : -x - difference;
         }
-        console.log(element.speed.x)
         element.speed.y = getRandomSpeed().y;
     }
 
@@ -383,7 +380,7 @@ const Module = (function () {
     function getNames() {
         let names = ['sm', 'bg', 'sd', 's+', 's-', 'db'];
         let randomIndex = Math.floor(Math.random() * names.length);
-        return names[4];
+        return names[randomIndex];
     }
 
     function getRandomTop() {
@@ -414,7 +411,6 @@ const Module = (function () {
         } else {
             coefficientSpeedBall /= 2;
         }
-        console.log(type, coefficientSpeedBall)
     }
 
     function deleteBonus() {
@@ -493,7 +489,7 @@ const Module = (function () {
     }
 
     function moveBonus() {
-        bonus.speed.x = getRandomSpeed().x * 5;
+        bonus.speed.x = getRandomSpeed().x;
         intervalBonus = setInterval(() => {
             if (!isStart && isBonus) {
                 return false;
