@@ -1,0 +1,29 @@
+.input-message {
+    @include margin('', right, 20px, true);
+    @include flex(('a-i':center));
+
+    padding: 25px;
+
+    &__file {
+        width: 14px;
+        height: 22px;
+    }
+
+    &__voice {
+        width: 14px;
+        height: 20px;
+    }
+
+    &__smiles {
+        width: 22px;
+        height: 20px;
+    }
+
+    &__textarea {
+        flex: 1;
+        border: none;
+        outline: none;
+        resize: none;
+        overflow: overlay;
+    }
+}

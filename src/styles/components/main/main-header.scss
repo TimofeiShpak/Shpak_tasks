@@ -1,0 +1,54 @@
+.main {
+    @include flex(column, ('j-c':space-between));
+
+    width: 100%;
+    background-color: #fff;
+    flex: 1;
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+    &-header {
+        @include flex(('a-i':center, 'j-c':space-between));
+        @include margin('', right, 15px, true);
+
+        padding: 30px 25px 15px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.24);
+
+        &__title {
+            @include font-source(20px, bold);
+
+            flex: 1;
+        }
+
+        &__content,
+        &__topic {
+            @include flex(('a-i':center));
+        }
+
+        &__content {
+            @include margin('.main-header__content', right, 25px, true);
+        }
+        
+        &__topic {
+            @include margin('.main-header__topic', right, 5px, true);
+        }
+
+        &__input {
+            border: 0.5px solid rgba(0, 0, 0, 0.24);   
+            border-radius: 3px 0 0 3px; 
+            border-right: none;
+            padding: 7px 18px;
+        }
+
+        &__form {
+            display: flex;
+        }
+    }
+}
+
+.number-subscribers {
+    padding-left: 20px;
+    background: url('../../../assets/icons/subscribers.svg') 0 50% no-repeat;
+}

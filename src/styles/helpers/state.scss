@@ -1,0 +1,23 @@
+@each $name in file, voice, smiles {
+    .input-message__#{$name} {
+        @include icon;
+        background-image: url('../../assets/icons/#{$name}.svg');
+    }
+}
+
+@each $name in facebook, twitter, instagram, linkedin {
+    .#{$name}-icon {
+        @include icon;
+        background-image: url('../../assets/icons/#{$name}.svg');
+    }
+}
+
+::-webkit-scrollbar {
+    width: 8px; 
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    width: 8px;
+}

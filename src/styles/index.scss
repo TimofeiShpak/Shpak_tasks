@@ -1,0 +1,19 @@
+@import './libraries/normalize.scss';
+
+@import './helpers/mixin.scss';
+@import './helpers/state.scss';
+@import './helpers/fonts.scss';
+
+@import './components/app.scss';
+
+@import './components/navigation/nomad-list.scss';
+@import './components/navigation/channels.scss';
+@import './components/navigation/friends.scss';
+
+@import './components/profile/profile.scss';
+@import './components/profile/profile.buttons.scss';
+
+@import './components/main/main-header.scss';
+@import './components/main/messages.scss';
+@import './components/main/input-message.scss';
+@import './components/main/main-header-buttons.scss';

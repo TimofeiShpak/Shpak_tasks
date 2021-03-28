@@ -1,0 +1,79 @@
+.all-messages-wrapper {
+    display: flex;
+    padding-right: 7px;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.24);
+    flex: 1;
+    overflow: auto;
+}
+
+.all-messages {
+    padding: 10px 24px 0;
+    overflow: auto;
+}
+
+.message-date {
+    @include font-source(13px, normal, #8D8D8D, 18px);
+    
+    position: relative;
+    top: -10px;
+    background-color: #fff;
+    width: fit-content;
+    margin: auto;
+}
+
+.daily-messages {
+    border-top: 1px solid rgba(0, 0, 0, 0.16);
+}
+
+.message {
+    background-repeat: no-repeat;
+    padding-left: 45px;
+    margin-bottom: 20px;
+
+    &__info {
+        @include margin('.message__info', right, 8px, true);
+
+        display: flex;
+        font-size: 12px;
+    }
+
+    &__author {
+        font-weight: bold;
+    }
+
+    &__time {
+        color: #8D8D8D;
+    }
+
+    &__text {
+        @include font-source(13px, normal, #000, 20px);
+    }
+
+    &__link {
+        display: block;
+    }
+
+    &__link,
+    &__addressee {
+        color: #3577EF;
+    }
+
+    &__img {
+        border-radius: 5px;
+    }
+
+    &__addressee + div {
+        display: inline;
+    }
+
+    &__img-wrapper::after {
+        content:  attr(data-like);
+        background: #FFFFFF;
+        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.14);
+        padding: 5px 10px;
+        border-radius: 5px;
+        position: relative;
+        left: -25px;
+    }
+}
