@@ -1,7 +1,10 @@
-import FriendItem from './FriendItem';
+import { observer } from 'mobx-react';
 
-function Friends(props) {
-    const listElements = props.friendsList.map((item) => {
+import FriendItem from './FriendItem';
+import friendList from '../../store/friendList';
+
+const Friends = observer(() => {
+    const listElements = friendList.list.map((item) => {
         return <FriendItem 
                     key={item.id} 
                     text={item.text} 
@@ -17,6 +20,6 @@ function Friends(props) {
             </ul>
         </div>
     )
-}
+})
 
 export default Friends;

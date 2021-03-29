@@ -2,12 +2,13 @@ import { Link } from "react-router-dom";
 
 function ChannelItem(props) {
     let className = 'channel-item ';
-    let indexActiveChannel = props.channelsList.findIndex((channel) => channel.text === props.text);
     className += props.active === true ? 'channel-item_active' : '';
     return (
     <div>
         <li 
-            className={className} onClick={() => props.setActiveChannel(indexActiveChannel)}>
+            className={className}
+            onClick={() => props.activeChannel.index = props.index}
+        >
             <Link to={`${props.text}`}>
                 {props.text}
             </Link>

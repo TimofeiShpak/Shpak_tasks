@@ -1,25 +1,28 @@
+import { observer } from 'mobx-react';
+
+import profileData from '../../store/profileData';
 import ExtraInfo from './ExtraInfo';
 import MainInfo from './MainInfo';
 import SocialIcons from './SocialIcons';
 
-function Profile(props) {
+const Profile = observer(() => {
     return (
         <div className="profile-wrapper">
             <div className="profile">
-                <img alt={props.data.fullName} src={props.data.imgSrc}></img>
+                <img alt={profileData.data.imgSrc} src={profileData.data.imgSrc}></img>
                 <div className="profile__info">
-                    <MainInfo data={props.data}/>
-                    <SocialIcons data={props.data.socialSrc}/>
+                    <MainInfo />
+                    <SocialIcons />
                     <div className="profile__group-btn">
                         <button className="btn-message">Message</button>
                         <button className="btn-rectangle"></button>
                     </div>
-                    <ExtraInfo data={props.data.extraInfo}/>
+                    <ExtraInfo />
                 </div>
             </div>
             <button className="close-profile"></button>
         </div>
     );
-}
+})
 
 export default Profile;

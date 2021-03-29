@@ -1,13 +1,17 @@
-import ChannelItem from './ChannelItem';
+import { observer } from 'mobx-react';
 
-function ChannelList(props) {
-    const listElements = props.channelsList.map((item, index) => {
+import ChannelItem from './ChannelItem';
+import channelList from '../../store/channelsList';
+import activeChannel from '../../store/activeChannel';
+
+const ChannelList = observer(() => {
+    const listElements = channelList.list.map((item, index) => {
         return <ChannelItem 
                     key={item.id} 
                     text={item.text} 
-                    active={index === props.activeChannel ? true : false}
-                    setActiveChannel={props.setActiveChannel}
-                    channelsList={props.channelsList}
+                    index={index}
+                    activeChannel={activeChannel}
+                    active={index === activeChannel.index ? true : false}
                 />
     });
     return (
@@ -18,6 +22,6 @@ function ChannelList(props) {
             </ul>
         </div>
     )
-}
+})
 
 export default ChannelList;

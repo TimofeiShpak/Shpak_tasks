@@ -1,6 +1,9 @@
-import ItemInfo from './ItemInfo';
+import { observer } from 'mobx-react';
 
-function ExtraInfo(props) {
+import ItemInfo from './ItemInfo';
+import profileData from '../../store/profileData';
+
+const ExtraInfo = observer(() => {
     function getExtraInfo(data) {
         let itemsInfo = [];
         for (let dataElem in data) {
@@ -11,9 +14,9 @@ function ExtraInfo(props) {
     }
     return (
         <div className="extra-info">
-            {getExtraInfo(props.data)}
+            {getExtraInfo(profileData.data.extraInfo)}
         </div>
     )
-}
+});
 
 export default ExtraInfo;

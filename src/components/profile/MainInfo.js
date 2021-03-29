@@ -1,12 +1,16 @@
-function MainInfo(props) {
+import { observer } from 'mobx-react';
+
+import profileData from '../../store/profileData';
+
+const MainInfo = observer(() => {
     let classNameTitle = "profile__title ";
-    classNameTitle += props.data.status === 'online' ? 'online' : '';
+    classNameTitle += profileData.data.status === 'online' ? 'online' : '';
     return (
         <div className="profile__main-info">
-            <div className={classNameTitle}>{props.data.fullName}</div>
-            <div className="subtitle">{props.data.specialty}</div>
+            <div className={classNameTitle}>{profileData.data.fullName}</div>
+            <div className="subtitle">{profileData.data.specialty}</div>
         </div>
     )
-}
+})
 
 export default MainInfo;

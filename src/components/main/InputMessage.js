@@ -1,5 +1,9 @@
-function InputMessage(props) {
-    let placeholder = `Message in  ${props.name}`;
+import { observer } from 'mobx-react';
+
+import activeChannel from '../../store/activeChannel';
+
+const InputMessage = observer(() => {
+    let placeholder = `Message in  #${activeChannel.name}`;
     return (
         <div className="input-message">
             <button className="input-message__file"></button>
@@ -8,6 +12,6 @@ function InputMessage(props) {
             <button className="input-message__smiles"></button>
         </div>
     );
-}
+})
 
 export default InputMessage;

@@ -1,7 +1,10 @@
-import ListItem from './ListItem';
+import { observer } from 'mobx-react';
 
-function NomadList(props) {
-    const listElements = props.list.map((item) => {
+import ListItem from './ListItem';
+import nomadList from '../../store/nomadList';
+
+const NomadList = observer(() => {
+    const listElements = nomadList.list.map((item) => {
         return <ListItem 
                     key={item.id} 
                     src={item.src} 
@@ -24,6 +27,6 @@ function NomadList(props) {
             <button className="settings"></button>
         </div>
     )
-}
+})
 
 export default NomadList;

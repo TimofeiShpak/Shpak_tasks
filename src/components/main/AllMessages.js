@@ -1,6 +1,9 @@
-import DailyMessages from './DailyMessages';
+import { observer } from 'mobx-react';
 
-function AllMessages(props) {
+import DailyMessages from './DailyMessages';
+import messageList from '../../store/messageList';
+
+const AllMessages = observer(() => {
     function getListElements(data) {
         let list = [];
         for (let dataElem in data) {
@@ -17,10 +20,10 @@ function AllMessages(props) {
     return (
         <div className="all-messages-wrapper">
             <div className="all-messages">
-                {getListElements(props.messages)}
+                {getListElements(messageList.list)}
             </div>
         </div>
     );
-}
+})
 
 export default AllMessages;
