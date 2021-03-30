@@ -1,0 +1,88 @@
+.wrapper {
+    padding: 10px;
+}
+
+.score {
+    padding: 20px;
+}
+
+.player {
+    display: flex;
+}
+
+.player > :nth-child(n) {
+    margin-right: 50px;
+}
+
+.player > :last-child {
+    margin-right: 0;
+}
+
+.indicators, 
+.button-group {
+    border: 1px solid gray;
+    width: 100%;
+    flex: 1;
+    padding: 20px;
+}
+
+.indicators {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.indicator__title {
+    padding: 5px 0;
+}
+
+.progress-bar {
+    border: 1px solid black;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 20px;
+}
+
+.progress_health,
+.btn_eat {
+    background-color: #E74C3C;
+}
+
+.progress_thirst,
+.btn_drink {
+    background-color: #3498DB;
+}
+
+.progress_hunger,
+.btn_rest {
+    background-color: #E67E22;
+}
+
+.progress_tiredness,
+.btn_work {
+    background-color: #95A5A6;
+}
+
+.btn {
+    width: 100%;
+    height: 40px;
+    margin: 10px;
+    color: #fff;
+    border-radius: 10px;
+    outline: none;
+}
+
+.btn_sport {
+    background-color: #398809;
+}
+
+.activities {
+    padding: 20px;
+}
+
+.action {
+    height: 20px;
+}
