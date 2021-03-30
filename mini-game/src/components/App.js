@@ -20,7 +20,7 @@ function App() {
         <div className="title">MiniGame</div>
         <Switch>
           <Route path="/history">
-            <Link to="/">Игра</Link>
+            <Link className="link" to="/">Игра</Link>
             <History allActivities={allActivities} />
           </Route>
           <Route path="/">
