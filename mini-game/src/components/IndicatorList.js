@@ -2,7 +2,7 @@ import IndicatorElement from './Indicator';
 
 function IndicatorList(props) {
     const indicatorsName = ['health', 'thirst', 'hunger', 'tiredness'];
-    const indicatorsTitles = ['Здоровье','Жажда','Голод','Усталость'];
+    const indicatorsTitles = ['Здоровье:','Жажда:','Голод:','Усталость:'];
     let elements = indicatorsName.map((name, index) => {
         return <IndicatorElement 
                     name={name} 

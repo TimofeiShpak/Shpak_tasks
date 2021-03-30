@@ -1,7 +1,23 @@
+* {
+    font: 14px sans-serif;
+}
+
 .App {
-    padding: 50px;
+    padding: 50px 0;
 }
 
 .history {
-    padding: 10px;
+    padding: 50px;
+}
+
+.title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 37px;
+    color: #000000;
+}
+
+.link  {
+    padding-left: 50px;
 }

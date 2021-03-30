@@ -17,13 +17,14 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <div className="title">MiniGame</div>
         <Switch>
           <Route path="/history">
             <Link to="/">Игра</Link>
             <History allActivities={allActivities} />
           </Route>
           <Route path="/">
-            <Link to="/history">История</Link>
+            <Link className="link" to="/history">История</Link>
               <Player 
                 setAllActivities={setAllActivities} 
                 setShowModal={setShowModal} 
