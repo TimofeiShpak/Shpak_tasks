@@ -1,4 +1,4 @@
-import NomadList from './NomadList';
+import User from './User';
 import ChannelList from './ChannelList';
 import Friends from './Friends';
 
@@ -6,7 +6,7 @@ function Navigation() {
     return(
         <div className="navigation-wrapper">
             <div className="navigation">
-                <NomadList />
+                <User />
                 <ChannelList />
                 <Friends />
             </div>

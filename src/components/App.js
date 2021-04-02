@@ -9,12 +9,10 @@ import { observer } from 'mobx-react';
 import Navigation from './navigation/Navigation';
 import Main from './main/Main';
 import Profile from './profile/Profile';
-import activeChannel from '../store/activeChannel';
-import channelList from '../store/channelsList';
+import store from '../store/store';
 
 const App = observer(() => {
-  let channel = channelList.list[activeChannel.index]
-  let channelPath = `/${channel.text}`;
+  let channelPath = '/' + store.channelData.name;
 
   return (
     <Router>

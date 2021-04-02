@@ -1,4 +1,4 @@
-.all-messages-wrapper {
+.message-list-wrapper {
     display: flex;
     padding-right: 7px;
     box-sizing: border-box;
@@ -7,7 +7,7 @@
     overflow: auto;
 }
 
-.all-messages {
+.message-list {
     padding: 10px 24px 0;
     overflow: auto;
 }
@@ -16,7 +16,7 @@
     @include font-source(13px, normal, #8D8D8D, 18px);
     
     position: relative;
-    top: -10px;
+    top: 8px;
     background-color: #fff;
     width: fit-content;
     margin: auto;
@@ -24,6 +24,8 @@
 
 .daily-messages {
     border-top: 1px solid rgba(0, 0, 0, 0.16);
+    padding-top: 20px;
+    background-position-y: 20px;
 }
 
 .message {
