@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react';
 
-import store from '../../store/store';
+import store from '../../mobx-multi/store';
 
 const MessageList = observer(() => {
     let messageElements = store.messageList.getListElements();

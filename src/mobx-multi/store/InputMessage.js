@@ -18,11 +18,11 @@ class InputMessage {
     }
 
     addAddressee(value) {
-        let { name } = this.main.userList.getUserData();
-        if(name !== value) {
+        let { userName } = this.main.user.getUserData();
+        if(userName !== value) {
             this.inputElement.current.focus();
             value = value.split(' ').join('_');
-            this.value = `@${value} `;
+            this.value = `${value} `;
         }
     }
 
@@ -46,38 +46,41 @@ class InputMessage {
     }
 
     createMessage() {
-        let { text, src } = this.main.userList.userData[0];
-        let name = this.main.channelData.name;
+        let { fullName, src, extraInfo : { userName } } = this.main.user.userData[0];
+        let name = this.main.channelData.getName();
         let addressee = this.checkAddressee();
+        let time = new Date().toLocaleTimeString().slice(0,-3);
+        let date = new Date().toLocaleDateString();
         let messageData = {
-            "date":"Saturday, October 25st", 
-            "author" : text, 
+            "date": date, 
+            "author" : fullName, 
+            "userName" : userName,
             "id" : this.main.getId(), 
-            "time" : "6:48 PM", 
+            "time" : time, 
             "dataMessage" : [{"addressee" : addressee}, {"text":  this.value.slice(0,-1)}], 
             "avatarSrc" : src,
             "key" : this.main.getId()
         };
         api.messages.addMessages(name, messageData)
             .then(() => {
-                runInAction(() => {
-                    this.main.messageList.update(name)
-                });
+                runInAction(() => this.main.messageList.update(name));
             });
     }
 
     getTextarea() {
-        let placeholder = `Message in #${this.main.channelData.name}`;
+        let placeholder = `Message in #${this.main.channelData.getName()}`;
 
-        return <textarea
-            ref={this.inputElement}
-            rows="1" 
-            className="input-message__textarea" 
-            type="text" 
-            placeholder={placeholder} 
-            onInput={this.onInput}
-            value={this.value}
-        />
+        return (
+            <textarea
+                ref={this.inputElement}
+                rows="1" 
+                className="input-message__textarea" 
+                type="text" 
+                placeholder={placeholder} 
+                onInput={this.onInput}
+                value={this.value}
+            />
+        );
     }
 }
 

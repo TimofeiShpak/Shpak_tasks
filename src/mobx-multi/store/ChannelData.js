@@ -16,7 +16,11 @@ class ChannelData {
             });
     }
 
-    get name() {
+    setIndex(value) {
+        this.index = value;
+    }
+
+    getName() {
         let nameChannel = '';
         if (this.channels.length) {
             nameChannel = this.channels[this.index].name;
@@ -35,6 +39,14 @@ class ChannelData {
             />
         });
         return listElements;
+    }
+
+    getNumberSubscribers() {
+        this.numberSubscribers = 0;
+        if (this.channels.length) {
+            this.numberSubscribers = this.channels[this.index].numberSubscribers;
+        }
+        return this.numberSubscribers;
     }
 }
 

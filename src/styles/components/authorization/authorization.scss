@@ -1,0 +1,25 @@
+.authorization {
+    @include flex(column,('j-c':center,'a-i':center));
+
+    padding: 50px;
+    background: none;
+    box-sizing: border-box;
+
+    &__title {
+        @include font-source(20px, bold);
+    }
+}
+
+.authorization__user-list > li::before {
+    display: none;
+}
+
+.authorization__user-list > li:hover {
+    background-color: rgba(0, 0, 0, 0.2)
+}
+
+.authorization__user-list > li {
+    padding: 10px;
+    margin: 0;
+    cursor: pointer;
+}

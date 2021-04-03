@@ -1,21 +1,22 @@
 import { Link } from "react-router-dom";
 
-import store from '../../store/store';
+import store from '../../mobx-multi/store';
 
 function ChannelItem(props) {
-    let className = 'channel-item ';
-    className += props.active === true ? 'channel-item_active' : '';
+    let className = store.classNames({
+        "channel-item": true,
+        "channel-item_active" : props.active
+    });
+    let handleClick = () => store.channelData.setIndex(props.index);
+
     return (
-    <div>
-        <li 
-            className={className}
-            onClick={() => store.channelData.index = props.index}
-        >
-            <Link to={`${props.text}`}>
-                {props.text}
-            </Link>
-        </li>
-    </div>
+        <div>
+            <li className={className} onClick={handleClick} >
+                <Link to={`${props.text}`}>
+                    {props.text}
+                </Link>
+            </li>
+        </div>
     );
 }
 

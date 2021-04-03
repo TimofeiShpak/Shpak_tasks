@@ -1,15 +1,17 @@
 import { observer } from 'mobx-react';
 
-import store from '../../store/store';
+import store from '../../mobx-multi/store';
 import MainInfo from './MainInfo';
 
 
 const Profile = observer(() => {
-    let { imgSrc } = store.profileData.data
+    let { src, fullName } = store.profileData.data
     return (
         <div className="profile-wrapper">
             <div className="profile">
-                <img alt={imgSrc} src={imgSrc}></img>
+                <div className="profile__img">
+                    <img alt={fullName} src={src}></img>
+                </div>
                 <div className="profile__info">
                     <MainInfo />
                     <ul className="social-icons">

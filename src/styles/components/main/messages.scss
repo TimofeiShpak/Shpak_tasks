@@ -10,6 +10,7 @@
 .message-list {
     padding: 10px 24px 0;
     overflow: auto;
+    width: 100%;
 }
 
 .message-date {
@@ -29,8 +30,9 @@
 }
 
 .message {
+    @include flex(('a-i':flex-start));
+
     background-repeat: no-repeat;
-    padding-left: 45px;
     margin-bottom: 20px;
 
     &__info {

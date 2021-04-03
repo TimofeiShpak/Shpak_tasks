@@ -21,7 +21,7 @@ class MessageList {
 
     getMessages() {
         let index = this.main.channelData.index;
-        let name = this.main.channelData.name;
+        let name = this.main.channelData.getName();
         if (this.value !== index && name) {
             runInAction(() => this.value = index)
             this.update(name);
@@ -29,31 +29,56 @@ class MessageList {
         return this.messages;
     };
 
-    getMessageElement(item, isNewDate, className) {
-        return <Message 
-            key={this.main.getId()}
-            author={item.author} 
-            time={item.time} 
-            dataMessage={item.dataMessage}
-            avatarSrc={item.avatarSrc}
-            date={item.date}
-            isNewDate={isNewDate}
-            className={className}
-        />
+    getDate() {
+        let currentDate = new Date();
+        let today = new Date().toLocaleDateString();
+        currentDate.setDate(currentDate.getDate() - 1);
+        let yesterday = currentDate.toLocaleDateString();
+        return {today, yesterday};
+    }
+
+    checkDate(item, date, today, yesterday) {
+        let isNewDate = false;
+        let className = this.main.classNames({
+            "message": true,
+            "daily-messages" : date !== item.date
+        });
+        let dateMessage = item.date;
+        if (date !== item.date) {
+            isNewDate = true;
+            if (item.date === today) {
+                dateMessage = "Today";
+            } else if(item.date === yesterday) {
+                dateMessage = "Yesterday";
+            }
+        }
+        return {isNewDate, className, dateMessage};
+    }
+
+    getMessageElement(item, isNewDate, className, date) {
+        return ( 
+            <Message 
+                key={this.main.getId()}
+                author={item.author} 
+                time={item.time} 
+                dataMessage={item.dataMessage}
+                avatarSrc={item.avatarSrc}
+                date={date}
+                isNewDate={isNewDate}
+                className={className}
+                userName={item.userName}
+            />
+        );
     }
 
     getListElements() {
+        let { today, yesterday } = this.getDate();
         let data = this.getMessages();
         let date;
         let listElements = data.map((item) => { 
-            let className = "message ";
-            let isNewDate = false;
-            if (date !== item.date) {
-                isNewDate = true;
-                date = item.date;
-                className += "daily-messages";
-            }
-            return this.getMessageElement(item, isNewDate, className);
+            let { isNewDate, className, dateMessage } = this.checkDate(item, date, today, yesterday);
+            date = item.date;
+            return this.getMessageElement(item, isNewDate, className, dateMessage);
         });
         return listElements;
     }
@@ -79,8 +104,10 @@ class MessageList {
 
     getDataMessageImg(props) {
         let dataLike = '😍 ' + props.img.likes;
-        let className = "message__img";
-        className += props.img.likes && " message__img_liked";
+        let className = this.main.classNames({
+            "message__img": true,
+            "message__img_liked" : props.img.likes
+        });
         return { dataLike, className };
     }
 }

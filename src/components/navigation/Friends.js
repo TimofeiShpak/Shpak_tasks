@@ -1,12 +1,17 @@
 import { observer } from 'mobx-react';
 
-import store from '../../store/store';
+import store from '../../mobx-multi/store';
 
 const Friends = observer(() => {
     let listElements = store.userList.getUserList();
     return (
         <div className="friends">
-            <div className="navigation__title">Friends <span className="number-channels">{listElements.length}</span></div>
+            <div className="navigation__title">
+                Friends 
+                <span className="number-channels">
+                    {listElements.length}
+                </span>
+            </div>
             <ul>
                 {listElements}
             </ul>

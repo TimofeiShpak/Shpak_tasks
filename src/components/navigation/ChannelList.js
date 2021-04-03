@@ -1,13 +1,18 @@
 import { observer } from 'mobx-react';
 
-import store from '../../store/store';
+import store from '../../mobx-multi/store';
 
 
 const ChannelList = observer(() => {
     let listElements = store.channelData.getChannelsList();
     return (
         <div className="channels">
-            <div className="navigation__title">Channels <span className="number-channels">{listElements.length}</span></div>
+            <div className="navigation__title">
+                Channels 
+                <span className="number-channels">
+                    {listElements.length}
+                </span>
+            </div>
             <ul>
                 {listElements}
             </ul>

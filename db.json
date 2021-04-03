@@ -1,78 +1,112 @@
 {
-  "profileData": {
-    "status": "online",
-    "imgSrc": "./user-avatar.png",
-    "fullName": "Amilia Luna",
-    "specialty": "UI Designer",
-    "socialSrc": {
-      "facebook": "",
-      "instagram": "",
-      "twitter": "",
-      "linkedin": ""
-    },
-    "extraInfo": {
-      "userName": "@amilia_lu",
-      "Email": "a-luna@gmail.com",
-      "Skype": "amiluna",
-      "Timezone": "2:21 PM Local time"
-    }
-  },
   "userList": [
     {
+      "id": 1,
       "status": "offline",
-      "text": "Orlando Diggs",
-      "src": "./Shape1.svg"
+      "src": "./user-avatar.png",
+      "fullName": "Amelia Luna",
+      "specialty": "UI Designer",
+      "socialSrc": {
+        "twitter": "https://twitter.com/amilialuna",
+        "instagram": "https://www.instagram.com/lunaticaluna/",
+        "facebook": "https://www.facebook.com/amelia.luna.524596",
+        "linkedin": "http://linkedin.com/in/amelialuna"
+      },
+      "extraInfo": {
+        "userName": "@amelia_lu",
+        "Email": "a-luna@gmail.com",
+        "Skype": "amelia"
+      }
     },
     {
       "status": "offline",
-      "text": "Carmen Velasco",
-      "src": "./Shape2.svg"
+      "fullName": "Orlando Digs",
+      "src": "./Shape1.jpg",
+      "id": 2,
+      "specialty": "Frontend developer",
+      "socialSrc": {
+        "facebook": "https://www.facebook.com/HelloMyNameisOrlando/",
+        "instagram": "https://www.instagram.com/ourshow/",
+        "twitter": "https://mobile.twitter.com/orlandocitysc",
+        "linkedin": "https://www.linkedin.com/in/jemmy-barrera-a74867a9"
+      },
+      "extraInfo": {
+        "userName": "@orlando_D",
+        "Email": "d-lan@gmail.com",
+        "Skype": "orlando_D"
+      }
     },
     {
       "status": "offline",
-      "text": "Marie Jensen",
-      "src": "./Shape3.svg"
+      "fullName": "Carmen Velasco",
+      "src": "./Shape2.jpg",
+      "id": 3,
+      "specialty": "Backend developer",
+      "socialSrc": {
+        "facebook": "https://www.facebook.com/carmen.s.velasco.71",
+        "instagram": "https://www.instagram.com/velcarmen/",
+        "twitter": "https://twitter.com/carmen_velasco?lang=en",
+        "linkedin": "https://www.linkedin.com/in/carmen-velasco-8472b222"
+      },
+      "extraInfo": {
+        "userName": "@carmen_VO",
+        "Email": "carmen-VO@gmail.com",
+        "Skype": "carmen_VO"
+      }
     },
     {
       "status": "offline",
-      "text": "Alex Lee",
-      "src": "./Shape4.svg"
+      "fullName": "Marie Jensen",
+      "src": "./Shape3.jpg",
+      "id": 4,
+      "specialty": "Manager",
+      "socialSrc": {
+        "facebook": "https://www.facebook.com/marianne.jensen.330",
+        "instagram": "https://www.instagram.com/marievjensen/?hl=en",
+        "twitter": "https://twitter.com/marie338j?lang=en",
+        "linkedin": "https://sg.linkedin.com/in/marie-jensen-56baa830"
+      },
+      "extraInfo": {
+        "userName": "@mar_Jen",
+        "Email": "mar_Jen@gmail.com",
+        "Skype": "mar_JEN"
+      }
     },
     {
       "status": "offline",
-      "text": "Leo Gill",
-      "src": "./Shape5.svg"
+      "fullName": "Alex Lee",
+      "src": "./Shape4.jpg",
+      "id": 5,
+      "specialty": "UI Designer",
+      "socialSrc": {
+        "facebook": "https://www.facebook.com/alex.lee.100046",
+        "instagram": "https://www.instagram.com/alexlee_official/?hl=en",
+        "twitter": "https://twitter.com/alexleeworld?lang=en",
+        "linkedin": "https://www.linkedin.com/pub/dir/Alex/Lee"
+      },
+      "extraInfo": {
+        "userName": "@aaaaLEX",
+        "Email": "aLEXa@gmail.com",
+        "Skype": "LexLex"
+      }
     },
     {
       "status": "offline",
-      "text": "Britney Cooper",
-      "src": "./Shape6.svg"
-    },
-    {
-      "status": "offline",
-      "text": "Jeshua Stout",
-      "src": "./Shape7.svg"
-    },
-    {
-      "status": "offline",
-      "text": "Harold Adams",
-      "src": "./Shape8.svg"
-    },
-    {
-      "status": "offline",
-      "text": "Aada Laine",
-      "src": "./Shape9.svg"
-    },
-    {
-      "status": "offline",
-      "text": "Nala Hester",
-      "src": "./Shape10.svg"
-    },
-    {
-      "status": "online",
-      "text": "Ramon Bateman",
-      "src": "./Shape11.svg",
-      "isUser": true
+      "fullName": "Leo Gil",
+      "src": "./Shape5.jpg",
+      "id": 6,
+      "specialty": "Frontend developer",
+      "socialSrc": {
+        "facebook": "https://www.facebook.com/leo.gil.5015",
+        "instagram": "https://www.instagram.com/leonardogil8/?hl=en",
+        "twitter": "https://twitter.com/leokarumo",
+        "linkedin": "https://www.linkedin.com/in/leonardobgil"
+      },
+      "extraInfo": {
+        "userName": "@LEO_DD",
+        "Email": "LEO_DD@gmail.com",
+        "Skype": "L_Gil"
+      }
     }
   ],
   "channelList": [
@@ -135,34 +169,34 @@
   ],
   "messages-general": [
     {
-      "date": "Saturday, October 20st",
+      "date": "27.03.2021",
       "author": "Carmen Velasco",
-      "id": "Carmen Velasco",
-      "time": "6:48 PM",
+      "userName": "@carmen_VO",
+      "time": "6:48",
       "dataMessage": [
         {
           "text": "Hello! How are you?"
         }
       ],
-      "avatarSrc": "./Shape2.svg"
+      "avatarSrc": "./Shape2.jpg"
     },
     {
-      "date": "Saturday, October 20st",
-      "author": "Orlando Diggs",
-      "id": "Orlando Diggs",
-      "time": "5:48 PM",
+      "date": "27.03.2021",
+      "author": "Orlando Digs",
+      "userName": "@orlando_D",
+      "time": "5:48",
       "dataMessage": [
         {
-          "text": "Hello"
+          "text": "Hello! I'm fine"
         }
       ],
-      "avatarSrc": "./Shape1.svg"
+      "avatarSrc": "./Shape1.jpg"
     },
     {
-      "date": "Sunday, October 21st",
-      "author": "Jeshua Stout",
-      "id": "Jeshua Stout",
-      "time": "6:38 PM",
+      "date": "28.03.2021",
+      "author": "Leo Gill",
+      "userName": "@LEO_DD",
+      "time": "6:38",
       "dataMessage": [
         {
           "addressee": "@pierrhack"
@@ -171,13 +205,13 @@
           "text": "I did for 6 days in Iceland"
         }
       ],
-      "avatarSrc": "./Shape7.svg"
+      "avatarSrc": "./Shape5.jpg"
     },
     {
-      "date": "Monday, October 22nd",
-      "author": "Harold Adams",
-      "id": "Harold Adams",
-      "time": "5:02 PM",
+      "date": "29.03.2021",
+      "author": "Alex Lee",
+      "userName": "@aaaaLEX",
+      "time": "5:02",
       "dataMessage": [
         {
           "text": "Which country to visit next? This is a photo with my friends - celebrating in Bali 😎"
@@ -189,13 +223,13 @@
           }
         }
       ],
-      "avatarSrc": "./Shape8.svg"
+      "avatarSrc": "./Shape4.jpg"
     },
     {
-      "date": "Monday, October 23nd",
-      "author": "Aada Laine",
-      "id": "Aada Laine",
-      "time": "11:54 AM",
+      "date": "30.03.2021",
+      "author": "Marie Jensen",
+      "userName": "@mar_Jen",
+      "time": "11:54",
       "dataMessage": [
         {
           "addressee": "@har_adams"
@@ -204,25 +238,25 @@
           "text": "wow it’s amazing, I want to buy a van and travelling next year 🚌"
         }
       ],
-      "avatarSrc": "./Shape9.svg"
+      "avatarSrc": "./Shape3.jpg"
     },
     {
-      "date": "Monday, October 24nd",
-      "author": "Nala Hester",
-      "id": "Nala Hester",
-      "time": "11:54 AM",
+      "date": "01.04.2021",
+      "author": "Orlando Digs",
+      "userName": "@orlando_D",
+      "time": "11:54",
       "dataMessage": [
         {
           "text": "Working from a van in Australia isn’t feasible if you need internet. It may have improved over the last years but I spent some time in a camper van around Tasmania and internet was a real problem (and Tasmania is tiny compared to the rest of the country)."
         }
       ],
-      "avatarSrc": "./Shape10.svg"
+      "avatarSrc": "./Shape1.jpg"
     },
     {
-      "date": "Monday, October 24nd",
-      "author": "Ramon Bateman",
-      "id": "Ramon Bateman",
-      "time": "11:59 AM",
+      "date": "02.04.2021",
+      "author": "Leo Gill",
+      "userName": "@LEO_DD",
+      "time": "11:59",
       "dataMessage": [
         {
           "addressee": "@aa_da"
@@ -231,7 +265,298 @@
           "text": "What's the reason for the van? Saving money or just like to get outside? If you've got a stable source of income you could always do some short term Airbnbs+ buy a truck/topper, build a platform in the back. That way you can always convert it back to a truck and sleep in an apartment if you want."
         }
       ],
-      "avatarSrc": "./Shape11.svg"
+      "avatarSrc": "./Shape5.jpg"
+    },
+    {
+      "date": "02.04.2021",
+      "author": "Orlando Digs",
+      "id": "8d78b693-c68e-468c-bddb-9336a259f96d",
+      "time": "22:39",
+      "dataMessage": [
+        {
+          "addressee": ""
+        },
+        {
+          "text": "fcghvb"
+        }
+      ],
+      "avatarSrc": "./Shape1.jpg",
+      "key": "f93d55f9-e102-452f-914d-55930278acb3"
+    },
+    {
+      "date": "02.04.2021",
+      "author": "Orlando Digs",
+      "id": "db8f716d-327c-410d-8c6f-a9c636f2725e",
+      "time": "22:43",
+      "dataMessage": [
+        {
+          "addressee": ""
+        },
+        {
+          "text": "d"
+        }
+      ],
+      "avatarSrc": "./Shape1.jpg",
+      "key": "ad8fb4ad-1ce4-4984-8475-d339d06a21ff"
+    },
+    {
+      "date": "02.04.2021",
+      "author": "Orlando Digs",
+      "id": "62b50287-d9b2-41e7-b24e-5d2596abd2ba",
+      "time": "22:45",
+      "dataMessage": [
+        {
+          "addressee": ""
+        },
+        {
+          "text": "df"
+        }
+      ],
+      "avatarSrc": "./Shape1.jpg",
+      "key": "f4d2b460-26f8-4cce-a5e5-56712c5a6f66"
+    },
+    {
+      "date": "02.04.2021",
+      "author": "Orlando Digs",
+      "id": "9c1c1dfd-8b13-454e-99ec-9aa3cc83a298",
+      "time": "22:46",
+      "dataMessage": [
+        {
+          "addressee": ""
+        },
+        {
+          "text": "asf"
+        }
+      ],
+      "avatarSrc": "./Shape1.jpg",
+      "key": "37471786-d8c9-41bf-8c21-6f4107b2402f"
+    },
+    {
+      "date": "02.04.2021",
+      "author": "Orlando Digs",
+      "id": "37f9eb41-65ce-4544-bbf6-648cd69f4161",
+      "time": "22:47",
+      "dataMessage": [
+        {
+          "addressee": ""
+        },
+        {
+          "text": "ghkn"
+        }
+      ],
+      "avatarSrc": "./Shape1.jpg",
+      "key": "59b6be19-9bbc-4083-90cf-ef12d8879415"
+    },
+    {
+      "date": "02.04.2021",
+      "author": "Orlando Digs",
+      "id": "df1976e3-e397-4226-a931-48ddfe4f14d5",
+      "time": "22:48",
+      "dataMessage": [
+        {
+          "addressee": "@aaaaLEX"
+        },
+        {
+          "text": ""
+        }
+      ],
+      "avatarSrc": "./Shape1.jpg",
+      "key": "12d14566-0a7b-4cbb-9061-1b84578e1e83"
+    },
+    {
+      "date": "02.04.2021",
+      "author": "Orlando Digs",
+      "id": "6890ab7d-443e-44ca-9d9d-c1609cadb6d8",
+      "time": "22:48",
+      "dataMessage": [
+        {
+          "addressee": ""
+        },
+        {
+          "text": "sfc"
+        }
+      ],
+      "avatarSrc": "./Shape1.jpg",
+      "key": "32dfdb17-6837-404e-bf48-67d788ea4b0f"
+    },
+    {
+      "date": "02.04.2021",
+      "author": "Orlando Digs",
+      "id": "3cb6aeee-aaf9-4197-bd4d-1bd316828ad1",
+      "time": "22:48",
+      "dataMessage": [
+        {
+          "addressee": ""
+        },
+        {
+          "text": "fgkmh"
+        }
+      ],
+      "avatarSrc": "./Shape1.jpg",
+      "key": "b696ca03-7930-46ba-b2f5-2f931d18e9c4"
+    },
+    {
+      "date": "02.04.2021",
+      "author": "Orlando Digs",
+      "id": "27528ff4-64b3-4eb3-86ef-8c6ae2e8acac",
+      "time": "22:50",
+      "dataMessage": [
+        {
+          "addressee": ""
+        },
+        {
+          "text": "fgjvn"
+        }
+      ],
+      "avatarSrc": "./Shape1.jpg",
+      "key": "b188f90c-1a97-4a15-b6ca-a2621cc66a41"
+    },
+    {
+      "date": "02.04.2021",
+      "author": "Carmen Velasco",
+      "id": "871d6b1f-76af-4a11-a936-1a2b5eba0748",
+      "time": "22:52",
+      "dataMessage": [
+        {
+          "addressee": ""
+        },
+        {
+          "text": "fgvhbnkm"
+        }
+      ],
+      "avatarSrc": "./Shape2.jpg",
+      "key": "40a2c2d6-d0d7-4a41-af0d-941f9985f4e9"
+    },
+    {
+      "date": "02.04.2021",
+      "author": "Carmen Velasco",
+      "id": "8cb479f8-66f2-4b60-a615-51bcf892f578",
+      "time": "22:52",
+      "dataMessage": [
+        {
+          "addressee": ""
+        },
+        {
+          "text": "fgh"
+        }
+      ],
+      "avatarSrc": "./Shape2.jpg",
+      "key": "ede99b25-8d8e-4c4c-968a-007da8c8fd5d"
+    },
+    {
+      "date": "02.04.2021",
+      "author": "Carmen Velasco",
+      "id": "8b1b29a4-21c6-4177-8ac9-69329d2a55b8",
+      "time": "22:55",
+      "dataMessage": [
+        {
+          "addressee": ""
+        },
+        {
+          "text": "l"
+        }
+      ],
+      "avatarSrc": "./Shape2.jpg",
+      "key": "cd06ddd7-44f7-4645-ad7d-2c4b16b8eb14"
+    },
+    {
+      "date": "02.04.2021",
+      "author": "Carmen Velasco",
+      "id": "fc937653-6104-441a-a561-678a695ac7d5",
+      "time": "22:56",
+      "dataMessage": [
+        {
+          "addressee": ""
+        },
+        {
+          "text": "fgh"
+        }
+      ],
+      "avatarSrc": "./Shape2.jpg",
+      "key": "76879156-2b39-4a6d-b022-cddc31bcbd55"
+    },
+    {
+      "date": "02.04.2021",
+      "author": "Carmen Velasco",
+      "id": "7b09e81c-6a88-4801-8b5f-8e5fc0ddec21",
+      "time": "22:56",
+      "dataMessage": [
+        {
+          "addressee": ""
+        },
+        {
+          "text": "sdxg"
+        }
+      ],
+      "avatarSrc": "./Shape2.jpg",
+      "key": "7ffaabd5-58c7-4606-90dc-25616d617bb9"
+    },
+    {
+      "date": "02.04.2021",
+      "author": "Carmen Velasco",
+      "id": "472b7a4b-19ee-46e4-bf38-64eb68aee67b",
+      "time": "22:57",
+      "dataMessage": [
+        {
+          "addressee": ""
+        },
+        {
+          "text": "rfygu"
+        }
+      ],
+      "avatarSrc": "./Shape2.jpg",
+      "key": "1726699c-ac26-4389-b23d-4fbfe16c8cc7"
+    },
+    {
+      "date": "02.04.2021",
+      "author": "Carmen Velasco",
+      "userName": "@carmen_VO",
+      "id": "1afa7149-f900-4efd-9597-5cea175f7a1b",
+      "time": "22:58",
+      "dataMessage": [
+        {
+          "addressee": ""
+        },
+        {
+          "text": "kj"
+        }
+      ],
+      "avatarSrc": "./Shape2.jpg",
+      "key": "f59d4588-41a7-41dc-b862-bef9c392f6b1"
+    },
+    {
+      "date": "02.04.2021",
+      "author": "Carmen Velasco",
+      "userName": "@carmen_VO",
+      "id": "048958f1-d4ad-408a-a7af-3fb1cb10d04c",
+      "time": "22:58",
+      "dataMessage": [
+        {
+          "addressee": ""
+        },
+        {
+          "text": "dfh"
+        }
+      ],
+      "avatarSrc": "./Shape2.jpg",
+      "key": "29560a49-7cae-4d42-b551-4a61e4fb57e9"
+    },
+    {
+      "date": "02.04.2021",
+      "author": "Carmen Velasco",
+      "userName": "@carmen_VO",
+      "id": "23d42070-fcfc-4f2c-8dd9-c99d1193c2a0",
+      "time": "22:59",
+      "dataMessage": [
+        {
+          "addressee": ""
+        },
+        {
+          "text": "sdg"
+        }
+      ],
+      "avatarSrc": "./Shape2.jpg",
+      "key": "ca22ddae-efb3-4c21-89fd-c3e20a61f9b5"
     }
   ],
   "messages-support": [],

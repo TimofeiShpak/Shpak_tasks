@@ -1,7 +1,8 @@
 import {
   BrowserRouter as Router,
   Redirect,
-  Route
+  Route,
+  Switch
 } from "react-router-dom";
 
 import { observer } from 'mobx-react';
@@ -9,22 +10,27 @@ import { observer } from 'mobx-react';
 import Navigation from './navigation/Navigation';
 import Main from './main/Main';
 import Profile from './profile/Profile';
-import store from '../store/store';
+import store from '../mobx-multi/store';
+import Authorization from './authorization/Authorization';
 
 const App = observer(() => {
-  let channelPath = '/' + store.channelData.name;
+  let channelPath = store.user.getChannelPath(); 
 
   return (
     <Router>
       <Redirect to={channelPath} />
-
-      <Route path={channelPath}>
-        <div className='App'>
-          <Navigation />
-          <Main />
-          <Profile />
-        </div>
-      </Route>
+      <Switch>
+        <Route path="/authorization">
+          <Authorization />
+        </Route>
+        <Route path={channelPath}>
+          <div className='Chat'>
+            <Navigation />
+            <Main />
+            <Profile />
+          </div>
+        </Route>
+      </Switch>
     </Router>
   );
 })

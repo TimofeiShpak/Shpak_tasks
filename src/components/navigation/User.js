@@ -1,15 +1,17 @@
 import { observer } from 'mobx-react';
 
-import store from '../../store/store';
+import store from '../../mobx-multi/store';
+import Settings from './Settings';
 
 const User = observer(() => {
-    let  { className, name, src } = store.userList.getUserData();
+    let  { className, fullName, src } = store.user.getUserData();
     return (
         <div className="user-wrapper">
-            <div className={className} style={{backgroundImage:`url(${src})`}}>
-                {name}
+            <div className={className} >
+                <img className="user-item__img" alt={fullName} src={src}></img>
+                {fullName}
             </div>
-            <button className="settings"></button>
+            <Settings />
         </div>
     )
 });

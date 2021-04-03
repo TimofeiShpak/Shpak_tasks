@@ -4,7 +4,8 @@
 @import './helpers/state.scss';
 @import './helpers/fonts.scss';
 
-@import './components/app.scss';
+@import './components/chat.scss';
+@import './components/authorization/authorization.scss';
 
 @import './components/navigation/user.scss';
 @import './components/navigation/channels.scss';

@@ -21,31 +21,33 @@
     @include flex(('j-c':space-between));
 }
 
-.user {
-    display: flex;
+.user-item {
+    @include flex(('a-i':center));
+    
+    margin-bottom: 10px;
+    background-repeat: no-repeat;
+    background-position-x: 15px;
+    background-size: contain;
 
-    &-item {
-        @include flex(('a-i':center));
+    &__img {
+        margin: 0 10px;
+        width: 34px;
+        border-radius: 4px;
+    }
     
-        margin-bottom: 10px;
-        padding: 9px 10px 9px 60px;
-        background-repeat: no-repeat;
-        background-position-x: 15px;
+    &::before {
+        content: '';
+        display: block;
+        position: relative;
+        width: 6px; 
+        height: 6px;
+        background-color: #666666;
+        border-radius: 50%;
+        left: 0;
+    }
     
-        &::before {
-            content: '';
-            display: block;
-            position: relative;
-            width: 6px; 
-            height: 6px;
-            background-color: #666666;
-            border-radius: 50%;
-            left: -60px;
-        }
-    
-        &-active::before {
-            background-color: #70CC16;
-        }
+    &-active::before {
+        background-color: #70CC16;
     }
 }
 
@@ -53,6 +55,6 @@
     background: url('../../../assets/icons/settings.svg') no-repeat;
     width: 17px;
     height: 17px;
-    margin: 5px 0;
+    margin: 15px 0;
 }
 

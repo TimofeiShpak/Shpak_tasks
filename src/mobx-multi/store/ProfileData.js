@@ -1,6 +1,5 @@
-import { makeAutoObservable, runInAction } from "mobx";
+import { makeAutoObservable } from "mobx";
 
-import api from '../../api/api';
 import ItemInfo from '../../components/profile/ItemInfo';
 
 const nameIcons = ['facebook', 'instagram', 'linkedin', 'twitter'];
@@ -11,11 +10,7 @@ class ProfileData {
         makeAutoObservable(this);
         this.main = main
 
-        api.profileData.getProfileData()
-            .then((data) => {
-                runInAction(() => this.profileData = data);
-            });
-
+        this.changeProfile = this.changeProfile.bind(this);
     };
 
     get data() {
@@ -35,8 +30,10 @@ class ProfileData {
 
     getMainInfo() {
         let { status, fullName, specialty } = this.profileData;
-        let classNameTitle = "profile__title ";
-        classNameTitle += status === 'online' ? 'online' : '';
+        let classNameTitle = this.main.classNames({
+            "profile__title": true,
+            "online" : status === 'online'
+        });
         return { classNameTitle, fullName, specialty };
     }
 
@@ -47,6 +44,13 @@ class ProfileData {
             return <a className={`social-icon ${name}-icon`} key={key} href={socialSrc[name]}> </a>
         });
         return icons;
+    }
+
+    changeProfile(fullName) {
+        this.profileData = this.main.userList.userList.find((item) => item.fullName === fullName);
+        if (!this.profileData) {
+            this.profileData = this.main.user.userData[0];
+        }
     }
 }
 

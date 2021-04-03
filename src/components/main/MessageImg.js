@@ -1,4 +1,4 @@
-import store from '../../store/store';
+import store from '../../mobx-multi/store';
 
 function MessageImg(props) {
     let { dataLike, className } = store.messageList.getDataMessageImg(props);
