@@ -1,4 +1,5 @@
 import { makeAutoObservable } from "mobx";
+import classNames from 'classnames';
 
 import ItemInfo from '../../components/profile/ItemInfo';
 
@@ -30,7 +31,7 @@ class ProfileData {
 
     getMainInfo() {
         let { status, fullName, specialty } = this.profileData;
-        let classNameTitle = this.main.classNames({
+        let classNameTitle = classNames({
             "profile__title": true,
             "online" : status === 'online'
         });

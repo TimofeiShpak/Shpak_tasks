@@ -4,6 +4,7 @@ import store from '../../mobx-multi/store';
 
 const Friends = observer(() => {
     let listElements = store.userList.getUserList();
+    
     return (
         <div className="friends">
             <div className="navigation__title">

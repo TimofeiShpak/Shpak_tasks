@@ -1,12 +1,13 @@
 import { makeAutoObservable, runInAction } from "mobx";
+import classNames from 'classnames';
 
 import api from '../../api/api';
 import Message from '../../components/main/Message';
-import MessageImg from '../../components/main/MessageImg';
 
 class MessageList {
     messages = [];
     value = -1;
+
     constructor(main) {
         makeAutoObservable(this);
         this.main = main;
@@ -14,9 +15,24 @@ class MessageList {
 
     update(name) {
         api.messages.getMessages(name)
-            .then((data) => {
-                runInAction(() => this.messages = data);
-            });
+            .then((data) => this.setData(data))
+    }
+
+    setData(data) {
+        runInAction(() => {
+            this.messages = data; 
+            this.setOption();
+        });
+    }
+
+    setOption() {
+        this.messages = this.messages.map((data) => {
+            return {
+                'isActive' : false,
+                'isEdit' : false,
+                ...data,
+            }
+        });
     }
 
     getMessages() {
@@ -39,34 +55,31 @@ class MessageList {
 
     checkDate(item, date, today, yesterday) {
         let isNewDate = false;
-        let className = this.main.classNames({
-            "message": true,
-            "daily-messages" : date !== item.date
-        });
         let dateMessage = item.date;
         if (date !== item.date) {
             isNewDate = true;
             if (item.date === today) {
                 dateMessage = "Today";
-            } else if(item.date === yesterday) {
+            } else if (item.date === yesterday) {
                 dateMessage = "Yesterday";
             }
         }
-        return {isNewDate, className, dateMessage};
+        return { isNewDate, dateMessage };
     }
 
-    getMessageElement(item, isNewDate, className, date) {
+    createMessage(item, date, today, yesterday) {
+        let { isNewDate, dateMessage } = this.checkDate(item, date, today, yesterday);
+        let className = classNames({
+            "message" : true,
+            "message_active" : item.isActive
+        })
         return ( 
             <Message 
-                key={this.main.getId()}
-                author={item.author} 
-                time={item.time} 
-                dataMessage={item.dataMessage}
-                avatarSrc={item.avatarSrc}
-                date={date}
+                key={item.id}
+                data={item}
+                date={dateMessage}
                 isNewDate={isNewDate}
                 className={className}
-                userName={item.userName}
             />
         );
     }
@@ -75,40 +88,45 @@ class MessageList {
         let { today, yesterday } = this.getDate();
         let data = this.getMessages();
         let date;
-        let listElements = data.map((item) => { 
-            let { isNewDate, className, dateMessage } = this.checkDate(item, date, today, yesterday);
+        let listElements = data.map((item) => {
+            let element = this.createMessage(item, date, today, yesterday);
             date = item.date;
-            return this.getMessageElement(item, isNewDate, className, dateMessage);
+            return element;
         });
         return listElements;
     }
 
-    getMessageContent(dataMessage) {
-        let messageContent = '';
-        if (dataMessage) {
-            messageContent = dataMessage.map((item) => {
-                let elem;
-                let key = this.main.getId();
-                if (item.text) {
-                    elem = <div key={key}>{item.text}</div>;
-                } else if (item.img) {
-                    elem = <MessageImg key={key} img={item.img} alt={item.text} />
-                } else if (item.addressee) {
-                    elem = <span key={key} className="message__addressee">{item.addressee} </span>;
-                }
-                return elem;
-            });
+    resetActive() {
+        this.messages.forEach((message) => message.isActive = false);
+    } 
+
+    changeMessagesActive(id, author) {
+        let isMayEdit = this.main.user.checkUser(author);
+        let isEdit = this.main.message.isEdit;
+        let indexMessage = this.messages.findIndex((message) => message.id === id);
+        if (indexMessage !== -1 && !isEdit) {
+            let isActive = this.messages[indexMessage].isActive;
+            this.resetActive();
+            this.messages[indexMessage].isActive = !isActive;  
+            this.messages[indexMessage].isMayEdit = isMayEdit;
         }
-        return messageContent;
     }
 
-    getDataMessageImg(props) {
-        let dataLike = '😍 ' + props.img.likes;
-        let className = this.main.classNames({
-            "message__img": true,
-            "message__img_liked" : props.img.likes
-        });
-        return { dataLike, className };
+    deleteExcessOption(messageData) {
+        for (let key in messageData){
+            if (key.includes('is')) {
+                delete messageData[key];
+            }
+        }
+    }
+
+    updateMessage(id, text) {
+        let indexMessage = this.messages.findIndex((message) => message.id === id);
+        let name = this.main.channelData.getName();
+        let messageData = this.messages[indexMessage];
+        messageData.text = text;
+        this.deleteExcessOption(messageData);
+        api.messages.updateMessage(name, messageData, id);
     }
 }
 

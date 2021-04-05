@@ -5,6 +5,7 @@ import Settings from './Settings';
 
 const User = observer(() => {
     let  { className, fullName, src } = store.user.getUserData();
+    
     return (
         <div className="user-wrapper">
             <div className={className} >

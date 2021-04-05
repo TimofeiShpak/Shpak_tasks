@@ -5,6 +5,7 @@ import store from '../../mobx-multi/store';
 
 const ChannelList = observer(() => {
     let listElements = store.channelData.getChannelsList();
+    
     return (
         <div className="channels">
             <div className="navigation__title">

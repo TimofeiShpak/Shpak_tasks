@@ -8,23 +8,27 @@
 }
 
 .message-list {
-    padding: 10px 24px 0;
+    padding: 15px 10px;
     overflow: auto;
     width: 100%;
 }
 
 .message-date {
+    @include flex(('a-i':center))
+}
+
+.message-date__border {
+    border-top: 1px solid rgba(0, 0, 0, 0.16);
+    flex: 1;
+}
+ 
+.message-date__item {
     @include font-source(13px, normal, #8D8D8D, 18px);
     
-    position: relative;
-    top: 8px;
-    background-color: #fff;
-    width: fit-content;
     margin: auto;
 }
 
 .daily-messages {
-    border-top: 1px solid rgba(0, 0, 0, 0.16);
     padding-top: 20px;
     background-position-y: 20px;
 }
@@ -33,10 +37,10 @@
     @include flex(('a-i':flex-start));
 
     background-repeat: no-repeat;
-    margin-bottom: 20px;
+    padding: 10px 0;
 
     &__info {
-        @include margin('.message__info', right, 8px, true);
+        @include margin('.message__info', right, 8px);
 
         display: flex;
         font-size: 12px;
@@ -46,12 +50,22 @@
         font-weight: bold;
     }
 
+    &__author:hover {
+        color: blue;
+    }
+
     &__time {
         color: #8D8D8D;
     }
 
-    &__text {
+    &__content {
+        flex: 1;
+    }
+
+    &__text-wrapper {
         @include font-source(13px, normal, #000, 20px);
+
+        display: flex;
     }
 
     &__link {
@@ -71,6 +85,14 @@
         display: inline;
     }
 
+    &__addressee {
+        margin-right: 5px;
+    }
+
+    &__addressee:hover {
+        color: #000;
+    }
+
     &__img-wrapper::after {
         content:  attr(data-like);
         background: #FFFFFF;
@@ -79,5 +101,36 @@
         border-radius: 5px;
         position: relative;
         left: -25px;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &_active {
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    &__button-list,
+    .btn_answer {
+        margin-left: auto;
+    }
+
+    &__btn {
+        background-color: transparent;
+        margin: 0 5px;
+    }
+
+    &__btn:hover {
+        text-decoration: underline;
+    }
+
+    &__input {
+        resize: none;
+        border: none;
+        flex: 1;
+        margin-right: 10px;
+        line-height: 20px;
+        padding: 0 2px;
     }
 }

@@ -7,20 +7,15 @@ class User {
         makeAutoObservable(this);
         this.main = main;
         this.chooseUser = this.chooseUser.bind(this);
+        this.logOut = this.logOut.bind(this);
     }
 
     getUserData() {
-        let fullName = '';
-        let src = '';
         let className = "user-item ";
-        let userName = ""
-        if (this.userData.length) {
-            let data  = this.userData[0]
-            className += data.status === 'online' ? 'user-item-active' : '';
-            fullName = data.fullName;
-            src = data.src;
-            userName = data.extraInfo.userName;
-        }
+        className += this.userData[0].status === 'online' ? 'user-item-active' : '';
+        let fullName = this.userData[0].fullName;
+        let src = this.userData[0].src;
+        let userName = this.userData[0].extraInfo.userName;
         return { className, fullName, src, userName };
     }
 
@@ -50,6 +45,24 @@ class User {
             let fullName = this.checkFullName(elem.textContent);
             document.cookie = `fullName=${fullName}`;
         }
+    }
+
+    settingsHandleClick(event) {
+        let elem = event.target.closest('.settings');
+        if (elem) {
+            elem.classList.toggle('settings_close')
+        }
+    }
+
+    logOut() {
+        document.cookie = "fullName=";
+        let userData = this.userData[0];
+        this.main.userList.userList.push(userData);
+        this.userData.length = 0;
+    }
+
+    checkUser(fullName) {
+        return this.userData[0].fullName === fullName;
     }
 }
 

@@ -1,4 +1,5 @@
 import { makeAutoObservable, runInAction } from "mobx";
+import classNames from 'classnames';
 
 import api from '../../api/api';
 import UserItem from '../../components/navigation/UserItem';
@@ -19,7 +20,7 @@ class UserList {
 
     getUserList() {
         let listElements = this.userList.map((item) => {
-            let className = this.main.classNames({
+            let className = classNames({
                 "user-item": true,
                 "user-item-active" : item.status === 'online'
             });

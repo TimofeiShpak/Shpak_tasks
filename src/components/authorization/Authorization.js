@@ -3,6 +3,7 @@ import store from '../../mobx-multi/store';
 
 const Authorization = observer(() => {
     let listElements = store.userList.getUserList();
+    
     return (
         <div className="authorization">
             <div className="authorization__title">Welcome</div>

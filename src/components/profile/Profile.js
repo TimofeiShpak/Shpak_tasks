@@ -5,7 +5,8 @@ import MainInfo from './MainInfo';
 
 
 const Profile = observer(() => {
-    let { src, fullName } = store.profileData.data
+    let { src, fullName } = store.profileData.data;
+    
     return (
         <div className="profile-wrapper">
             <div className="profile">

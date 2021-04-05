@@ -1,4 +1,4 @@
-import { makeAutoObservable, runInAction } from "mobx";
+import { makeAutoObservable } from "mobx";
 import { createRef } from "react";
 import api from '../../api/api';
 
@@ -18,12 +18,10 @@ class InputMessage {
     }
 
     addAddressee(value) {
-        let { userName } = this.main.user.getUserData();
-        if(userName !== value) {
-            this.inputElement.current.focus();
-            value = value.split(' ').join('_');
-            this.value = `${value} `;
-        }
+        this.inputElement.current.focus();
+        value = value.split(' ').join('_');
+        this.value = `${value} `;
+        this.main.messageList.resetActive();
     }
 
     checkKeyDown() {
@@ -45,26 +43,29 @@ class InputMessage {
         return addressee;
     }
 
+    getMessageData(date, fullName, userName, id, time, src, addressee) {
+        return  {
+            "date": date, 
+            "author" : fullName, 
+            "userName" : userName,
+            "addressee" : addressee,
+            "id" : id, 
+            "time" : time, 
+            "text" : this.value.slice(0,-1),
+            "avatarSrc" : src
+        };
+    }
+
     createMessage() {
         let { fullName, src, extraInfo : { userName } } = this.main.user.userData[0];
         let name = this.main.channelData.getName();
         let addressee = this.checkAddressee();
         let time = new Date().toLocaleTimeString().slice(0,-3);
         let date = new Date().toLocaleDateString();
-        let messageData = {
-            "date": date, 
-            "author" : fullName, 
-            "userName" : userName,
-            "id" : this.main.getId(), 
-            "time" : time, 
-            "dataMessage" : [{"addressee" : addressee}, {"text":  this.value.slice(0,-1)}], 
-            "avatarSrc" : src,
-            "key" : this.main.getId()
-        };
+        let id = this.main.getId();
+        let messageData = this.getMessageData(date, fullName, userName, id, time, src, addressee);
         api.messages.addMessages(name, messageData)
-            .then(() => {
-                runInAction(() => this.main.messageList.update(name));
-            });
+        this.main.messageList.messages.push(messageData);
     }
 
     getTextarea() {
@@ -73,7 +74,6 @@ class InputMessage {
         return (
             <textarea
                 ref={this.inputElement}
-                rows="1" 
                 className="input-message__textarea" 
                 type="text" 
                 placeholder={placeholder} 
