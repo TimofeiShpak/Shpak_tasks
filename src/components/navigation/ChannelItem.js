@@ -8,9 +8,7 @@ function ChannelItem(props) {
     return (
         <div>
             <li className={props.className} onClick={handleClick} >
-                <Link to={`${props.text}`}>
-                    {props.text}
-                </Link>
+                {props.text}
             </li>
         </div>
     );

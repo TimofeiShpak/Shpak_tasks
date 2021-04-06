@@ -1,40 +1,18 @@
 {
   "userList": [
     {
-      "id": 1,
-      "status": "offline",
-      "src": "./user-avatar.png",
-      "fullName": "Amelia Luna",
-      "specialty": "UI Designer",
-      "socialSrc": {
-        "twitter": "https://twitter.com/amilialuna",
-        "instagram": "https://www.instagram.com/lunaticaluna/",
-        "facebook": "https://www.facebook.com/amelia.luna.524596",
-        "linkedin": "http://linkedin.com/in/amelialuna"
-      },
-      "extraInfo": {
-        "userName": "@amelia_lu",
-        "Email": "a-luna@gmail.com",
-        "Skype": "amelia"
-      }
-    },
-    {
       "status": "offline",
       "fullName": "Orlando Digs",
       "src": "./Shape1.jpg",
       "id": 2,
       "specialty": "Frontend developer",
-      "socialSrc": {
-        "facebook": "https://www.facebook.com/HelloMyNameisOrlando/",
-        "instagram": "https://www.instagram.com/ourshow/",
-        "twitter": "https://mobile.twitter.com/orlandocitysc",
-        "linkedin": "https://www.linkedin.com/in/jemmy-barrera-a74867a9"
-      },
-      "extraInfo": {
-        "userName": "@orlando_D",
-        "Email": "d-lan@gmail.com",
-        "Skype": "orlando_D"
-      }
+      "facebook": "https://www.facebook.com/HelloMyNameisOrlando/",
+      "instagram": "https://www.instagram.com/ourshow/",
+      "twitter": "https://mobile.twitter.com/orlandocitysc",
+      "linkedin": "https://www.linkedin.com/in/jemmy-barrera-a74867a9",
+      "userName": "@orlando_D",
+      "Email": "d-lan@gmail.com",
+      "Skype": "orlando_D"
     },
     {
       "status": "offline",
@@ -42,17 +20,13 @@
       "src": "./Shape2.jpg",
       "id": 3,
       "specialty": "Backend developer",
-      "socialSrc": {
-        "facebook": "https://www.facebook.com/carmen.s.velasco.71",
-        "instagram": "https://www.instagram.com/velcarmen/",
-        "twitter": "https://twitter.com/carmen_velasco?lang=en",
-        "linkedin": "https://www.linkedin.com/in/carmen-velasco-8472b222"
-      },
-      "extraInfo": {
-        "userName": "@carmen_VO",
-        "Email": "carmen-VO@gmail.com",
-        "Skype": "carmen_VO"
-      }
+      "facebook": "https://www.facebook.com/carmen.s.velasco.71",
+      "instagram": "https://www.instagram.com/velcarmen/",
+      "twitter": "https://twitter.com/carmen_velasco?lang=en",
+      "linkedin": "https://www.linkedin.com/in/carmen-velasco-8472b222",
+      "userName": "@carmen_VO",
+      "Email": "carmen-VO@gmail.com",
+      "Skype": "carmen_VO"
     },
     {
       "status": "offline",
@@ -60,17 +34,13 @@
       "src": "./Shape3.jpg",
       "id": 4,
       "specialty": "Manager",
-      "socialSrc": {
-        "facebook": "https://www.facebook.com/marianne.jensen.330",
-        "instagram": "https://www.instagram.com/marievjensen/?hl=en",
-        "twitter": "https://twitter.com/marie338j?lang=en",
-        "linkedin": "https://sg.linkedin.com/in/marie-jensen-56baa830"
-      },
-      "extraInfo": {
-        "userName": "@mar_Jen",
-        "Email": "mar_Jen@gmail.com",
-        "Skype": "mar_JEN"
-      }
+      "facebook": "https://www.facebook.com/marianne.jensen.330",
+      "instagram": "https://www.instagram.com/marievjensen/?hl=en",
+      "twitter": "https://twitter.com/marie338j?lang=en",
+      "linkedin": "https://sg.linkedin.com/in/marie-jensen-56baa830",
+      "userName": "@mar_Jen",
+      "Email": "mar_Jen@gmail.com",
+      "Skype": "mar_JEN"
     },
     {
       "status": "offline",
@@ -78,17 +48,13 @@
       "src": "./Shape4.jpg",
       "id": 5,
       "specialty": "UI Designer",
-      "socialSrc": {
-        "facebook": "https://www.facebook.com/alex.lee.100046",
-        "instagram": "https://www.instagram.com/alexlee_official/?hl=en",
-        "twitter": "https://twitter.com/alexleeworld?lang=en",
-        "linkedin": "https://www.linkedin.com/pub/dir/Alex/Lee"
-      },
-      "extraInfo": {
-        "userName": "@aaaaLEX",
-        "Email": "aLEXa@gmail.com",
-        "Skype": "LexLex"
-      }
+      "facebook": "https://www.facebook.com/alex.lee.100046",
+      "instagram": "https://www.instagram.com/alexlee_official/?hl=en",
+      "twitter": "https://twitter.com/alexleeworld?lang=en",
+      "linkedin": "https://www.linkedin.com/pub/dir/Alex/Lee",
+      "userName": "@aaaaLEX",
+      "Email": "aLEXa@gmail.com",
+      "Skype": "LexLex"
     },
     {
       "status": "offline",
@@ -96,17 +62,26 @@
       "src": "./Shape5.jpg",
       "id": 6,
       "specialty": "Frontend developer",
-      "socialSrc": {
-        "facebook": "https://www.facebook.com/leo.gil.5015",
-        "instagram": "https://www.instagram.com/leonardogil8/?hl=en",
-        "twitter": "https://twitter.com/leokarumo",
-        "linkedin": "https://www.linkedin.com/in/leonardobgil"
-      },
-      "extraInfo": {
-        "userName": "@LEO_DD",
-        "Email": "LEO_DD@gmail.com",
-        "Skype": "L_Gil"
-      }
+      "facebook": "https://www.facebook.com/leo.gil.5015",
+      "instagram": "https://www.instagram.com/leonardogil8/?hl=en",
+      "twitter": "https://twitter.com/leokarumo",
+      "linkedin": "https://www.linkedin.com/in/leonardobgil",
+      "userName": "@LEO_DD",
+      "Email": "LEO_DD@gmail.com",
+      "Skype": "L_Gil"
+    },
+    {
+      "userName": "@tim",
+      "fullName": "timA",
+      "specialty": "",
+      "twitter": "",
+      "instagram": "",
+      "facebook": "",
+      "linkedin": "",
+      "Email": "",
+      "Skype": "",
+      "src": "./anonim.jpg",
+      "id": "80ffd165-15cd-47e3-ab21-9fc49e9986c4"
     }
   ],
   "channelList": [
@@ -203,7 +178,7 @@
       "userName": "@mar_Jen",
       "time": "11:54",
       "addressee": "@orlando_D",
-      "text": "wow it’s amazing, I want to buy a van and travelling next year 🚌",
+      "text": "wow it’s amazing, I want to buy a van and travelling next year 🚌!",
       "avatarSrc": "./Shape3.jpg"
     },
     {
@@ -236,39 +211,17 @@
       "avatarSrc": "./Shape5.jpg"
     },
     {
-      "date": "05.04.2021",
-      "author": "Orlando Digs",
-      "userName": "@orlando_D",
+      "date": "06.04.2021",
+      "author": "timA",
+      "userName": "@tim",
       "addressee": "",
-      "id": "5f7928ab-a59a-42b5-a91f-a30e2cca4c36",
-      "time": "23:09",
-      "text": "good evening!",
-      "avatarSrc": "./Shape1.jpg"
-    },
-    {
-      "date": "05.04.2021",
-      "author": "Orlando Digs",
-      "userName": "@orlando_D",
-      "addressee": "@mar_Jen",
-      "id": "30631030-e6fe-4bf9-a0a5-f84bbe18cc75",
-      "time": "23:12",
+      "id": "68e2446b-e104-4f56-86ca-57399535e2b7",
+      "time": "20:40",
       "text": "hi",
-      "avatarSrc": "./Shape1.jpg"
+      "avatarSrc": "./anonim.jpg"
     }
   ],
-  "messages-support": [
-    {
-      "date": "05.04.2021",
-      "author": "Carmen Velasco",
-      "userName": "@carmen_VO",
-      "addressee": "",
-      "id": "061f7000-741c-4c5e-9f0b-92325aec4271",
-      "time": "21:49",
-      "text": "dx x",
-      "avatarSrc": "./Shape2.jpg",
-      "key": "061f7000-741c-4c5e-9f0b-92325aec4271"
-    }
-  ],
+  "messages-support": [],
   "messages-marketing": [],
   "messages-thailand": [],
   "messages-bali": [],

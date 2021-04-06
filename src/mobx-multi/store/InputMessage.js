@@ -57,7 +57,7 @@ class InputMessage {
     }
 
     createMessage() {
-        let { fullName, src, extraInfo : { userName } } = this.main.user.userData[0];
+        let { fullName, src, userName } = this.main.user.userData[0];
         let name = this.main.channelData.getName();
         let addressee = this.checkAddressee();
         let time = new Date().toLocaleTimeString().slice(0,-3);

@@ -1,9 +1,9 @@
 import { makeAutoObservable } from "mobx";
-import classNames from 'classnames';
 
 import ItemInfo from '../../components/profile/ItemInfo';
 
 const nameIcons = ['facebook', 'instagram', 'linkedin', 'twitter'];
+const nameExtraInfo = ['userName', 'Email', 'Skype'];
 
 class ProfileData {
     profileData = {};
@@ -14,43 +14,46 @@ class ProfileData {
         this.changeProfile = this.changeProfile.bind(this);
     };
 
-    get data() {
-        return this.profileData;
-    };
-
     getExtraInfo() {
         let itemsInfo = [];
-        let data = this.profileData.extraInfo;
-        for (let dataElem in data) {
-            let key = this.main.getId();
-            let elem = <ItemInfo key={key} type={dataElem} value={data[dataElem]}/>
-            itemsInfo.push(elem);
+        for (let name of nameExtraInfo) {
+            let dataElem = this.profileData[name];
+            if (dataElem) {
+                let key = this.main.getId();
+                let elem = <ItemInfo key={key} type={name} value={dataElem}/>
+                itemsInfo.push(elem);
+            }
         }
         return itemsInfo;
     }
 
-    getMainInfo() {
-        let { status, fullName, specialty } = this.profileData;
-        let classNameTitle = classNames({
-            "profile__title": true,
-            "online" : status === 'online'
-        });
-        return { classNameTitle, fullName, specialty };
+    getData() {
+        return this.profileData;
     }
 
     getSocialIcons() {
-        let { socialSrc } = this.profileData;
-        let icons = socialSrc && nameIcons.map((name) => {
-            let key = this.main.getId();
-            return <a className={`social-icon ${name}-icon`} key={key} href={socialSrc[name]}> </a>
-        });
+        let icons = [];
+        for (let name of nameIcons) {
+            let data = this.profileData[name];
+            if (data) {
+                let key = this.main.getId();
+                let elem = <a className={`social-icon ${name}-icon`} key={key} href={data.src}> </a>;
+                icons.push(elem);
+            }
+        }
         return icons;
     }
 
-    changeProfile(fullName) {
-        this.profileData = this.main.userList.userList.find((item) => item.fullName === fullName);
-        if (!this.profileData) {
+    changeProfile(userName) {
+        let dataList = this.main.userList.userList.find((item) => item.userName === userName);
+        let dataUser = this.main.user.userData[0];
+        if (dataList) {
+            this.profileData = dataList;
+        } else if (!dataList && userName === dataUser.userName) {
             this.profileData = this.main.user.userData[0];
+            this.profileData.isUser = true;
+        } else {
+            this.profileData = { fullName : "undefined user", src : "./anonim.jpg", isUser : true };
         }
     }
 }

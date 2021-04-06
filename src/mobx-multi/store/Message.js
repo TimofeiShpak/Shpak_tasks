@@ -18,20 +18,17 @@ class Message {
         }
     }
 
-    handleClickDeleteBtn(event, id) {
+    handleClickDeleteBtn(id) {
         let name = this.main.channelData.getName();
         api.messages.deleteMessage(name, id);
-        event.target.closest('.message-wrapper').remove();
+        let indexMessage = this.main.messageList.messages.findIndex((message) => message.id === id);
+        this.main.messageList.messages.splice(indexMessage, 1);
         this.isEdit = false;
     }
 
     handleClickAddressee(event) {
         let userName = event.target.textContent;
-        let user = this.main.userList.userList.find((item) => item.extraInfo.userName === userName);
-        if (user) {
-            this.main.profileData.changeProfile(user.fullName);  
-        }
-        
+        this.main.profileData.changeProfile(userName);  
     }
 
     checkEvents(event, id, userName, author) {
@@ -39,14 +36,14 @@ class Message {
         switch (true) {
             case classList.contains('btn_edit') :  this.handleClickEditBtn(event, id);
             break;
-            case classList.contains('btn_delete') : this.handleClickDeleteBtn(event, id);
+            case classList.contains('btn_delete') : this.handleClickDeleteBtn(id);
             break;
             case classList.contains('btn_answer') : this.main.inputMessage.addAddressee(userName);
             break;
             case classList.contains('btn_cancel') : this.cancelEdit(event);
             break;
             case classList.contains('user-item__img') || classList.contains('message__author') :
-            this.main.profileData.changeProfile(author);
+            this.main.profileData.changeProfile(userName);
             break;
             case classList.contains('message__addressee') : this.handleClickAddressee(event);
             break;

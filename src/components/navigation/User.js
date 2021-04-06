@@ -4,11 +4,12 @@ import store from '../../mobx-multi/store';
 import Settings from './Settings';
 
 const User = observer(() => {
-    let  { className, fullName, src } = store.user.getUserData();
+    let  { className, fullName, src, userName } = store.user.getUserData();
+    let changeProfile = () => store.profileData.changeProfile(userName);
     
     return (
         <div className="user-wrapper">
-            <div className={className} >
+            <div className={className} onClick={changeProfile} >
                 <img className="user-item__img" alt={fullName} src={src}></img>
                 {fullName}
             </div>

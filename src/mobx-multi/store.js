@@ -5,6 +5,8 @@ import ChannelData from './store/ChannelData';
 import InputMessage from './store/InputMessage';
 import User from './store/User';
 import Message from './store/Message';
+import RegisterForm from './store/RegisterForm';
+import EditProfile from './store/EditProfile';
 
 export class MultiStore {
     constructor() {
@@ -15,6 +17,8 @@ export class MultiStore {
         this.userList = new UserList(this);
         this.user = new User(this);
         this.profileData = new ProfileData(this);
+        this.registerForm = new RegisterForm(this);
+        this.editProfile = new EditProfile(this);
     }
 
     getId() {

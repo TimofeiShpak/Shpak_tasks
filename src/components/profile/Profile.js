@@ -1,11 +1,9 @@
 import { observer } from 'mobx-react';
 
 import store from '../../mobx-multi/store';
-import MainInfo from './MainInfo';
-
 
 const Profile = observer(() => {
-    let { src, fullName } = store.profileData.data;
+    let { src, fullName, isUser, specialty } = store.profileData.getData();
     
     return (
         <div className="profile-wrapper">
@@ -14,14 +12,20 @@ const Profile = observer(() => {
                     <img alt={fullName} src={src}></img>
                 </div>
                 <div className="profile__info">
-                    <MainInfo />
+                    <div className="profile__main-info">
+                        <div className="profile__title online">{fullName}</div>
+                        <div className="subtitle">{specialty}</div>
+                    </div>
                     <ul className="social-icons">
                         {store.profileData.getSocialIcons()}
                     </ul>
-                    <div className="profile__group-btn">
-                        <button className="btn-message">Message</button>
-                        <button className="btn-rectangle"></button>
-                    </div>
+                    { !isUser && (
+                            <div className="profile__group-btn">
+                                <button className="btn-message">Message</button>
+                                <button className="btn-rectangle"></button>
+                            </div>
+                        )
+                    }
                     <div className="extra-info">
                         {store.profileData.getExtraInfo()}
                     </div>

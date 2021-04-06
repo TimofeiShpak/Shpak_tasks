@@ -12,6 +12,7 @@ import Main from './main/Main';
 import Profile from './profile/Profile';
 import store from '../mobx-multi/store';
 import Authorization from './authorization/Authorization';
+import EditProfile from "./profile/EditProfile";
 
 const App = observer(() => {
   let channelPath = store.user.getChannelPath(); 
@@ -22,6 +23,9 @@ const App = observer(() => {
       <Switch>
         <Route path="/authorization">
           <Authorization />
+        </Route>
+        <Route path="/edit-profile">
+          <EditProfile />
         </Route>
         <Route path={channelPath}>
           <div className='Chat'>

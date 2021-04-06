@@ -21,16 +21,15 @@
         left: -5px;
     }
 
-    & a {
-        color: #B5B5B5;
-    }
-
-    &_active a,
     &_active {
         @include font-source(false, bold, #FFFFFF);
     }
 
     &_active {
         background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    &:hover {
+        cursor: pointer;
     }
 }

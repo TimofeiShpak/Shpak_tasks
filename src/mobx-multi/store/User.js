@@ -1,13 +1,17 @@
 import { makeAutoObservable } from "mobx";
+import api from "../../api/api";
 
 class User {
     userData = [];
+    channelPath = '/authorization';
 
     constructor(main) {
         makeAutoObservable(this);
         this.main = main;
         this.chooseUser = this.chooseUser.bind(this);
         this.logOut = this.logOut.bind(this);
+        this.deleteUser = this.deleteUser.bind(this);
+        this.editUserData = this.editUserData.bind(this);
     }
 
     getUserData() {
@@ -15,15 +19,11 @@ class User {
         className += this.userData[0].status === 'online' ? 'user-item-active' : '';
         let fullName = this.userData[0].fullName;
         let src = this.userData[0].src;
-        let userName = this.userData[0].extraInfo.userName;
+        let userName = this.userData[0].userName;
         return { className, fullName, src, userName };
     }
 
     getChannelPath() {
-        this.channelPath = '/authorization';
-        if (this.userData.length) {
-            this.channelPath = '/' + this.main.channelData.getName();
-        }
         return this.channelPath;
     }
 
@@ -34,7 +34,9 @@ class User {
             this.channelPath = '/' + this.main.channelData.getName();
             this.userData = this.main.userList.userList.splice(userDataIndex, 1);
             this.userData[0].status = 'online';
-            this.main.profileData.changeProfile(fullName);
+            let userName = this.userData[0].userName;
+            this.main.profileData.changeProfile(userName);
+            this.main.editProfile.initValues();
         }
         return fullName;
     }
@@ -59,10 +61,23 @@ class User {
         let userData = this.userData[0];
         this.main.userList.userList.push(userData);
         this.userData.length = 0;
+        this.channelPath = '/authorization';
     }
 
     checkUser(fullName) {
         return this.userData[0].fullName === fullName;
+    }
+
+    deleteUser() {
+        let id = this.userData[0].id;
+        document.cookie = "fullName=";
+        this.userData.length = 0;
+        api.profileData.deleteProfileData(id);
+        this.channelPath = '/authorization';
+    }
+
+    editUserData() {
+        this.channelPath = '/edit-profile';
     }
 }
 

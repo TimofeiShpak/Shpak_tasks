@@ -19,6 +19,7 @@ class ChannelData {
 
     setIndex(value) {
         this.index = value;
+        this.main.user.channelPath = '/' + this.getName();
     }
 
     getName() {

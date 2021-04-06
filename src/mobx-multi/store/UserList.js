@@ -6,6 +6,7 @@ import UserItem from '../../components/navigation/UserItem';
 
 class UserList {
     userList = [];
+    userNames = [];
 
     constructor(main) {
         makeAutoObservable(this);
@@ -13,9 +14,22 @@ class UserList {
 
         api.friends.getFriends()
             .then((data) => {
-                runInAction(() => this.userList = data);
-            })
-            .then(() => this.main.user.checkFullName(document.cookie.slice(9)))
+                runInAction(() => this.changeData(data))
+            });
+    }
+
+    changeData(data) {
+        this.userList = data;
+        this.checkSrc();
+        this.userNames = this.userList.map((user) => user.userName);
+        this.main.user.checkFullName(document.cookie.slice(9));
+    }
+
+    checkSrc() {
+        this.userList.map((user) => {
+            user.src = user.src || './anonim.jpg';
+            return user;
+        });
     }
 
     getUserList() {
@@ -32,6 +46,7 @@ class UserList {
                     fullName={item.fullName} 
                     status={item.status} 
                     src={item.src}
+                    userName={item.userName}
                 />
             );
         });
