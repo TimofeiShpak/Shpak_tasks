@@ -10,9 +10,9 @@ import EditProfile from './store/EditProfile';
 
 export class MultiStore {
     constructor() {
+        this.channelData = new ChannelData(this);
         this.messageList = new MessageList(this);
         this.message = new Message(this);
-        this.channelData = new ChannelData(this);
         this.inputMessage = new InputMessage(this);
         this.userList = new UserList(this);
         this.user = new User(this);

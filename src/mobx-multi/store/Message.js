@@ -26,12 +26,11 @@ class Message {
         this.isEdit = false;
     }
 
-    handleClickAddressee(event) {
-        let userName = event.target.textContent;
-        this.main.profileData.changeProfile(userName);  
+    handleClickAddressee(idAddressee) {
+        this.main.profileData.changeProfile(idAddressee);  
     }
 
-    checkEvents(event, id, userName, author) {
+    checkEvents(event, id, userName, idUser, idAddressee) {
         let classList = event.target.classList;
         switch (true) {
             case classList.contains('btn_edit') :  this.handleClickEditBtn(event, id);
@@ -43,18 +42,18 @@ class Message {
             case classList.contains('btn_cancel') : this.cancelEdit(event);
             break;
             case classList.contains('user-item__img') || classList.contains('message__author') :
-            this.main.profileData.changeProfile(userName);
+            this.main.profileData.changeProfile(idUser);
             break;
-            case classList.contains('message__addressee') : this.handleClickAddressee(event);
+            case classList.contains('message__addressee') : this.handleClickAddressee(idAddressee);
             break;
-            default : this.main.messageList.changeMessagesActive(id, author);
+            default : this.main.messageList.changeMessagesActive(id, idUser);
         }
     }
 
-    handleClickMessage(event, id, author, userName) {
+    handleClickMessage(event, id, userName, idUser, idAddressee) {
         let elem = event.target.closest('.message');
         if (elem) {
-            this.checkEvents(event, id, userName, author);
+            this.checkEvents(event, id, userName, idUser, idAddressee);
         }
     }
 
@@ -89,7 +88,7 @@ class Message {
         this.main.messageList.updateMessage(id, text);
     }
 
-    getButtonsEdit(isMayEdit, isActive) {
+    getButtonsEdit(isMayEdit, isActive, isPresent) {
         if (isActive) {
             if (isMayEdit) {
                 return (
@@ -99,7 +98,7 @@ class Message {
                         <button className="message__btn btn_delete">Delete</button> 
                     </div>
                 )
-            } else {
+            } else if(isPresent) {
                 return  <button className="message__btn btn_answer">Answer</button> 
             }
         }

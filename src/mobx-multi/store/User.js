@@ -2,8 +2,8 @@ import { makeAutoObservable } from "mobx";
 import api from "../../api/api";
 
 class User {
-    userData = [];
-    channelPath = '/authorization';
+    userData = {};
+    userDataIndex = 0;
 
     constructor(main) {
         makeAutoObservable(this);
@@ -11,41 +11,47 @@ class User {
         this.chooseUser = this.chooseUser.bind(this);
         this.logOut = this.logOut.bind(this);
         this.deleteUser = this.deleteUser.bind(this);
-        this.editUserData = this.editUserData.bind(this);
+        this.setListener();
+    }
+
+    setListener() {
+        window.addEventListener('beforeunload', () => {
+            let data = this.main.userList.users[this.userDataIndex];
+            data.status = 'offline';
+            this.changeStatus(data);
+        });
     }
 
     getUserData() {
         let className = "user-item ";
-        className += this.userData[0].status === 'online' ? 'user-item-active' : '';
-        let fullName = this.userData[0].fullName;
-        let src = this.userData[0].src;
-        let userName = this.userData[0].userName;
-        return { className, fullName, src, userName };
+        className += this.userData.status === 'online' ? 'user-item-active' : '';
+        let data = this.userData;
+        return { className, data };
     }
 
-    getChannelPath() {
-        return this.channelPath;
-    }
-
-    checkFullName(value) {
-        let fullName = value;
-        let userDataIndex = this.main.userList.userList.findIndex((data) => data.fullName === fullName);
-        if (userDataIndex !== -1) {
-            this.channelPath = '/' + this.main.channelData.getName();
-            this.userData = this.main.userList.userList.splice(userDataIndex, 1);
-            this.userData[0].status = 'online';
-            let userName = this.userData[0].userName;
-            this.main.profileData.changeProfile(userName);
-            this.main.editProfile.initValues();
+    checkUserName(userName) {
+        this.userDataIndex = this.main.userList.users.findIndex((data) => data.userName === userName);
+        if (this.userDataIndex !== -1) {
+            this.userData = this.main.userList.users[this.userDataIndex];
+            if (this.userData.status !== 'online') {
+                this.userData.status = 'online';
+                this.changeStatus(this.userData);
+                this.main.channelData.path = '/' + this.main.channelData.getName();
+                this.main.profileData.changeProfile(this.userData.id);
+            }
         }
-        return fullName;
+        return userName;
     }
     
     chooseUser(event) {
         let elem = event.target.closest('.user-item');
         if (elem) {
-            let fullName = this.checkFullName(elem.textContent);
-            document.cookie = `fullName=${fullName}`;
+            let fullName = elem.textContent;
+            let data = this.main.userList.users.find((data) => data.fullName === fullName);
+            let userName = this.checkUserName(data.userName);
+            this.changeStatus(this.userData);
+            this.main.channelData.path = '/' + this.main.channelData.getName(); 
+            document.cookie = `userName=${userName}`;
         }
     }
 
@@ -57,27 +63,60 @@ class User {
     }
 
     logOut() {
-        document.cookie = "fullName=";
-        let userData = this.userData[0];
-        this.main.userList.userList.push(userData);
-        this.userData.length = 0;
-        this.channelPath = '/authorization';
-    }
-
-    checkUser(fullName) {
-        return this.userData[0].fullName === fullName;
+        this.main.channelData.path = '/authorization';
+        document.cookie = "userName=";
+        let data = this.main.userList.users[this.userDataIndex];
+        data.status = 'offline';
+        this.changeStatus(data);
     }
 
     deleteUser() {
-        let id = this.userData[0].id;
-        document.cookie = "fullName=";
-        this.userData.length = 0;
+        this.main.channelData.path = '/authorization';
+        let id = this.userData.id;
+        document.cookie = "userName=";
+        this.userData = null;
+        this.main.userList.users.splice(this.userDataIndex, 1);
         api.profileData.deleteProfileData(id);
-        this.channelPath = '/authorization';
     }
 
-    editUserData() {
-        this.channelPath = '/edit-profile';
+    updateProfileData() {
+        let id = this.userData.id;
+        delete this.userData.isUser;
+        api.profileData.changeProfileData(this.userData, id);
+        this.main.profileData.changeProfile(id);
+    }
+
+    removeRequestFriend(userName) {
+        let indexUser = this.userData.friendRequests.findIndex((name) => name === userName);
+        this.userData.friendRequests.splice(indexUser, 1);
+        this.updateProfileData();
+    }
+
+    addFriend(userName) {
+        let friend = this.main.userList.users.find((user) => user.userName === userName);
+        friend.friends.push(this.userData.userName);
+        this.userData.friends.push(userName);
+        this.removeRequestFriend(userName);
+        api.profileData.changeProfileData(friend, friend.id);
+    }
+
+    removeFriend(userName) {
+        let profileName = this.main.profileData.profile.userName;
+        let indexUserName = this.userData.friends.findIndex((friend) => friend === profileName);
+        let friend = this.main.userList.users.find((user) => user.userName === profileName);
+        let friendIdex = friend.friends.findIndex((name) => name === userName);
+
+        friend.friends.splice(friendIdex, 1);
+        api.profileData.changeProfileData(friend, friend.id);
+        this.userData.friends.splice(indexUserName, 1);
+        this.updateProfileData();
+    }
+
+    changeStatus(data) {
+        if (data) {
+            let id = data.id;
+            api.profileData.changeProfileData(data, id);
+        }
     }
 }
 

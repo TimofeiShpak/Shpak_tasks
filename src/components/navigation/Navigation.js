@@ -1,6 +1,7 @@
 import User from './User';
 import ChannelList from './ChannelList';
 import Friends from './Friends';
+import RequestFriends from './RequestFriends';
 
 function Navigation() {
     return(
@@ -8,6 +9,7 @@ function Navigation() {
             <div className="navigation">
                 <User />
                 <ChannelList />
+                <RequestFriends />
                 <Friends />
             </div>
         </div>

@@ -2,13 +2,13 @@ import { observer } from 'mobx-react';
 
 import store from '../../mobx-multi/store';
 
-const Friends = observer(() => {
-    let listElements = store.userList.getFriends();
+const RequestFriends = observer(() => {    
+    let listElements = store.userList.getFriendRequests();
     
-    return (
+    return listElements.length > 0 && (
         <div className="friends">
             <div className="navigation__title">
-                Friends 
+                Friend requests
                 <span className="number-channels">
                     {listElements.length}
                 </span>
@@ -20,4 +20,5 @@ const Friends = observer(() => {
     )
 })
 
-export default Friends;
+export default RequestFriends;
+

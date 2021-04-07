@@ -1,8 +1,8 @@
 const funcApi = api => {
-    api.friends = {
-        getFriends() {
+    api.users = {
+        getUsers() {
             return api.request.get('http://localhost:3001/userList');
-        },
+        }
     }
 }
 

@@ -4,6 +4,8 @@ import classNames from 'classnames';
 import api from '../../api/api';
 import Message from '../../components/main/Message';
 
+const userOptions = ['isActive', 'isEdit', 'isMayEdit'];
+
 class MessageList {
     messages = [];
     value = -1;
@@ -11,25 +13,64 @@ class MessageList {
     constructor(main) {
         makeAutoObservable(this);
         this.main = main;
+
+        this.updateData();
     };
 
-    update(name) {
+    getData(isCheck) {
+        let index = this.main.channelData.index;
+        let name = this.main.channelData.getName();
+        if ((isCheck || this.value !== index) && name) {
+            runInAction(() => this.value = index);
+            this.changeData(name);
+        }
+      
+    }
+
+    updateData() {
+        this.getData(true);
+        setInterval(() => this.getData(true), 5000);
+    }
+
+    changeData(name) {
         api.messages.getMessages(name)
             .then((data) => this.setData(data))
     }
 
+    checkEqual(firstData, secondData) {
+        let result = false;
+        if (firstData.length !== secondData.length) {
+            return result;
+        }
+        for (let i = 0; i < firstData.length; i++) {
+            for (let key in firstData[i]) {
+                if (!userOptions.includes(key)) {
+                    result = firstData[i][key] === secondData[i][key];
+                }
+            } 
+        }
+        return result;
+    }
+
+    getCopyData(oldData, data) {
+        let resultData = [];
+        for (let i = 0; i < data.length; i++) {
+            let dataMessage = oldData[i] || {};
+            resultData[i] = Object.assign(dataMessage, data[i]);
+        }
+        this.messages = resultData;
+    }
+
     setData(data) {
-        runInAction(() => {
-            this.messages = data; 
-            this.setOption();
-        });
+        let oldData = Object.assign({}, this.messages);
+        this.getCopyData(oldData, data);
+        this.setOption();
     }
 
     setOption() {
         this.messages = this.messages.map((data) => {
             return {
                 'isActive' : false,
-                'isEdit' : false,
                 ...data,
             }
         });
@@ -40,9 +81,8 @@ class MessageList {
         let name = this.main.channelData.getName();
         if (this.value !== index && name) {
             runInAction(() => this.value = index)
-            this.update(name);
+            this.changeData(name);
         }
-        return this.messages;
     };
 
     getDate() {
@@ -85,14 +125,17 @@ class MessageList {
     }
 
     getListElements() {
-        let { today, yesterday } = this.getDate();
-        let data = this.getMessages();
-        let date;
-        let listElements = data.map((item) => {
-            let element = this.createMessage(item, date, today, yesterday);
-            date = item.date;
-            return element;
-        });
+        let listElements = [];
+        this.getData();
+        if (this.messages.length) {
+            let { today, yesterday } = this.getDate();
+            let date;
+            listElements = this.messages.map((item) => {
+                let element = this.createMessage(item, date, today, yesterday);
+                date = item.date;
+                return element;
+            });
+        }
         return listElements;
     }
 
@@ -100,15 +143,17 @@ class MessageList {
         this.messages.forEach((message) => message.isActive = false);
     } 
 
-    changeMessagesActive(id, author) {
-        let isMayEdit = this.main.user.checkUser(author);
+    changeMessagesActive(id, idUser) {
+        let isMayEdit = this.main.user.userData.id === idUser;
         let isEdit = this.main.message.isEdit;
+        let isPresent = this.main.userList.users.findIndex((user) => user.id === idUser) !== -1;
         let indexMessage = this.messages.findIndex((message) => message.id === id);
         if (indexMessage !== -1 && !isEdit) {
             let isActive = this.messages[indexMessage].isActive;
             this.resetActive();
             this.messages[indexMessage].isActive = !isActive;  
             this.messages[indexMessage].isMayEdit = isMayEdit;
+            this.messages[indexMessage].isPresent = isPresent;
         }
     }
 

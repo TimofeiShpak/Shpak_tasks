@@ -2,7 +2,8 @@
     margin-bottom: 10px;
 }
 
-.navigation__title {
+.navigation__title,
+.users__title {
     @include flex(('j-c':space-between));
     @include font-source(12px, bold, #919191);
 

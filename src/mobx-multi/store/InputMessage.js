@@ -43,27 +43,41 @@ class InputMessage {
         return addressee;
     }
 
-    getMessageData(date, fullName, userName, id, time, src, addressee) {
+    getIdAddressee(addressee) {
+        let result = '';
+        if (addressee) {
+            let idUser = this.main.userList.users.find((user) => user.userName === addressee).id;
+            result += idUser;
+        }
+        return result;
+    }
+
+    getMessageData(data) {
+        let { date, fullName, userName, idMessage, time, src, addressee, id, idAddressee } = data;
         return  {
             "date": date, 
             "author" : fullName, 
             "userName" : userName,
             "addressee" : addressee,
-            "id" : id, 
+            "idAddressee" : idAddressee,
+            "id" : idMessage, 
             "time" : time, 
             "text" : this.value.slice(0,-1),
-            "avatarSrc" : src
+            "avatarSrc" : src,
+            "idUser" : id
         };
     }
 
     createMessage() {
-        let { fullName, src, userName } = this.main.user.userData[0];
+        let { fullName, src, userName, id } = this.main.user.userData;
         let name = this.main.channelData.getName();
         let addressee = this.checkAddressee();
+        let idAddressee = this.getIdAddressee(addressee);
         let time = new Date().toLocaleTimeString().slice(0,-3);
         let date = new Date().toLocaleDateString();
-        let id = this.main.getId();
-        let messageData = this.getMessageData(date, fullName, userName, id, time, src, addressee);
+        let idMessage = this.main.getId();
+        let data = { date, fullName, userName, idMessage, time, src, addressee, id, idAddressee }
+        let messageData = this.getMessageData(data);
         api.messages.addMessages(name, messageData)
         this.main.messageList.messages.push(messageData);
     }

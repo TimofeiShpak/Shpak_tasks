@@ -1,10 +1,29 @@
 {
   "userList": [
     {
+      "id": "1",
+      "status": "online",
+      "src": "./user-avatar.png",
+      "fullName": "Amelia Luna",
+      "specialty": "UI Designer",
+      "twitter": "https://twitter.com/amilialuna",
+      "instagram": "https://www.instagram.com/lunaticaluna/",
+      "facebook": "https://www.facebook.com/amelia.luna.524596",
+      "linkedin": "http://linkedin.com/in/amelialuna",
+      "userName": "@amelia_luna",
+      "Email": "a-luna@gmail.com",
+      "Skype": "amelia",
+      "friends": [
+        "@orlando_D",
+        "@aaaLEX"
+      ],
+      "friendRequests": []
+    },
+    {
       "status": "offline",
       "fullName": "Orlando Digs",
       "src": "./Shape1.jpg",
-      "id": 2,
+      "id": "2",
       "specialty": "Frontend developer",
       "facebook": "https://www.facebook.com/HelloMyNameisOrlando/",
       "instagram": "https://www.instagram.com/ourshow/",
@@ -12,13 +31,17 @@
       "linkedin": "https://www.linkedin.com/in/jemmy-barrera-a74867a9",
       "userName": "@orlando_D",
       "Email": "d-lan@gmail.com",
-      "Skype": "orlando_D"
+      "Skype": "orlando_D",
+      "friends": [
+        "@amelia_luna"
+      ],
+      "friendRequests": []
     },
     {
       "status": "offline",
       "fullName": "Carmen Velasco",
       "src": "./Shape2.jpg",
-      "id": 3,
+      "id": "3",
       "specialty": "Backend developer",
       "facebook": "https://www.facebook.com/carmen.s.velasco.71",
       "instagram": "https://www.instagram.com/velcarmen/",
@@ -26,13 +49,15 @@
       "linkedin": "https://www.linkedin.com/in/carmen-velasco-8472b222",
       "userName": "@carmen_VO",
       "Email": "carmen-VO@gmail.com",
-      "Skype": "carmen_VO"
+      "Skype": "carmen_VO",
+      "friends": [],
+      "friendRequests": []
     },
     {
       "status": "offline",
       "fullName": "Marie Jensen",
       "src": "./Shape3.jpg",
-      "id": 4,
+      "id": "4",
       "specialty": "Manager",
       "facebook": "https://www.facebook.com/marianne.jensen.330",
       "instagram": "https://www.instagram.com/marievjensen/?hl=en",
@@ -40,106 +65,90 @@
       "linkedin": "https://sg.linkedin.com/in/marie-jensen-56baa830",
       "userName": "@mar_Jen",
       "Email": "mar_Jen@gmail.com",
-      "Skype": "mar_JEN"
+      "Skype": "mar_JEN",
+      "friends": [],
+      "friendRequests": []
     },
     {
       "status": "offline",
       "fullName": "Alex Lee",
       "src": "./Shape4.jpg",
-      "id": 5,
+      "id": "5",
       "specialty": "UI Designer",
       "facebook": "https://www.facebook.com/alex.lee.100046",
       "instagram": "https://www.instagram.com/alexlee_official/?hl=en",
       "twitter": "https://twitter.com/alexleeworld?lang=en",
       "linkedin": "https://www.linkedin.com/pub/dir/Alex/Lee",
-      "userName": "@aaaaLEX",
+      "userName": "@aaaLEX",
       "Email": "aLEXa@gmail.com",
-      "Skype": "LexLex"
+      "Skype": "LexLex",
+      "friends": [
+        "@amelia_luna"
+      ],
+      "friendRequests": []
     },
     {
       "status": "offline",
-      "fullName": "Leo Gil",
+      "fullName": "Leo Gill",
       "src": "./Shape5.jpg",
-      "id": 6,
+      "id": "6",
       "specialty": "Frontend developer",
       "facebook": "https://www.facebook.com/leo.gil.5015",
       "instagram": "https://www.instagram.com/leonardogil8/?hl=en",
       "twitter": "https://twitter.com/leokarumo",
       "linkedin": "https://www.linkedin.com/in/leonardobgil",
-      "userName": "@LEO_DD",
+      "userName": "@LEO_1",
       "Email": "LEO_DD@gmail.com",
-      "Skype": "L_Gil"
-    },
-    {
-      "userName": "@tim",
-      "fullName": "timA",
-      "specialty": "",
-      "twitter": "",
-      "instagram": "",
-      "facebook": "",
-      "linkedin": "",
-      "Email": "",
-      "Skype": "",
-      "src": "./anonim.jpg",
-      "id": "80ffd165-15cd-47e3-ab21-9fc49e9986c4"
+      "Skype": "L_Gil",
+      "friends": [],
+      "friendRequests": []
     }
   ],
   "channelList": [
     {
       "id": "1",
-      "name": "general",
-      "numberSubscribers": 5
+      "name": "general"
     },
     {
       "id": "2",
-      "name": "support",
-      "numberSubscribers": 5
+      "name": "support"
     },
     {
       "name": "marketing",
-      "id": "3",
-      "numberSubscribers": 5
+      "id": "3"
     },
     {
       "name": "thailand",
       "text": "thailand",
-      "id": "4",
-      "numberSubscribers": 5
+      "id": "4"
     },
     {
       "name": "bali",
-      "id": "5",
-      "numberSubscribers": 5
+      "id": "5"
     },
     {
       "name": "poland",
-      "id": "6",
-      "numberSubscribers": 5
+      "id": "6"
     },
     {
       "name": "australia",
-      "id": "7",
-      "numberSubscribers": 5
+      "id": "7"
     },
     {
       "name": "jobs",
-      "id": "8",
-      "numberSubscribers": 5
+      "id": "8"
     },
     {
       "name": "startups",
-      "id": "9",
-      "numberSubscribers": 5
+      "id": "9"
     },
     {
       "name": "italy",
-      "id": "10",
-      "numberSubscribers": 5
+      "id": "10"
     },
     {
       "name": "freelance",
-      "id": "11",
-      "numberSubscribers": 5
+      "id": "11"
     }
   ],
   "messages-general": [
@@ -150,26 +159,30 @@
       "userName": "@orlando_D",
       "time": "5:48",
       "text": "Hello! I'm fine.",
-      "avatarSrc": "./Shape1.jpg"
+      "avatarSrc": "./Shape1.jpg",
+      "idUser": "2"
     },
     {
       "id": 3,
       "date": "28.03.2021",
-      "author": "Leo Gil",
-      "userName": "@LEO_DD",
+      "author": "Leo Gill",
+      "userName": "@LEO_1",
       "time": "6:38",
-      "addressee": "@aaaaLEX",
+      "addressee": "@aaaLEX",
+      "idAddressee": "5",
       "text": "I did for 6 days in Iceland",
-      "avatarSrc": "./Shape5.jpg"
+      "avatarSrc": "./Shape5.jpg",
+      "idUser": "6"
     },
     {
       "id": 4,
       "date": "29.03.2021",
       "author": "Alex Lee",
-      "userName": "@aaaaLEX",
+      "userName": "@aaaLEX",
       "time": "5:02",
       "text": "Which country to visit next? This is a photo with my friends - celebrating in Bali 😎",
-      "avatarSrc": "./Shape4.jpg"
+      "avatarSrc": "./Shape4.jpg",
+      "idUser": "5"
     },
     {
       "id": 5,
@@ -177,9 +190,9 @@
       "author": "Marie Jensen",
       "userName": "@mar_Jen",
       "time": "11:54",
-      "addressee": "@orlando_D",
       "text": "wow it’s amazing, I want to buy a van and travelling next year 🚌!",
-      "avatarSrc": "./Shape3.jpg"
+      "avatarSrc": "./Shape3.jpg",
+      "idUser": "4"
     },
     {
       "id": 6,
@@ -188,37 +201,42 @@
       "userName": "@orlando_D",
       "time": "11:54",
       "text": "Working from a van in Australia isn’t feasible if you need internet. It may have improved over the last years but I spent some time in a camper van around Tasmania and internet was a real problem (and Tasmania is tiny compared to the rest of the country).",
-      "avatarSrc": "./Shape1.jpg"
+      "avatarSrc": "./Shape1.jpg",
+      "idUser": "2"
     },
     {
-      "date": "05.04.2021",
-      "author": "Carmen Velasco",
-      "userName": "@carmen_VO",
-      "addressee": "",
-      "id": "2075e348-8d38-4572-bcb1-5c1ef424af9a",
-      "time": "22:46",
-      "text": "hi",
-      "avatarSrc": "./Shape2.jpg"
+      "date": "07.04.2021",
+      "author": "Leo Gill",
+      "userName": "@LEO_1",
+      "id": "7e3a6ff0-7f3d-4f52-a897-dc931d622325",
+      "time": "18:30",
+      "text": "hi!",
+      "avatarSrc": "./Shape5.jpg",
+      "idUser": "6"
     },
     {
-      "date": "05.04.2021",
-      "author": "Leo Gil",
-      "userName": "@LEO_DD",
+      "date": "07.04.2021",
+      "author": "Alex Lee",
+      "userName": "@aaaLEX",
+      "addressee": "@LEO_1",
+      "idAddressee": "6",
+      "id": "8d497fe2-115c-4366-8269-db5b0e85779b",
+      "time": "19:38",
+      "text": "dfg",
+      "avatarSrc": "./Shape4.jpg",
+      "idUser": "5"
+    },
+    {
+      "date": "08.04.2021",
+      "author": "Amelia Luna",
+      "userName": "@amelia_luna",
       "addressee": "",
-      "id": "4f20ab65-1999-4fbf-a2d3-6e8b295623b5",
-      "time": "22:50",
+      "idAddressee": "",
+      "id": "048b2eda-63b2-45f1-a6b3-9e0dcbb99eb4",
+      "time": "00:07",
       "text": "hello",
-      "avatarSrc": "./Shape5.jpg"
-    },
-    {
-      "date": "06.04.2021",
-      "author": "timA",
-      "userName": "@tim",
-      "addressee": "",
-      "id": "68e2446b-e104-4f56-86ca-57399535e2b7",
-      "time": "20:40",
-      "text": "hi",
-      "avatarSrc": "./anonim.jpg"
+      "avatarSrc": "./user-avatar.png",
+      "idUser": "1"
     }
   ],
   "messages-support": [],

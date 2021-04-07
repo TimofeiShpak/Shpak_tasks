@@ -7,6 +7,8 @@ import ChannelItem from '../../components/navigation/ChannelItem';
 class ChannelData {
     channels = [];
     index = 0;
+    path = '/authorization';
+    
     constructor(main) {
         makeAutoObservable(this);
         this.main = main;
@@ -19,7 +21,7 @@ class ChannelData {
 
     setIndex(value) {
         this.index = value;
-        this.main.user.channelPath = '/' + this.getName();
+        this.path = '/' + this.getName();
     }
 
     getName() {
@@ -47,12 +49,8 @@ class ChannelData {
         return listElements;
     }
 
-    getNumberSubscribers() {
-        this.numberSubscribers = 0;
-        if (this.channels.length) {
-            this.numberSubscribers = this.channels[this.index].numberSubscribers;
-        }
-        return this.numberSubscribers;
+    getPath() {
+        return this.path;
     }
 }
 

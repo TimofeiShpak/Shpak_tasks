@@ -15,10 +15,12 @@ class EditProfile {
     constructor(main) {
         makeAutoObservable(this);
         this.main = main;
+        this.editUserData = this.editUserData.bind(this);
     }
 
     initValues() {
-        let userData = this.main.user.userData[0];
+        let userData = this.main.user.userData;
+        userData.userName = userData.userName.replace('@', '');
         options.forEach((option) => this.values[option] = userData[option]);
     }
 
@@ -57,14 +59,48 @@ class EditProfile {
         return list;
     }
 
+    updateMessage(message, name) {
+        let dataMessage = Object.assign({}, message);
+        delete dataMessage.isActive;
+        delete dataMessage.isMayEdit;
+        delete dataMessage.isPresent;
+        api.messages.updateMessage(name, dataMessage, message.id);
+    }
+
+    editMessages(fullName, userName, id) {
+        let name = this.main.channelData.getName();
+        this.main.messageList.messages = this.main.messageList.messages.map((message) => {
+            if (message.idUser === id) {
+                message.author = fullName;
+                message.userName = userName;
+                this.updateMessage(message, name)
+            } else if (message.idAddressee === id) {
+                message.addressee = userName;
+                this.updateMessage(message, name);
+            }
+            return message;
+        });
+    }
+
     saveProfile(event) {
         event.preventDefault();
-        let userData = this.main.user.userData[0];
+        let userData = this.main.user.userData;
         let id = userData.id;
-        api.profileData.changeProfileData(this.values, id);
-        this.main.user.userData[0] = {...userData, ...this.values };
-        this.main.profileData.changeProfile(this.values.userName);
-        this.main.user.channelPath = '/' + this.main.channelData.getName();
+        let dataIndex = this.main.user.userDataIndex;
+        this.values.userName = '@' + this.values.userName;
+        let data = { ...userData, ...this.values };
+        api.profileData.changeProfileData(data, id);
+        this.main.userList.users[dataIndex] = data;
+        this.main.user.checkUserName(data.userName);
+        this.main.channelData.path = '/' + this.main.channelData.getName(); 
+        document.cookie=`userName=${data.userName}`;
+        this.main.profileData.changeProfile(id);
+        this.editMessages(data.fullName, data.userName, id)
+    }
+
+    editUserData() {
+        this.initValues();
+        this.main.channelData.path = '/edit-profile';
     }
 }
 

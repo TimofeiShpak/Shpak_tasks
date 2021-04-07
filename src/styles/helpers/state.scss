@@ -1,4 +1,4 @@
-@each $name in file, voice, smiles {
+@each $name in smiles {
     .input-message__#{$name} {
         @include icon;
         background-image: url('../../assets/icons/#{$name}.svg');

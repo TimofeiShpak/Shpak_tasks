@@ -2,10 +2,10 @@ import store from '../../mobx-multi/store';
 
 function Message(props) {
     let { date, className, isNewDate, data : { avatarSrc, time, author, userName, id,
-         isMayEdit, isActive, addressee, text } } = props;
+         isMayEdit, isActive, addressee, text, idUser, idAddressee, isPresent } } = props;
 
-    let handleClickMessage = (event) => store.message.handleClickMessage(event, id, author, userName);
-    let buttonsEdit = store.message.getButtonsEdit(isMayEdit, isActive);
+    let handleClickMessage = (event) => store.message.handleClickMessage(event, id, userName, idUser, idAddressee);
+    let buttonsEdit = store.message.getButtonsEdit(isMayEdit, isActive, isPresent);
 
     return (
         <div className="message-wrapper" onClick={handleClickMessage} >

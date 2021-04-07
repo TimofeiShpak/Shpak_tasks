@@ -15,11 +15,11 @@ import Authorization from './authorization/Authorization';
 import EditProfile from "./profile/EditProfile";
 
 const App = observer(() => {
-  let channelPath = store.user.getChannelPath(); 
+  let path = store.channelData.getPath(); 
 
   return (
     <Router>
-      <Redirect to={channelPath} />
+      <Redirect to={path} />
       <Switch>
         <Route path="/authorization">
           <Authorization />
@@ -27,7 +27,7 @@ const App = observer(() => {
         <Route path="/edit-profile">
           <EditProfile />
         </Route>
-        <Route path={channelPath}>
+        <Route path={path}>
           <div className='Chat'>
             <Navigation />
             <Main />
@@ -37,6 +37,6 @@ const App = observer(() => {
       </Switch>
     </Router>
   );
-})
+});
 
 export default App;

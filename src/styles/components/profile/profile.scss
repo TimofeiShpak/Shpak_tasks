@@ -1,16 +1,23 @@
 .profile-wrapper {
     @include flex(column, ('j-c':space-between));
 
-    width: 200px;
+    width: 210px;
     background-color: rgba(255, 255, 255, 0.8);
     padding-bottom: 25px;
+    padding-right: 7px;
+
+    & ::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.4);
+    }
 }
 
 .profile {
+    overflow: auto;
+
     &__info {
         @include margin('', bottom, 20px, true);
 
-        padding: 15px 20px 25px;
+        padding: 10px;
     }
 
     &__title {
@@ -42,12 +49,6 @@
         & img {
             width: 100%;
         }
-    }
-
-    &__group-btn {
-        @include margin('', 'right', 3px, true);
-
-        display: flex;
     }
 
     &__main-info {
@@ -82,31 +83,12 @@
     @include margin('', 'bottom', 11px, true);
 }
 
-.edit-profile {
-    padding: 50px;
+.users {
+    @include font-source(14px, normal, #1a1b1b);
 
-    .form {
-        width: fit-content;
-        margin: auto;
-    }
+    padding: 10px;
 
-    .list-wrapper {
-        display: flex;
-    }
-
-    .label-list {
-        @include flex(column, ('j-c': space-between));
-
-        padding: 5px;
-    }
-
-    input[type=text] {
-        width: 100%;
-        box-sizing: border-box;
-        margin: 5px;
-    }
-
-    .input-list {
-        width: 400px;
+    &__title {
+        color: #1a1b1b;
     }
 }

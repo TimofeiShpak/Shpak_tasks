@@ -17,13 +17,15 @@ class RegisterForm {
     }
 
     updateDataApp(data) {
-        let fullName = data.fullName;
+        let userName = data.userName;
         let id = this.main.getId();
         data.id = id;
         api.profileData.addProfileData(data);
-        this.main.userList.userList.push(data);
-        this.main.user.checkFullName(fullName);
-        document.cookie = `fullName=${fullName}`;
+        this.main.userList.users.push(data);
+        this.main.user.checkUserName(userName);
+        this.main.channelData.path = '/' + this.main.channelData.getName(); 
+        this.main.profileData.changeProfile(id);
+        document.cookie = `userName=${userName}`;
     }
 
     checkData(data) {
@@ -49,6 +51,7 @@ class RegisterForm {
             }
         });
         data.src = './anonim.jpg';
+        data.status = "online";
         this.checkData(data, elem);
     }
 

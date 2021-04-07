@@ -4,7 +4,7 @@ import store from '../../mobx-multi/store';
 import RegisterForm from './RegisterForm';
 
 const Authorization = observer(() => {
-    let listElements = store.userList.getUserList();
+    let listElements = store.userList.getFreeUsers();
     
     return (
         <div className="authorization-wrapper">

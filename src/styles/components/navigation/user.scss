@@ -6,7 +6,8 @@
     background-color: rgba(37, 39, 42, 0.9);
 }
 
-.navigation {
+.navigation,
+.users {
     @include flex(column);
     @include font-source(14px, normal, #B5B5B5);
     @include margin('', bottom, 10px);
@@ -98,3 +99,12 @@
     }
 }
 
+.request {
+    @include flex(('j-c':space-between, 'a-i':center));
+
+    &__btn {
+        margin: 5px;
+        padding: 5px;
+        border-radius: 5px;
+    }
+}

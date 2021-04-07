@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 import store from '../../mobx-multi/store';
 
 function ChannelItem(props) {

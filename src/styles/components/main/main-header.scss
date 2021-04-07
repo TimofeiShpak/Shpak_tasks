@@ -46,9 +46,13 @@
             display: flex;
         }
     }
-}
 
-.number-subscribers {
-    padding-left: 20px;
-    background: url('../../../assets/icons/subscribers.svg') 0 50% no-repeat;
+    .search {
+        background: url('../../../assets/icons/search.svg')  center no-repeat;
+        height: 34px;
+        width: 35px;
+        border: 0.5px solid rgba(0, 0, 0, 0.24);   
+        border-radius: 0 3px 3px 0; 
+        border-left: none;
+    }
 }

@@ -1,8 +1,8 @@
 import store from '../../mobx-multi/store';
 
 function UserItem(props) {
-    let { fullName, className, src, userName } = props; 
-    let changeProfile = () => store.profileData.changeProfile(userName);
+    let { className, data : { fullName, src, id } } = props; 
+    let changeProfile = () => store.profileData.changeProfile(id);
 
     return (
         <li className={className} onClick={changeProfile} >

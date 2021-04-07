@@ -3,9 +3,13 @@ import { observer } from 'mobx-react';
 import store from '../../mobx-multi/store';
 
 const Profile = observer(() => {
-    let { src, fullName, isUser, specialty } = store.profileData.getData();
+    let { src, fullName, specialty, status } = store.profileData.getData();
+    let buttons = store.profileData.getProfileButtons();
+    let userList = store.userList.getUserList();
+    let changeVisibleProfile = store.profileData.changeVisibleProfile;
+    let isVisible = store.profileData.isVisible;
     
-    return (
+    return ( isVisible &&
         <div className="profile-wrapper">
             <div className="profile">
                 <div className="profile__img">
@@ -13,25 +17,30 @@ const Profile = observer(() => {
                 </div>
                 <div className="profile__info">
                     <div className="profile__main-info">
-                        <div className="profile__title online">{fullName}</div>
+                        <div className={`profile__title ${status}`}>{fullName}</div>
                         <div className="subtitle">{specialty}</div>
                     </div>
                     <ul className="social-icons">
                         {store.profileData.getSocialIcons()}
                     </ul>
-                    { !isUser && (
-                            <div className="profile__group-btn">
-                                <button className="btn-message">Message</button>
-                                <button className="btn-rectangle"></button>
-                            </div>
-                        )
-                    }
+                    {buttons}
                     <div className="extra-info">
                         {store.profileData.getExtraInfo()}
                     </div>
                 </div>
+                <div className="users">
+                    <div className="users__title">
+                        Users 
+                        <span className="user__numbers">
+                            {userList.length}
+                        </span>
+                    </div>
+                    <ul>
+                        {userList}
+                    </ul>
+                </div>
             </div>
-            <button className="close-profile"></button>
+            <button className="close-profile" onClick={changeVisibleProfile}></button>
         </div>
     );
 })

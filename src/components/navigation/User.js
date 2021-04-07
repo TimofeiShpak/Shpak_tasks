@@ -4,8 +4,8 @@ import store from '../../mobx-multi/store';
 import Settings from './Settings';
 
 const User = observer(() => {
-    let  { className, fullName, src, userName } = store.user.getUserData();
-    let changeProfile = () => store.profileData.changeProfile(userName);
+    let  { className, data : { fullName, src, id } } = store.user.getUserData();
+    let changeProfile = () => store.profileData.changeProfile(id);
     
     return (
         <div className="user-wrapper">
