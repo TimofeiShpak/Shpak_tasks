@@ -9,42 +9,34 @@
     background-color: rgba(0, 0, 0, 0.2);
   }
 
-    &-header {
+    &__header {
         @include flex(('a-i':center, 'j-c':space-between));
         @include margin('', right, 15px, true);
 
         padding: 30px 25px 15px;
         border-bottom: 1px solid rgba(0, 0, 0, 0.24);
+    }
 
-        &__title {
-            @include font-source(20px, bold);
+    &__title {
+        @include font-source(20px, bold);
 
-            flex: 1;
-        }
+        flex: 1;
+    }
 
-        &__content,
-        &__topic {
-            @include flex(('a-i':center));
-        }
+    &__topic {
+        @include flex(('a-i':center));
+        @include margin('__topic', right, 5px, true);
+    }
 
-        &__content {
-            @include margin('.main-header__content', right, 25px, true);
-        }
-        
-        &__topic {
-            @include margin('.main-header__topic', right, 5px, true);
-        }
+    &__input {
+        border: 0.5px solid rgba(0, 0, 0, 0.24);   
+        border-radius: 3px 0 0 3px; 
+        border-right: none;
+        padding: 7px 18px;
+    }
 
-        &__input {
-            border: 0.5px solid rgba(0, 0, 0, 0.24);   
-            border-radius: 3px 0 0 3px; 
-            border-right: none;
-            padding: 7px 18px;
-        }
-
-        &__search {
-            display: flex;
-        }
+    &__search {
+        display: flex;
     }
 
     .search {
@@ -55,10 +47,15 @@
         border-radius: 0 3px 3px 0; 
         border-left: none;
     }
+
+    .input-wrapper {
+        display: flex;
+    }
 }
 
 .results {
     @include flex(('a-i':center));
+    width: fit-content;
 
     border: 1px solid #000;
     margin: 0 5px;
@@ -75,5 +72,14 @@
     &__button:hover {
         cursor: pointer;
         background-color: #808080;
+    }
+}
+
+@media (max-width: 1200px) {
+    .main__header,
+    .main__search {
+        @include margin('', 'bottom', 10px, true);
+
+        flex-direction: column;
     }
 }

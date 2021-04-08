@@ -7,7 +7,7 @@ const Form = observer(() => {
     let resultText = store.search.getResultText();
 
     return (
-        <div className="main-header__search">
+        <div className="main__search">
             { isSearch && (
                 <div className="results">
                     <div className="results__text">find {result.length} results</div>
@@ -20,14 +20,16 @@ const Form = observer(() => {
                     )}
                 </div>
             )}
-            <input 
-                type="text" 
-                placeholder="search..." 
-                className="main-header__input"
-                value={value}
-                onInput={onInput}
-            />
-            <button className="search" onClick={searchText}></button>
+            <div className="input-wrapper">
+                <input 
+                    type="text" 
+                    placeholder="search..." 
+                    className="main__input"
+                    value={value}
+                    onInput={onInput}
+                />
+                <button className="search" onClick={searchText}></button>
+            </div>
         </div>
     );
 })

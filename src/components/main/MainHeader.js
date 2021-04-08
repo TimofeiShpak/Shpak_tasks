@@ -7,13 +7,11 @@ const MainHeader = observer(() => {
     let name = `#${store.channelData.getName()}`; 
 
     return (
-        <div className="main-header">
-            <div className="main-header__topic">
-                <div className="main-header__title">{name}</div>
+        <div className="main__header">
+            <div className="main__topic">
+                <div className="main__title">{name}</div>
             </div>
-            <div className="main-header__content">
-                <Form />
-            </div>
+            <Form />
         </div>
     );
 })
