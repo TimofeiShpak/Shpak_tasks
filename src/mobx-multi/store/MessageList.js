@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import api from '../../api/api';
 import Message from '../../components/main/Message';
 
-const TIME_UPDATE = 50000;
+const TIME_UPDATE = 5000;
 const DAY_TODAY = "Today";
 const DAY_YESTERDAY = "Yesterday";
 

@@ -174,8 +174,7 @@
       "text": "I did for 6 days in Iceland.",
       "avatarSrc": "./Shape5.jpg",
       "idUser": "6",
-      "isEdit": true,
-      "isActive": false
+      "isEdit": false
     },
     {
       "id": 4,
@@ -219,7 +218,7 @@
       "text": "hi",
       "avatarSrc": "./Shape5.jpg",
       "idUser": "6",
-      "isEdit": true
+      "isEdit": false
     },
     {
       "date": "07.04.2021",
@@ -249,26 +248,13 @@
     },
     {
       "date": "09.04.2021",
-      "author": "Carmen Velasco",
-      "userName": "@carmen_VO",
-      "addressee": "",
-      "idAddressee": "",
-      "id": "d57533bf-014e-46ba-a346-1e8b83be944b",
-      "time": "00:53",
-      "text": "hi!",
-      "avatarSrc": "./Shape2.jpg",
-      "idUser": "3",
-      "isEdit": false
-    },
-    {
-      "date": "09.04.2021",
       "author": "Amelia Luna",
       "userName": "@amelia_luna",
       "addressee": "",
       "idAddressee": "",
       "id": "923ef0fc-2d48-4be9-a893-1f03014189e4",
       "time": "01:12",
-      "text": "hi!",
+      "text": "hi",
       "avatarSrc": "./user-avatar.png",
       "idUser": "1",
       "isEdit": true
