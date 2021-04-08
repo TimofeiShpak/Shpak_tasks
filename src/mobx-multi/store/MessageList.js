@@ -4,7 +4,9 @@ import classNames from 'classnames';
 import api from '../../api/api';
 import Message from '../../components/main/Message';
 
-const userOptions = ['isActive', 'isEdit', 'isMayEdit'];
+const TIME_UPDATE = 5000;
+const DAY_TODAY = "Today";
+const DAY_YESTERDAY = "Yesterday";
 
 class MessageList {
     messages = [];
@@ -29,7 +31,7 @@ class MessageList {
 
     updateData() {
         this.getData(true);
-        setInterval(() => this.getData(true), 5000);
+        setInterval(() => this.getData(true), TIME_UPDATE);
     }
 
     changeData(name) {
@@ -44,9 +46,7 @@ class MessageList {
         }
         for (let i = 0; i < firstData.length; i++) {
             for (let key in firstData[i]) {
-                if (!userOptions.includes(key)) {
-                    result = firstData[i][key] === secondData[i][key];
-                }
+                result = firstData[i][key] === secondData[i][key];
             } 
         }
         return result;
@@ -64,16 +64,6 @@ class MessageList {
     setData(data) {
         let oldData = Object.assign({}, this.messages);
         this.getCopyData(oldData, data);
-        this.setOption();
-    }
-
-    setOption() {
-        this.messages = this.messages.map((data) => {
-            return {
-                'isActive' : false,
-                ...data,
-            }
-        });
     }
 
     getMessages() {
@@ -99,9 +89,9 @@ class MessageList {
         if (date !== item.date) {
             isNewDate = true;
             if (item.date === today) {
-                dateMessage = "Today";
+                dateMessage = DAY_TODAY;
             } else if (item.date === yesterday) {
-                dateMessage = "Yesterday";
+                dateMessage = DAY_YESTERDAY;
             }
         }
         return { isNewDate, dateMessage };
@@ -111,7 +101,7 @@ class MessageList {
         let { isNewDate, dateMessage } = this.checkDate(item, date, today, yesterday);
         let className = classNames({
             "message" : true,
-            "message_active" : item.isActive
+            "message_active" : item.id === this.main.message.idActive
         })
         return ( 
             <Message 
@@ -120,6 +110,7 @@ class MessageList {
                 date={dateMessage}
                 isNewDate={isNewDate}
                 className={className}
+                isActive={item.id === this.idActive}
             />
         );
     }
@@ -142,20 +133,6 @@ class MessageList {
     resetActive() {
         this.messages.forEach((message) => message.isActive = false);
     } 
-
-    changeMessagesActive(id, idUser) {
-        let isMayEdit = this.main.user.userData.id === idUser;
-        let isEdit = this.main.message.isEdit;
-        let isPresent = this.main.userList.users.findIndex((user) => user.id === idUser) !== -1;
-        let indexMessage = this.messages.findIndex((message) => message.id === id);
-        if (indexMessage !== -1 && !isEdit) {
-            let isActive = this.messages[indexMessage].isActive;
-            this.resetActive();
-            this.messages[indexMessage].isActive = !isActive;  
-            this.messages[indexMessage].isMayEdit = isMayEdit;
-            this.messages[indexMessage].isPresent = isPresent;
-        }
-    }
 
     deleteExcessOption(messageData) {
         for (let key in messageData){

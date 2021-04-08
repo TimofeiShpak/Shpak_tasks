@@ -68,13 +68,13 @@
 
 .settings {
     background: url('../../../assets/icons/settings.svg') no-repeat;
-    width: 17px;
-    height: 17px;
     margin: 15px 0;
     position: relative;
 
-    &_close > ul {
-        display: none;
+    &__btn {
+        width: 17px;
+        height: 17px;
+        background: transparent;
     }
 
     &__list {
@@ -88,10 +88,8 @@
 
     &__item {
         padding: 10px;
-
-        a {
-            color: #000;
-        }
+        color: #000;
+        text-align: center;
     }
 
     &__item:hover {

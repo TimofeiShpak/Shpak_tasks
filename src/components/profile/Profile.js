@@ -3,11 +3,12 @@ import { observer } from 'mobx-react';
 import store from '../../mobx-multi/store';
 
 const Profile = observer(() => {
-    let { src, fullName, specialty, status } = store.profileData.getData();
+    let { src, fullName, specialty, status, userName } = store.profileData.getData();
     let buttons = store.profileData.getProfileButtons();
     let userList = store.userList.getUserList();
     let changeVisibleProfile = store.profileData.changeVisibleProfile;
-    let isVisible = store.profileData.isVisible;
+    let addAddressee = () => store.inputMessage.addAddressee(userName);
+    let { isVisible, isUser } = store.profileData;
     
     return ( isVisible &&
         <div className="profile-wrapper">
@@ -23,7 +24,12 @@ const Profile = observer(() => {
                     <ul className="social-icons">
                         {store.profileData.getSocialIcons()}
                     </ul>
-                    {buttons}
+                   { !isUser && (
+                        <div className="profile__group-btn">
+                            <button className="btn" onClick={addAddressee}>Message</button>
+                            {buttons} 
+                        </div> 
+                    )}
                     <div className="extra-info">
                         {store.profileData.getExtraInfo()}
                     </div>

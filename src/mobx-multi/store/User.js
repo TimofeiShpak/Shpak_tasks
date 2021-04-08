@@ -4,6 +4,7 @@ import api from "../../api/api";
 class User {
     userData = {};
     userDataIndex = 0;
+    isVisibleSetting = false;
 
     constructor(main) {
         makeAutoObservable(this);
@@ -12,6 +13,8 @@ class User {
         this.logOut = this.logOut.bind(this);
         this.deleteUser = this.deleteUser.bind(this);
         this.setListener();
+        this.settingsHandleClick = this.settingsHandleClick.bind(this);
+        this.closeSettings = this.closeSettings.bind(this);
     }
 
     setListener() {
@@ -55,10 +58,16 @@ class User {
         }
     }
 
-    settingsHandleClick(event) {
-        let elem = event.target.closest('.settings');
-        if (elem) {
-            elem.classList.toggle('settings_close')
+    settingsHandleClick() {
+        this.isVisibleSetting = !this.isVisibleSetting;
+        window.addEventListener('click', this.closeSettings);
+    }
+
+    closeSettings(event) {
+        let isSettings = event.target.classList.contains('settings__btn'); 
+        if (!isSettings) {
+            this.isVisibleSetting = false;
+            window.removeEventListener('click', this.closeSettings);
         }
     }
 
@@ -70,10 +79,18 @@ class User {
         this.changeStatus(data);
     }
 
+    deleteFromFriends(userName) {
+        this.main.userList.users.forEach((user) => {
+            delete user.friends[userName];
+            delete user.friendRequests[userName];
+        });
+    }
+
     deleteUser() {
         this.main.channelData.path = '/authorization';
         let id = this.userData.id;
         document.cookie = "userName=";
+        this.deleteFromFriends(this.userData.userName);
         this.userData = null;
         this.main.userList.users.splice(this.userDataIndex, 1);
         api.profileData.deleteProfileData(id);
@@ -87,28 +104,24 @@ class User {
     }
 
     removeRequestFriend(userName) {
-        let indexUser = this.userData.friendRequests.findIndex((name) => name === userName);
-        this.userData.friendRequests.splice(indexUser, 1);
+        delete this.userData.friendRequests[userName];
         this.updateProfileData();
     }
 
     addFriend(userName) {
         let friend = this.main.userList.users.find((user) => user.userName === userName);
-        friend.friends.push(this.userData.userName);
-        this.userData.friends.push(userName);
+        friend.friends[this.userData.userName] = true;
+        this.userData.friends[userName] = true;
         this.removeRequestFriend(userName);
         api.profileData.changeProfileData(friend, friend.id);
     }
 
     removeFriend(userName) {
         let profileName = this.main.profileData.profile.userName;
-        let indexUserName = this.userData.friends.findIndex((friend) => friend === profileName);
         let friend = this.main.userList.users.find((user) => user.userName === profileName);
-        let friendIdex = friend.friends.findIndex((name) => name === userName);
-
-        friend.friends.splice(friendIdex, 1);
+        delete friend.friends[userName];
+        delete this.userData.friends[profileName];
         api.profileData.changeProfileData(friend, friend.id);
-        this.userData.friends.splice(indexUserName, 1);
         this.updateProfileData();
     }
 

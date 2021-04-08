@@ -7,10 +7,13 @@ const options = ['userName', 'fullName', 'specialty','twitter', 'instagram',
     'facebook', 'linkedin', 'Email', 'Skype'];
 const requiredOptions = ['userName', 'fullName'];
 const initValues = { 'userName' : '', 'fullName' : '', 'specialty' : '', 'twitter' : '',
-    'instagram' : '', 'facebook' : '', 'linkedin' : '', 'Email' : '', 'Skype' : '' }
+    'instagram' : '', 'facebook' : '', 'linkedin' : '', 'Email' : '', 'Skype' : '' };
+
+const PATH_EDIT_PROFILE = '/edit-profile';
 
 class EditProfile {
     values = initValues;
+    isWrong = false;
 
     constructor(main) {
         makeAutoObservable(this);
@@ -61,9 +64,6 @@ class EditProfile {
 
     updateMessage(message, name) {
         let dataMessage = Object.assign({}, message);
-        delete dataMessage.isActive;
-        delete dataMessage.isMayEdit;
-        delete dataMessage.isPresent;
         api.messages.updateMessage(name, dataMessage, message.id);
     }
 
@@ -82,25 +82,36 @@ class EditProfile {
         });
     }
 
-    saveProfile(event) {
+    checkData(event) {
         event.preventDefault();
+        let userName = '@' + this.values.userName;
+        let isValid = this.main.userList.userNames.includes(userName);
+        if (!isValid) {
+            this.isWrong = false;
+            this.saveProfile(userName);
+        } else {
+            this.isWrong = true;
+        }
+    }
+
+    saveProfile(userName) {
         let userData = this.main.user.userData;
         let id = userData.id;
         let dataIndex = this.main.user.userDataIndex;
-        this.values.userName = '@' + this.values.userName;
         let data = { ...userData, ...this.values };
+        data.userName = userName;
         api.profileData.changeProfileData(data, id);
         this.main.userList.users[dataIndex] = data;
-        this.main.user.checkUserName(data.userName);
+        this.main.user.checkUserName(userName);
         this.main.channelData.path = '/' + this.main.channelData.getName(); 
-        document.cookie=`userName=${data.userName}`;
+        document.cookie=`userName=${userName}`;
         this.main.profileData.changeProfile(id);
-        this.editMessages(data.fullName, data.userName, id)
+        this.editMessages(data.fullName, userName, id)
     }
 
     editUserData() {
         this.initValues();
-        this.main.channelData.path = '/edit-profile';
+        this.main.channelData.path = PATH_EDIT_PROFILE;
     }
 }
 

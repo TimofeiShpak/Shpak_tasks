@@ -50,68 +50,69 @@ class ProfileData {
 
     changeProfile(id) {
         let dataList = this.main.userList.users.find((item) => item.id === id);
-
+        this.isVisible = true;
         if (dataList) {
             this.profile = Object.assign({}, dataList);
         } else {
-            this.profile = { fullName : "user delete profile", src : "./anonim.jpg", isUser : true };
+            this.profile = { 
+                fullName : "user delete profile", 
+                userName : "@deleted", 
+                src : "./anonim.jpg", 
+                isUser : true 
+            };
+        }
+    }
+
+    getButtons(isAskFriend, isAccept, isFriend, userName, profileName, id) {
+        let addAskFriend = () => this.addAskFriend(userName, id);
+        let removeFriend = () => this.main.user.removeFriend(userName);
+        let cancelAsk = () => this.cancelAsk(userName, id);
+        let addFriend = () => this.main.user.addFriend(profileName);
+        let removeRequest = () => this.main.user.removeRequestFriend(profileName);
+
+        switch(true) {
+            case isAskFriend === true : return [{ func : cancelAsk, text : "Cancel ask" }];
+            case isAccept === true : return [{func : addFriend, text : "Accept request"},
+             {func : removeRequest, text : "Remove request" }];
+            case isFriend === true : return [{func : removeFriend, text : "Remove from friends" }];
+            default : return [{func : addAskFriend, text : "Add to friends" }];
         }
     }
 
     getProfileButtons() {
-        let profileName = this.profile.userName;
+        let profileName = this.profile?.userName;
         let userName = this.main.user?.userData?.userName;
-        let isUser = userName === profileName;
-        let isFriend = this.profile.friends.includes(userName);
-        let isAskFriend = this.profile.friendRequests.includes(userName);
-        let id = this.main.userList.users.find((user) => user.userName === profileName).id;
-        let isAccept = this.main.user.userData.friendRequests.includes(profileName);
+        this.isUser = userName === profileName || this.profile.isUser;
+        let isAccept = this.main.user.userData.friendRequests[profileName] === true;
 
-        let addAskFriend = () => this.addAskFriend(userName, id);
-        let removeFriend = () => this.main.user.removeFriend(userName);
-        let addAddressee = () => this.main.inputMessage.addAddressee(userName);
-        let cancelAsk = () => this.cancelAsk(userName, id);
-        let addFriend = () => this.main.user.addFriend(profileName);
-        let removeRequest = () => this.main.user.removeRequestFriend(profileName);
-        return !isUser && (
-            <div className="profile__group-btn">
-                <div className="btn" onClick={addAddressee}>Message</div>
-                { isAskFriend ?  (
-                        <button className="btn" onClick={cancelAsk}>
-                            Cancel ask
-                        </button>
-                    ) : isAccept ? (
-                        <div>
-                            <button className="btn" onClick={addFriend}>
-                                Accept request
-                                </button>
-                            <button className="btn" onClick={removeRequest}>
-                                Cancel request
+        let isFriend = false;
+        let isAskFriend = false;
+        let id;
+        if (profileName !== '@deleted') {
+            isFriend = this.profile?.friends[userName] === true;
+            isAskFriend = this.profile?.friendRequests[userName] === true;
+            id = this.main.userList.users.find((user) => user.userName === profileName).id;
+        }
+
+        let buttonList = this.getButtons(isAskFriend, isAccept, isFriend, userName, profileName, id);
+
+        return buttonList.map((button) => {
+                    let id = this.main.getId();
+                    return ( 
+                            <button key={id} className="btn" onClick={button.func}>
+                                {button.text}
                             </button>
-                        </div>
-                    ) : !isFriend ? (
-                        <button className="btn" onClick={addAskFriend}>
-                            Add to friends
-                        </button> 
-                    ) : (
-                        <button className="btn" onClick={removeFriend}>
-                            Remove from friends
-                        </button>
-                    )
-                }
-            </div>
-        )
+                        )
+                    })    
     }
 
     addAskFriend(userName, id) {
-        this.profile.friendRequests.push(userName);
+        this.profile.friendRequests[userName] = true;
         api.profileData.changeProfileData(this.profile, id);
     }
 
     cancelAsk(userName, id) {
-        let data = this.profile.friendRequests;
-        let indexUser = data.findIndex((name) => name === userName);
-        this.main.profileData.profile.friendRequests.splice(indexUser, 1);
+        delete this.profile.friendRequests[userName];
         api.profileData.changeProfileData(this.profile, id);
     }
 

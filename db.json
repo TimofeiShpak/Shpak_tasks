@@ -2,7 +2,7 @@
   "userList": [
     {
       "id": "1",
-      "status": "online",
+      "status": "offline",
       "src": "./user-avatar.png",
       "fullName": "Amelia Luna",
       "specialty": "UI Designer",
@@ -13,11 +13,11 @@
       "userName": "@amelia_luna",
       "Email": "a-luna@gmail.com",
       "Skype": "amelia",
-      "friends": [
-        "@orlando_D",
-        "@aaaLEX"
-      ],
-      "friendRequests": []
+      "friends": {
+        "@serfdg": true,
+        "@aaaLEX": true
+      },
+      "friendRequests": {}
     },
     {
       "status": "offline",
@@ -32,10 +32,8 @@
       "userName": "@orlando_D",
       "Email": "d-lan@gmail.com",
       "Skype": "orlando_D",
-      "friends": [
-        "@amelia_luna"
-      ],
-      "friendRequests": []
+      "friends": {},
+      "friendRequests": {}
     },
     {
       "status": "offline",
@@ -50,8 +48,8 @@
       "userName": "@carmen_VO",
       "Email": "carmen-VO@gmail.com",
       "Skype": "carmen_VO",
-      "friends": [],
-      "friendRequests": []
+      "friends": {},
+      "friendRequests": {}
     },
     {
       "status": "offline",
@@ -66,8 +64,8 @@
       "userName": "@mar_Jen",
       "Email": "mar_Jen@gmail.com",
       "Skype": "mar_JEN",
-      "friends": [],
-      "friendRequests": []
+      "friends": {},
+      "friendRequests": {}
     },
     {
       "status": "offline",
@@ -82,10 +80,10 @@
       "userName": "@aaaLEX",
       "Email": "aLEXa@gmail.com",
       "Skype": "LexLex",
-      "friends": [
-        "@amelia_luna"
-      ],
-      "friendRequests": []
+      "friends": {
+        "@amelia_luna": true
+      },
+      "friendRequests": {}
     },
     {
       "status": "offline",
@@ -100,8 +98,8 @@
       "userName": "@LEO_1",
       "Email": "LEO_DD@gmail.com",
       "Skype": "L_Gil",
-      "friends": [],
-      "friendRequests": []
+      "friends": {},
+      "friendRequests": {}
     }
   ],
   "channelList": [
@@ -222,7 +220,7 @@
       "idAddressee": "6",
       "id": "8d497fe2-115c-4366-8269-db5b0e85779b",
       "time": "19:38",
-      "text": "dfg",
+      "text": "hello!\nf\n\n\n",
       "avatarSrc": "./Shape4.jpg",
       "idUser": "5"
     },
@@ -237,6 +235,30 @@
       "text": "hello",
       "avatarSrc": "./user-avatar.png",
       "idUser": "1"
+    },
+    {
+      "date": "08.04.2021",
+      "author": "Alex Lee",
+      "userName": "@aaaLEX",
+      "addressee": "",
+      "idAddressee": "",
+      "id": "4b22d214-1b16-49e6-a2a8-ee1cbd019e1c",
+      "time": "05:04",
+      "text": "rfghvfgh",
+      "avatarSrc": "./Shape4.jpg",
+      "idUser": "5"
+    },
+    {
+      "date": "08.04.2021",
+      "author": "Alex Lee",
+      "userName": "@aaaLEX",
+      "addressee": "",
+      "idAddressee": "",
+      "id": "26f73c8f-da7b-45d7-9401-ffeb97de29f2",
+      "time": "05:04",
+      "text": "dfg",
+      "avatarSrc": "./Shape4.jpg",
+      "idUser": "5"
     }
   ],
   "messages-support": [],
@@ -248,5 +270,54 @@
   "messages-jobs": [],
   "messages-startups": [],
   "messages-italy": [],
-  "messages-freelance": []
+  "messages-freelance": [
+    {
+      "date": "08.04.2021",
+      "author": "Amelia Luna",
+      "userName": "@amelia_luna",
+      "addressee": "",
+      "idAddressee": "",
+      "id": "0917941e-9df5-4bb7-ae85-3e92d27b3d70",
+      "time": "04:24",
+      "text": "erfdgdh",
+      "avatarSrc": "./user-avatar.png",
+      "idUser": "1"
+    },
+    {
+      "date": "08.04.2021",
+      "author": "tim shpak",
+      "userName": "@timA",
+      "addressee": "",
+      "idAddressee": "",
+      "id": "8aea8320-01c1-4230-a2ee-1ea23e764a5c",
+      "time": "04:24",
+      "text": "ok;jl",
+      "avatarSrc": "./anonim.jpg",
+      "idUser": "d0df6760-7b58-49e1-b30b-87a87260fc45"
+    },
+    {
+      "date": "08.04.2021",
+      "author": "tim shpak",
+      "userName": "@timA",
+      "addressee": "",
+      "idAddressee": "",
+      "id": "84e6652b-5041-419c-8694-ab9af36e2388",
+      "time": "04:24",
+      "text": "tu",
+      "avatarSrc": "./anonim.jpg",
+      "idUser": "d0df6760-7b58-49e1-b30b-87a87260fc45"
+    },
+    {
+      "date": "08.04.2021",
+      "author": "Amelia Luna",
+      "userName": "@amelia_luna",
+      "addressee": "",
+      "idAddressee": "",
+      "id": "c7b4c088-8219-4782-988c-e1645600ea76",
+      "time": "04:24",
+      "text": "yuj",
+      "avatarSrc": "./user-avatar.png",
+      "idUser": "1"
+    }
+  ]
 }

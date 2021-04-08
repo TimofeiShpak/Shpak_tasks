@@ -2,10 +2,13 @@ import { makeAutoObservable } from "mobx";
 import api from '../../api/api';
 
 class Message {
+    idActive = -1;
+    isEdit = false;
+
     constructor(main) {
         makeAutoObservable(this);
         this.main = main;
-        this.handleClickMessage = this.handleClickMessage.bind(this);
+        this.handleClick = this.handleClick.bind(this);
         this.editMessage = this.editMessage.bind(this);
         this.saveMessage = this.saveMessage.bind(this);
     }
@@ -46,11 +49,11 @@ class Message {
             break;
             case classList.contains('message__addressee') : this.handleClickAddressee(idAddressee);
             break;
-            default : this.main.messageList.changeMessagesActive(id, idUser);
+            default : this.changeMessagesActive(id);
         }
     }
 
-    handleClickMessage(event, id, userName, idUser, idAddressee) {
+    handleClick(event, id, userName, idUser, idAddressee) {
         let elem = event.target.closest('.message');
         if (elem) {
             this.checkEvents(event, id, userName, idUser, idAddressee);
@@ -77,10 +80,15 @@ class Message {
         this.input.classList.add('message__input');
         this.messageText.replaceWith(this.input);
         this.isEdit = true;
+        this.main.inputMessage.value = '';
+        this.input.onkeyup = () => {
+            this.input.style.height = this.input.scrollHeight + 'px';
+        }
     }
 
     saveMessage(event, id) {
         event.target.textContent = 'Edit';
+        event.target.nextElementSibling.classList.add('hide');
         let text = this.input.value
         this.messageText.textContent = text;
         this.input.replaceWith(this.messageText);
@@ -88,18 +96,29 @@ class Message {
         this.main.messageList.updateMessage(id, text);
     }
 
-    getButtonsEdit(isMayEdit, isActive, isPresent) {
-        if (isActive) {
-            if (isMayEdit) {
+    getButtonsEdit(id, idUser) {
+        if (this.idActive === id) {
+            let isPresent = this.main.userList.users.findIndex((user) => user.id === idUser) === -1;
+            if (this.main.user.userData.id === idUser) {
                 return (
                     <div className="message__button-list">
-                        <button className="message__btn btn_edit">Edit</button> 
+                        <button className="message__btn btn_edit">Edit</button>
                         <button className="message__btn btn_cancel hide">Cancel</button> 
                         <button className="message__btn btn_delete">Delete</button> 
                     </div>
                 )
-            } else if(isPresent) {
-                return  <button className="message__btn btn_answer">Answer</button> 
+            } else if(!isPresent) {
+                return  <button className="message__btn btn_answer">Write</button> 
+            }
+        }
+    }
+
+    changeMessagesActive(id) {
+        if (!this.isEdit) {
+            if (this.idActive === id) {
+                this.idActive = -1;
+            } else {
+                this.idActive = id;
             }
         }
     }

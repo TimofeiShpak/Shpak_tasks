@@ -5,6 +5,10 @@ import api from '../../api/api';
 import UserItem from '../../components/navigation/UserItem';
 import RequestItem from '../../components/navigation/RequestItem';
 
+const TIME_UPDATE = 2000;
+const NUMBER_FOR_COOKIE = 9;
+const SRC_ANONIM = './anonim.jpg';
+
 class UserList {
     users = [];
     userNames = [];
@@ -25,7 +29,7 @@ class UserList {
 
     updateData() {
         this.getData();
-        setInterval(() => this.getData(), 2000);
+        setInterval(() => this.getData(), TIME_UPDATE);
     }
 
     changeData(data) {
@@ -33,7 +37,8 @@ class UserList {
             this.users = data;
             this.checkSrc();
             this.userNames = this.users.map((user) => user.userName);
-            this.main.user.checkUserName(document.cookie.slice(9));
+            this.userNames.push('@deleted');
+            this.main.user.checkUserName(document.cookie.slice(NUMBER_FOR_COOKIE));
             this.main.profileData.changeProfile(this.main.profileData.profile.id);
         }
         
@@ -41,7 +46,7 @@ class UserList {
 
     checkSrc() {
         this.users.map((user) => {
-            user.src = user.src || './anonim.jpg';
+            user.src = user.src || SRC_ANONIM;
             return user;
         });
     }
@@ -50,7 +55,7 @@ class UserList {
         let friendsElements = [];
         let friendsUserNames = this.main.user.userData.friends;
         if (friendsUserNames) {
-            let friends = this.users.filter((user) => friendsUserNames.includes(user.userName));
+            let friends = this.users.filter((user) => friendsUserNames[user.userName] === true);
             friendsElements = this.getUserList(friends);
         }
         return friendsElements;
@@ -67,8 +72,8 @@ class UserList {
 
     getFriendRequests() {
         let elements = [];
-        let requests = this.main.user.userData.friendRequests.slice();
-        let friendRequests = this.users.filter((user) => requests.includes(user.userName));
+        let requests = this.main.user.userData.friendRequests;
+        let friendRequests = this.users.filter((user) => requests[user.userName] === true);
         elements = this.getUserList(friendRequests, true);
         return elements;
     }

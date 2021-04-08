@@ -10,10 +10,51 @@
     }
 
     &__textarea {
+        height: 38px;
         flex: 1;
         border: none;
         outline: none;
         resize: none;
         overflow: overlay;
+    }
+
+    .smiles {
+        position: relative;
+
+        &__list {
+            display: flex;
+            flex-wrap: wrap;
+            width: 200px;
+            height: 300px;
+            border: 1px solid #000;
+            border-radius: 5px;
+            padding: 5px;
+            position: absolute;
+            bottom: 40px;
+            right: 0;
+            background-color: #fff;
+            overflow: auto;
+        }
+
+        &__btn {
+            @include icon;
+
+            background-image: url('../../../assets/icons/smiles.svg');
+            width: 25px;
+            height: 25px;
+            background-color: transparent;
+        }
+
+        &__item {
+            margin: 5px;
+            border-radius: 3px; 
+            width: 22px;
+            text-align: center;      
+        }
+
+        &__item:hover {
+            cursor: pointer;
+            background-color: aquamarine;
+        }
     }
 }

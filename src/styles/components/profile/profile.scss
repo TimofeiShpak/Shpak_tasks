@@ -1,10 +1,10 @@
 .profile-wrapper {
     @include flex(column, ('j-c':space-between));
 
-    width: 210px;
+    width: 220px;
     background-color: rgba(255, 255, 255, 0.8);
+    padding: 0 10px;
     padding-bottom: 25px;
-    padding-right: 7px;
 
     & ::-webkit-scrollbar-thumb {
         background-color: rgba(0, 0, 0, 0.4);

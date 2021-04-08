@@ -8,6 +8,8 @@ const mainOptions = ['userName', 'fullName', 'specialty','twitter', 'instagram',
     'facebook', 'linkedin', 'Email', 'Skype'];
 const requiredOptions = ['userName', 'fullName'];
 
+const SRC_ANONIM = './anonim.jpg';
+
 class RegisterForm {
     isWrong = false;
 
@@ -50,8 +52,10 @@ class RegisterForm {
                 data[name] = elem.querySelector(`#${name}`).value;
             }
         });
-        data.src = './anonim.jpg';
+        data.src = SRC_ANONIM;
         data.status = "online";
+        data.friends = {};
+        data.friendRequests = {};
         this.checkData(data, elem);
     }
 

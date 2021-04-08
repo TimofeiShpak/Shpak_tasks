@@ -4,11 +4,12 @@ import store from '../../mobx-multi/store';
 
 const EditProfile = observer(() => {
     let elements = store.editProfile.getElements();
-    let saveProfile = (event) => store.editProfile.saveProfile(event)
+    let checkData = (event) => store.editProfile.checkData(event);
+    let isWrong = store.editProfile.isWrong;
     
     return (
         <div className="edit-profile">
-            <form className="form" onSubmit={saveProfile}>
+            <form className="form" onSubmit={checkData}>
                 <fieldset>
                     <legend>Change profile: </legend>
                     <div className="list-wrapper">
@@ -16,8 +17,11 @@ const EditProfile = observer(() => {
                             {store.editProfile.getLabelList()}
                         </div>
                         <div className="input-list">
+                        { isWrong && (
+                                <div className="form__wrong">userName is busy, write another</div>
+                            )
+                        }
                             {elements}
-
                         </div>
                     </div>
                     <input className="btn-submit" type="submit" value="save"></input> 

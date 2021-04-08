@@ -1,9 +1,23 @@
+import classNames from "classnames";
 import { makeAutoObservable } from "mobx";
 import { createRef } from "react";
 import api from '../../api/api';
 
+const HEIGHT_INPUT = '37px';
+const smiles = ["😀", "😃", "😄", "😁", "😆", "😅", "🤣", "😂", "🙂", "🙃",
+    "😉", "😊", "😇", "🥰", "😍", "🤩", "😘", "😗", "☺", "😚", "😙", "😋",
+    "😛", "😜", "🤪", "😝", "🤑", "🤗", "🤭", "🤫", "🤔", "🤐", "🤨", "😐",
+    "😑", "😶", "😏", "😒", "🙄", "😬", "🤥", "😌", "😔", "😪", "🤤", "😴",
+    "😷", "🤒", "🤕", "🤢", "🤮", "🤧", "🥵", "🥶", "🥴", "😵", "🤯", "🤠",
+    "🥳", "😎", "🤓", "🧐", "😕", "😟", "🙁", "☹", "😮", "😯", "😲", "😳",
+    "🥺", "😦", "😧", "😨", "😰", "😥", "😢", "😭", "😱", "😖", "😣", "😞",
+    "😓", "😩", "😫", "😤", "😡", "😠", "🤬", "😈", "👿", "💀", "☠", "💩",
+    "🤡", "👹", "👺", "👻", "👽", "👾"];
+
 class InputMessage {
     value = '';
+    isVisible = false;
+
     constructor(main) {
         makeAutoObservable(this);
         this.main = main;
@@ -11,6 +25,10 @@ class InputMessage {
         this.addAddressee = this.addAddressee.bind(this);
         this.checkKeyDown();
         this.inputElement = createRef();
+        this.onKeyUp = this.onKeyUp.bind(this);
+        this.changeVisibleSmileContainer = this.changeVisibleSmileContainer.bind(this);
+        this.addSmile = this.addSmile.bind(this);
+        this.closeContainer = this.closeContainer.bind(this);
     }
 
     onInput(event) {
@@ -82,6 +100,11 @@ class InputMessage {
         this.main.messageList.messages.push(messageData);
     }
 
+    onKeyUp() {
+        this.inputElement.current.style.height = HEIGHT_INPUT;
+        this.inputElement.current.style.height = this.inputElement.current.scrollHeight + 'px';
+    }
+
     getTextarea() {
         let placeholder = `Message in #${this.main.channelData.getName()}`;
 
@@ -93,8 +116,41 @@ class InputMessage {
                 placeholder={placeholder} 
                 onInput={this.onInput}
                 value={this.value}
+                onKeyUp={this.onKeyUp}
             />
         );
+    }
+
+    changeVisibleSmileContainer() {
+        this.isVisible = !this.isVisible;
+        if (this.isVisible) {
+            window.addEventListener('click', this.closeContainer);
+        } else {
+            window.removeEventListener('click', this.closeContainer);
+        }
+    }
+
+    addSmile(text) {
+        this.value += text;
+    }
+
+    getSmiles() {
+        return smiles.map((smile) => {
+            let id = this.main.getId();
+            let onClick = () => this.addSmile(smile);
+            return (
+                <span key={id} className="smiles__item" onClick={onClick}>{smile}</span>
+            )
+        });
+    }
+
+    closeContainer(event) {
+        let elem = event.target;
+        let isSmileContainer = elem.closest('.smiles') || elem.classList.contains('smiles__item'); 
+        if (!isSmileContainer) {
+            this.isVisible = false;
+            window.removeEventListener('click', this.closeContainer);
+        }
     }
 }
 

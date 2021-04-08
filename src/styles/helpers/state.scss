@@ -1,10 +1,3 @@
-@each $name in smiles {
-    .input-message__#{$name} {
-        @include icon;
-        background-image: url('../../assets/icons/#{$name}.svg');
-    }
-}
-
 @each $name in facebook, twitter, instagram, linkedin {
     .#{$name}-icon {
         @include icon;

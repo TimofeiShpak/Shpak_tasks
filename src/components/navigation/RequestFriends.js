@@ -4,13 +4,14 @@ import store from '../../mobx-multi/store';
 
 const RequestFriends = observer(() => {    
     let listElements = store.userList.getFriendRequests();
+    let length = Object.keys(listElements).length;
     
-    return listElements.length > 0 && (
+    return length > 0 && (
         <div className="friends">
             <div className="navigation__title">
                 Friend requests
                 <span className="number-channels">
-                    {listElements.length}
+                    {length}
                 </span>
             </div>
             <ul>
