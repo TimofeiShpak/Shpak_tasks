@@ -128,7 +128,7 @@ class InputMessage {
     }
 
     addSmile(text) {
-        this.value += text;
+        this.value += '' + text;
     }
 
     getSmiles() {

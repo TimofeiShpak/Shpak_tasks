@@ -30,7 +30,7 @@ function Message(props) {
                         <div className="message__author" >
                                 {author}
                         </div>
-                        <div className="message__time">{time}</div>
+                        <div>{time}</div>
                         {buttonsEdit}
                     </div>
                     <div className="message__text-wrapper">

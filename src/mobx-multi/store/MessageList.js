@@ -134,20 +134,11 @@ class MessageList {
         this.messages.forEach((message) => message.isActive = false);
     } 
 
-    deleteExcessOption(messageData) {
-        for (let key in messageData){
-            if (key.includes('is')) {
-                delete messageData[key];
-            }
-        }
-    }
-
     updateMessage(id, text) {
         let indexMessage = this.messages.findIndex((message) => message.id === id);
         let name = this.main.channelData.getName();
         let messageData = this.messages[indexMessage];
         messageData.text = text;
-        this.deleteExcessOption(messageData);
         api.messages.updateMessage(name, messageData, id);
     }
 }

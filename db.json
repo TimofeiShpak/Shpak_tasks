@@ -15,7 +15,8 @@
       "Skype": "amelia",
       "friends": {
         "@serfdg": true,
-        "@aaaLEX": true
+        "@aaaLEX": true,
+        "@orlando_D": true
       },
       "friendRequests": {}
     },
@@ -32,7 +33,9 @@
       "userName": "@orlando_D",
       "Email": "d-lan@gmail.com",
       "Skype": "orlando_D",
-      "friends": {},
+      "friends": {
+        "@amelia_luna": true
+      },
       "friendRequests": {}
     },
     {
@@ -68,8 +71,8 @@
       "friendRequests": {}
     },
     {
-      "status": "online",
-      "fullName": "Alex Lee",
+      "status": "offline",
+      "fullName": "Alex L",
       "src": "./Shape4.jpg",
       "id": "5",
       "specialty": "UI Designer",
@@ -77,7 +80,7 @@
       "instagram": "https://www.instagram.com/alexlee_official/?hl=en",
       "twitter": "https://twitter.com/alexleeworld?lang=en",
       "linkedin": "https://www.linkedin.com/pub/dir/Alex/Lee",
-      "userName": "@aaaLEX",
+      "userName": "@aLEX",
       "Email": "aLEXa@gmail.com",
       "Skype": "LexLex",
       "friends": {
@@ -99,7 +102,9 @@
       "Email": "LEO_DD@gmail.com",
       "Skype": "L_Gil",
       "friends": {},
-      "friendRequests": {}
+      "friendRequests": {
+        "@aLEX": true
+      }
     }
   ],
   "channelList": [
@@ -166,7 +171,7 @@
       "author": "Leo Gill",
       "userName": "@LEO_1",
       "time": "6:38",
-      "addressee": "@aaaLEX",
+      "addressee": "@aLEX",
       "idAddressee": "5",
       "text": "I did for 6 days in Iceland",
       "avatarSrc": "./Shape5.jpg",
@@ -175,8 +180,8 @@
     {
       "id": 4,
       "date": "29.03.2021",
-      "author": "Alex Lee",
-      "userName": "@aaaLEX",
+      "author": "Alex L",
+      "userName": "@aLEX",
       "time": "5:02",
       "text": "Which country to visit next? This is a photo with my friends - celebrating in Bali 😎",
       "avatarSrc": "./Shape4.jpg",
@@ -214,8 +219,8 @@
     },
     {
       "date": "07.04.2021",
-      "author": "Alex Lee",
-      "userName": "@aaaLEX",
+      "author": "Alex L",
+      "userName": "@aLEX",
       "addressee": "@LEO_1",
       "idAddressee": "6",
       "id": "8d497fe2-115c-4366-8269-db5b0e85779b",
@@ -226,15 +231,15 @@
     },
     {
       "date": "08.04.2021",
-      "author": "Amelia Luna",
-      "userName": "@amelia_luna",
+      "author": "Orlando Digs",
+      "userName": "@orlando_D",
       "addressee": "",
       "idAddressee": "",
-      "id": "048b2eda-63b2-45f1-a6b3-9e0dcbb99eb4",
-      "time": "00:07",
-      "text": "hello",
-      "avatarSrc": "./user-avatar.png",
-      "idUser": "1"
+      "id": "7ed61b49-d55d-4ccd-bea8-2f1dc80d7580",
+      "time": "23:40",
+      "text": "hi!",
+      "avatarSrc": "./Shape1.jpg",
+      "idUser": "2"
     }
   ],
   "messages-support": [],
@@ -246,54 +251,5 @@
   "messages-jobs": [],
   "messages-startups": [],
   "messages-italy": [],
-  "messages-freelance": [
-    {
-      "date": "08.04.2021",
-      "author": "Amelia Luna",
-      "userName": "@amelia_luna",
-      "addressee": "",
-      "idAddressee": "",
-      "id": "0917941e-9df5-4bb7-ae85-3e92d27b3d70",
-      "time": "04:24",
-      "text": "erfdgdh",
-      "avatarSrc": "./user-avatar.png",
-      "idUser": "1"
-    },
-    {
-      "date": "08.04.2021",
-      "author": "tim shpak",
-      "userName": "@timA",
-      "addressee": "",
-      "idAddressee": "",
-      "id": "8aea8320-01c1-4230-a2ee-1ea23e764a5c",
-      "time": "04:24",
-      "text": "ok;jl",
-      "avatarSrc": "./anonim.jpg",
-      "idUser": "d0df6760-7b58-49e1-b30b-87a87260fc45"
-    },
-    {
-      "date": "08.04.2021",
-      "author": "tim shpak",
-      "userName": "@timA",
-      "addressee": "",
-      "idAddressee": "",
-      "id": "84e6652b-5041-419c-8694-ab9af36e2388",
-      "time": "04:24",
-      "text": "tu",
-      "avatarSrc": "./anonim.jpg",
-      "idUser": "d0df6760-7b58-49e1-b30b-87a87260fc45"
-    },
-    {
-      "date": "08.04.2021",
-      "author": "Amelia Luna",
-      "userName": "@amelia_luna",
-      "addressee": "",
-      "idAddressee": "",
-      "id": "c7b4c088-8219-4782-988c-e1645600ea76",
-      "time": "04:24",
-      "text": "yuj",
-      "avatarSrc": "./user-avatar.png",
-      "idUser": "1"
-    }
-  ]
+  "messages-freelance": []
 }

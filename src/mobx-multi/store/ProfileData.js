@@ -41,7 +41,14 @@ class ProfileData {
             let data = this.profile[name];
             if (data) {
                 let key = this.main.getId();
-                let elem = <a className={`social-icon ${name}-icon`} key={key} href={data}> </a>;
+                let elem = (
+                    <a 
+                        className={`social-icon ${name}-icon`} 
+                        key={key} href={data} 
+                        target="_blank"
+                        rel="noreferrer"> 
+                    </a>
+                    );
                 icons.push(elem);
             }
         }

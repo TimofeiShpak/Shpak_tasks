@@ -79,6 +79,7 @@ class Message {
         this.input.style.height = this.messageText.offsetHeight + 'px';
         this.input.classList.add('message__input');
         this.messageText.replaceWith(this.input);
+        this.input.focus();
         this.isEdit = true;
         this.main.inputMessage.value = '';
         this.input.oninput = () => {
