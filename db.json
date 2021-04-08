@@ -2,7 +2,7 @@
   "userList": [
     {
       "id": "1",
-      "status": "online",
+      "status": "offline",
       "src": "./user-avatar.png",
       "fullName": "Amelia Luna",
       "specialty": "UI Designer",
