@@ -81,8 +81,11 @@ class User {
 
     deleteFromFriends(userName) {
         this.main.userList.users.forEach((user) => {
-            delete user.friends[userName];
-            delete user.friendRequests[userName];
+            if (user.friends[userName] || user.friendRequests[userName]) {
+                delete user.friends[userName];
+                delete user.friendRequests[userName];
+                api.profileData.changeProfileData(user, user.id);
+            }
         });
     }
 

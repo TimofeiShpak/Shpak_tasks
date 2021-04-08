@@ -92,10 +92,12 @@ class Message {
         event.target.textContent = 'Edit';
         event.target.nextElementSibling.classList.add('hide');
         let text = this.input.value.trim();
-        this.messageText.textContent = text;
+        if (text !== this.messageText.textContent) {
+            this.messageText.textContent = text;
+            this.main.messageList.updateMessage(id, text);
+        }
         this.input.replaceWith(this.messageText);
         this.isEdit = false;
-        this.main.messageList.updateMessage(id, text);
     }
 
     getButtonsEdit(id, idUser) {
