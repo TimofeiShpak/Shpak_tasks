@@ -66,6 +66,7 @@ class Message {
         this.isEdit = false;
         this.input.replaceWith(this.messageText);
         elem.classList.add('hide');
+        this.idActive = -1;
     }
 
     editMessage(event) {
@@ -98,6 +99,7 @@ class Message {
         }
         this.input.replaceWith(this.messageText);
         this.isEdit = false;
+        this.idActive = -1;
     }
 
     getButtonsEdit(id, idUser) {

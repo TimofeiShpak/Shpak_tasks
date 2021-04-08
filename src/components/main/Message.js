@@ -2,7 +2,7 @@ import store from '../../mobx-multi/store';
 
 function Message(props) {
     let { date, className, isNewDate, data : { avatarSrc, time, author, userName, id,
-        addressee, text, idUser, idAddressee } } = props;
+        addressee, text, idUser, idAddressee, isEdit } } = props;
 
     let handleClick = (event) => store.message.handleClick(event, id, userName, idUser, idAddressee);
     let buttonsEdit = store.message.getButtonsEdit(id, idUser);
@@ -31,6 +31,7 @@ function Message(props) {
                                 {author}
                         </div>
                         <div>{time}</div>
+                        {isEdit && <div>edited</div>}
                         {buttonsEdit}
                     </div>
                     <div className="message__text-wrapper">

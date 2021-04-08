@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import api from '../../api/api';
 import Message from '../../components/main/Message';
 
-const TIME_UPDATE = 5000;
+const TIME_UPDATE = 50000;
 const DAY_TODAY = "Today";
 const DAY_YESTERDAY = "Yesterday";
 
@@ -139,6 +139,8 @@ class MessageList {
         let name = this.main.channelData.getName();
         let messageData = this.messages[indexMessage];
         messageData.text = text;
+        messageData.isEdit = true;
+        this.messages[indexMessage].isEdit = true;
         api.messages.updateMessage(name, messageData, id);
     }
 }

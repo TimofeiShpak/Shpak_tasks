@@ -42,6 +42,7 @@ class InputMessage {
         value = value.split(' ').join('_');
         this.value = `${value} `;
         this.main.messageList.resetActive();
+        this.main.message.idActive = -1;
     }
 
     checkKeyDown() {
@@ -85,7 +86,8 @@ class InputMessage {
             "time" : time, 
             "text" : this.value.slice(0,-1),
             "avatarSrc" : src,
-            "idUser" : id
+            "idUser" : id,
+            "isEdit" : false,
         };
     }
 

@@ -2,7 +2,7 @@
   "userList": [
     {
       "id": "1",
-      "status": "offline",
+      "status": "online",
       "src": "./user-avatar.png",
       "fullName": "Amelia Luna",
       "specialty": "UI Designer",
@@ -38,7 +38,7 @@
       "friendRequests": {}
     },
     {
-      "status": "online",
+      "status": "offline",
       "fullName": "Carmen Velasco",
       "src": "./Shape2.jpg",
       "id": "3",
@@ -101,9 +101,7 @@
       "Email": "LEO_DD@gmail.com",
       "Skype": "L_Gil",
       "friends": {},
-      "friendRequests": {
-        "@aLEX": true
-      }
+      "friendRequests": {}
     }
   ],
   "channelList": [
@@ -162,7 +160,8 @@
       "time": "5:48",
       "text": "Hello! I'm fine.",
       "avatarSrc": "./Shape1.jpg",
-      "idUser": "2"
+      "idUser": "2",
+      "isEdit": false
     },
     {
       "id": 3,
@@ -172,9 +171,11 @@
       "time": "6:38",
       "addressee": "@aLEX",
       "idAddressee": "5",
-      "text": "I did for 6 days in Iceland",
+      "text": "I did for 6 days in Iceland.",
       "avatarSrc": "./Shape5.jpg",
-      "idUser": "6"
+      "idUser": "6",
+      "isEdit": true,
+      "isActive": false
     },
     {
       "id": 4,
@@ -184,7 +185,8 @@
       "time": "5:02",
       "text": "Which country to visit next? This is a photo with my friends - celebrating in Bali 😎",
       "avatarSrc": "./Shape4.jpg",
-      "idUser": "5"
+      "idUser": "5",
+      "isEdit": false
     },
     {
       "id": 5,
@@ -194,7 +196,8 @@
       "time": "11:54",
       "text": "wow it’s amazing, I want to buy a van and travelling next year 🚌!",
       "avatarSrc": "./Shape3.jpg",
-      "idUser": "4"
+      "idUser": "4",
+      "isEdit": false
     },
     {
       "id": 6,
@@ -204,7 +207,8 @@
       "time": "11:54",
       "text": "Working from a van in Australia isn’t feasible if you need internet. \nIt may have improved over the last years but I spent some time in a camper van around Tasmania and internet was a real problem (and Tasmania is tiny compared to the rest of the country).",
       "avatarSrc": "./Shape1.jpg",
-      "idUser": "2"
+      "idUser": "2",
+      "isEdit": false
     },
     {
       "date": "07.04.2021",
@@ -212,9 +216,10 @@
       "userName": "@LEO_1",
       "id": "7e3a6ff0-7f3d-4f52-a897-dc931d622325",
       "time": "18:30",
-      "text": "hi!",
+      "text": "hi",
       "avatarSrc": "./Shape5.jpg",
-      "idUser": "6"
+      "idUser": "6",
+      "isEdit": true
     },
     {
       "date": "07.04.2021",
@@ -226,7 +231,8 @@
       "time": "19:38",
       "text": "hello!",
       "avatarSrc": "./Shape4.jpg",
-      "idUser": "5"
+      "idUser": "5",
+      "isEdit": false
     },
     {
       "date": "08.04.2021",
@@ -238,7 +244,8 @@
       "time": "23:40",
       "text": "hi!",
       "avatarSrc": "./Shape1.jpg",
-      "idUser": "2"
+      "idUser": "2",
+      "isEdit": false
     },
     {
       "date": "09.04.2021",
@@ -250,7 +257,21 @@
       "time": "00:53",
       "text": "hi!",
       "avatarSrc": "./Shape2.jpg",
-      "idUser": "3"
+      "idUser": "3",
+      "isEdit": false
+    },
+    {
+      "date": "09.04.2021",
+      "author": "Amelia Luna",
+      "userName": "@amelia_luna",
+      "addressee": "",
+      "idAddressee": "",
+      "id": "923ef0fc-2d48-4be9-a893-1f03014189e4",
+      "time": "01:12",
+      "text": "hi!",
+      "avatarSrc": "./user-avatar.png",
+      "idUser": "1",
+      "isEdit": true
     }
   ],
   "messages-support": [],
