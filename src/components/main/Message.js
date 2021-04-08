@@ -37,7 +37,7 @@ function Message(props) {
                     <span className="message__addressee">
                         {addressee}
                     </span>
-                    <div className="message__text">{text}</div>
+                    <div className="message__text">{text.trim()}</div>
                     </div>
                 </div>
             </div>

@@ -60,14 +60,14 @@ class User {
 
     settingsHandleClick() {
         this.isVisibleSetting = !this.isVisibleSetting;
-        window.addEventListener('click', this.closeSettings);
+        document.addEventListener('click', this.closeSettings);
     }
 
     closeSettings(event) {
         let isSettings = event.target.classList.contains('settings__btn'); 
         if (!isSettings) {
             this.isVisibleSetting = false;
-            window.removeEventListener('click', this.closeSettings);
+            document.removeEventListener('click', this.closeSettings);
         }
     }
 

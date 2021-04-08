@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import { makeAutoObservable } from "mobx";
 import { createRef } from "react";
 import api from '../../api/api';
@@ -21,11 +20,12 @@ class InputMessage {
     constructor(main) {
         makeAutoObservable(this);
         this.main = main;
-        this.onInput = this.onInput.bind(this);
-        this.addAddressee = this.addAddressee.bind(this);
+
         this.checkKeyDown();
         this.inputElement = createRef();
-        this.onKeyUp = this.onKeyUp.bind(this);
+
+        this.onInput = this.onInput.bind(this);
+        this.addAddressee = this.addAddressee.bind(this);
         this.changeVisibleSmileContainer = this.changeVisibleSmileContainer.bind(this);
         this.addSmile = this.addSmile.bind(this);
         this.closeContainer = this.closeContainer.bind(this);
@@ -33,6 +33,8 @@ class InputMessage {
 
     onInput(event) {
         this.value = event.target.value;
+        this.inputElement.current.style.height = HEIGHT_INPUT;
+        this.inputElement.current.style.height = this.inputElement.current.scrollHeight + 'px';
     }
 
     addAddressee(value) {
@@ -47,6 +49,7 @@ class InputMessage {
             if(event.code === 'Enter' && this.value.trim() !== '') {
                 this.createMessage();
                 this.value = '';
+                this.inputElement.current.style.height = HEIGHT_INPUT;
             }
         });
     }
@@ -100,11 +103,6 @@ class InputMessage {
         this.main.messageList.messages.push(messageData);
     }
 
-    onKeyUp() {
-        this.inputElement.current.style.height = HEIGHT_INPUT;
-        this.inputElement.current.style.height = this.inputElement.current.scrollHeight + 'px';
-    }
-
     getTextarea() {
         let placeholder = `Message in #${this.main.channelData.getName()}`;
 
@@ -116,7 +114,6 @@ class InputMessage {
                 placeholder={placeholder} 
                 onInput={this.onInput}
                 value={this.value}
-                onKeyUp={this.onKeyUp}
             />
         );
     }
@@ -124,9 +121,9 @@ class InputMessage {
     changeVisibleSmileContainer() {
         this.isVisible = !this.isVisible;
         if (this.isVisible) {
-            window.addEventListener('click', this.closeContainer);
+            document.addEventListener('click', this.closeContainer);
         } else {
-            window.removeEventListener('click', this.closeContainer);
+            document.removeEventListener('click', this.closeContainer);
         }
     }
 
@@ -149,7 +146,7 @@ class InputMessage {
         let isSmileContainer = elem.closest('.smiles') || elem.classList.contains('smiles__item'); 
         if (!isSmileContainer) {
             this.isVisible = false;
-            window.removeEventListener('click', this.closeContainer);
+            document.removeEventListener('click', this.closeContainer);
         }
     }
 }

@@ -7,6 +7,7 @@ import User from './store/User';
 import Message from './store/Message';
 import RegisterForm from './store/RegisterForm';
 import EditProfile from './store/EditProfile';
+import Search from './store/Search';
 
 export class MultiStore {
     constructor() {
@@ -19,6 +20,7 @@ export class MultiStore {
         this.profileData = new ProfileData(this);
         this.registerForm = new RegisterForm(this);
         this.editProfile = new EditProfile(this);
+        this.search = new Search(this);
     }
 
     getId() {

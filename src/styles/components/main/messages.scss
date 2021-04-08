@@ -93,6 +93,10 @@
         color: #000;
     }
 
+    &__text {
+        white-space: pre-wrap;
+    }
+
     &:hover {
         cursor: pointer;
     }

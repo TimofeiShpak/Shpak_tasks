@@ -36,7 +36,7 @@
       "friendRequests": {}
     },
     {
-      "status": "offline",
+      "status": "online",
       "fullName": "Carmen Velasco",
       "src": "./Shape2.jpg",
       "id": "3",
@@ -68,7 +68,7 @@
       "friendRequests": {}
     },
     {
-      "status": "offline",
+      "status": "online",
       "fullName": "Alex Lee",
       "src": "./Shape4.jpg",
       "id": "5",
@@ -198,7 +198,7 @@
       "author": "Orlando Digs",
       "userName": "@orlando_D",
       "time": "11:54",
-      "text": "Working from a van in Australia isn’t feasible if you need internet. It may have improved over the last years but I spent some time in a camper van around Tasmania and internet was a real problem (and Tasmania is tiny compared to the rest of the country).",
+      "text": "Working from a van in Australia isn’t feasible if you need internet. \nIt may have improved over the last years but I spent some time in a camper van around Tasmania and internet was a real problem (and Tasmania is tiny compared to the rest of the country).",
       "avatarSrc": "./Shape1.jpg",
       "idUser": "2"
     },
@@ -220,7 +220,7 @@
       "idAddressee": "6",
       "id": "8d497fe2-115c-4366-8269-db5b0e85779b",
       "time": "19:38",
-      "text": "hello!\nf\n\n\n",
+      "text": "hello!",
       "avatarSrc": "./Shape4.jpg",
       "idUser": "5"
     },
@@ -235,30 +235,6 @@
       "text": "hello",
       "avatarSrc": "./user-avatar.png",
       "idUser": "1"
-    },
-    {
-      "date": "08.04.2021",
-      "author": "Alex Lee",
-      "userName": "@aaaLEX",
-      "addressee": "",
-      "idAddressee": "",
-      "id": "4b22d214-1b16-49e6-a2a8-ee1cbd019e1c",
-      "time": "05:04",
-      "text": "rfghvfgh",
-      "avatarSrc": "./Shape4.jpg",
-      "idUser": "5"
-    },
-    {
-      "date": "08.04.2021",
-      "author": "Alex Lee",
-      "userName": "@aaaLEX",
-      "addressee": "",
-      "idAddressee": "",
-      "id": "26f73c8f-da7b-45d7-9401-ffeb97de29f2",
-      "time": "05:04",
-      "text": "dfg",
-      "avatarSrc": "./Shape4.jpg",
-      "idUser": "5"
     }
   ],
   "messages-support": [],

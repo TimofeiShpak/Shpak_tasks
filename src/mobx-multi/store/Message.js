@@ -81,7 +81,8 @@ class Message {
         this.messageText.replaceWith(this.input);
         this.isEdit = true;
         this.main.inputMessage.value = '';
-        this.input.onkeyup = () => {
+        this.input.oninput = () => {
+            this.input.style.height = '20px';
             this.input.style.height = this.input.scrollHeight + 'px';
         }
     }
@@ -89,7 +90,7 @@ class Message {
     saveMessage(event, id) {
         event.target.textContent = 'Edit';
         event.target.nextElementSibling.classList.add('hide');
-        let text = this.input.value
+        let text = this.input.value.trim();
         this.messageText.textContent = text;
         this.input.replaceWith(this.messageText);
         this.isEdit = false;
