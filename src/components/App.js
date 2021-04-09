@@ -24,6 +24,7 @@ const App = observer(() => {
         <Route path="/authorization">
           <Authorization />
         </Route>
+        <Route path="/ "></Route>
         <Route path="/edit-profile">
           <EditProfile />
         </Route>

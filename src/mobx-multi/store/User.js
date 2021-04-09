@@ -42,6 +42,8 @@ class User {
                 this.main.channelData.path = '/' + this.main.channelData.getName();
                 this.main.profileData.changeProfile(this.userData.id);
             }
+        } else {
+            this.main.channelData.path = '/authorization';
         }
         return userName;
     }

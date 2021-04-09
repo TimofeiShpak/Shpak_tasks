@@ -7,7 +7,7 @@ import ChannelItem from '../../components/navigation/ChannelItem';
 class ChannelData {
     channels = [];
     index = 0;
-    path = '/authorization';
+    path = '/ ';
     
     constructor(main) {
         makeAutoObservable(this);
