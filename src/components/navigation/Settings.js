@@ -5,6 +5,7 @@ import store from '../../mobx-multi/store';
 const Settings = observer(() => {
     let handleClick = store.user.settingsHandleClick;
     let isVisibleSetting = store.user.isVisibleSetting;
+    
     return (
         <div className="settings">
             <button className="settings__btn" onClick={handleClick}></button>
