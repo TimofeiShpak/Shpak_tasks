@@ -28,6 +28,7 @@ class RegisterForm {
         this.main.channelData.path = '/' + this.main.channelData.getName(); 
         this.main.profileData.changeProfile(id);
         document.cookie = `userName=${userName}`;
+        this.main.userList.userNames.push(userName);
     }
 
     checkData(data) {
