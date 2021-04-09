@@ -5,7 +5,7 @@ import api from '../../api/api';
 import UserItem from '../../components/navigation/UserItem';
 import RequestItem from '../../components/navigation/RequestItem';
 
-const TIME_UPDATE = 2000;
+const TIME_UPDATE = 3000;
 const NUMBER_FOR_COOKIE = 9;
 const SRC_ANONIM = './anonim.jpg';
 
@@ -55,7 +55,7 @@ class UserList {
         let friendsElements = [];
         let friendsUserNames = this.main.user.userData.friends;
         if (friendsUserNames) {
-            let friends = this.users.filter((user) => friendsUserNames[user.userName] === true);
+            let friends = this.users.filter((user) => friendsUserNames[user.id] === true);
             friendsElements = this.getUserList(friends);
         }
         return friendsElements;
@@ -73,7 +73,7 @@ class UserList {
     getFriendRequests() {
         let elements = [];
         let requests = this.main.user.userData.friendRequests;
-        let friendRequests = this.users.filter((user) => requests[user.userName] === true);
+        let friendRequests = this.users.filter((user) => requests[user.id] === true);
         elements = this.getUserList(friendRequests, true);
         return elements;
     }

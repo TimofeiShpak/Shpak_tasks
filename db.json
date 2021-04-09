@@ -2,20 +2,19 @@
   "userList": [
     {
       "id": "1",
-      "status": "offline",
+      "status": "online",
       "src": "./user-avatar.png",
-      "fullName": "Amelia Luna",
+      "fullName": "Amelia Lun",
       "specialty": "UI Designer",
       "twitter": "https://twitter.com/amilialuna",
       "instagram": "https://www.instagram.com/lunaticaluna/",
       "facebook": "https://www.facebook.com/amelia.luna.524596",
       "linkedin": "http://linkedin.com/in/amelialuna",
-      "userName": "@amelia_luna",
+      "userName": "@amelia_lunA",
       "Email": "a-luna@gmail.com",
       "Skype": "amelia",
       "friends": {
-        "@aaaLEX": true,
-        "@orlando_D": true
+        "2": true
       },
       "friendRequests": {}
     },
@@ -33,7 +32,7 @@
       "Email": "d-lan@gmail.com",
       "Skype": "orlando_D",
       "friends": {
-        "@amelia_luna": true
+        "1": true
       },
       "friendRequests": {}
     },
@@ -82,9 +81,7 @@
       "userName": "@aLEX",
       "Email": "aLEXa@gmail.com",
       "Skype": "LexLex",
-      "friends": {
-        "@amelia_luna": true
-      },
+      "friends": {},
       "friendRequests": {}
     },
     {
@@ -248,8 +245,8 @@
     },
     {
       "date": "09.04.2021",
-      "author": "Amelia Luna",
-      "userName": "@amelia_luna",
+      "author": "Amelia Lun",
+      "userName": "@amelia_lunA",
       "addressee": "",
       "idAddressee": "",
       "id": "923ef0fc-2d48-4be9-a893-1f03014189e4",

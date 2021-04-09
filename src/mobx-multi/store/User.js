@@ -79,11 +79,11 @@ class User {
         this.changeStatus(data);
     }
 
-    deleteFromFriends(userName) {
+    deleteFromFriends(id) {
         this.main.userList.users.forEach((user) => {
-            if (user.friends[userName] || user.friendRequests[userName]) {
-                delete user.friends[userName];
-                delete user.friendRequests[userName];
+            if (user.friends[id] || user.friendRequests[id]) {
+                delete user.friends[id];
+                delete user.friendRequests[id];
                 api.profileData.changeProfileData(user, user.id);
             }
         });
@@ -93,7 +93,7 @@ class User {
         this.main.channelData.path = '/authorization';
         let id = this.userData.id;
         document.cookie = "userName=";
-        this.deleteFromFriends(this.userData.userName);
+        this.deleteFromFriends(this.userData.id);
         this.userData = null;
         this.main.userList.users.splice(this.userDataIndex, 1);
         api.profileData.deleteProfileData(id);
@@ -106,24 +106,24 @@ class User {
         this.main.profileData.changeProfile(id);
     }
 
-    removeRequestFriend(userName) {
-        delete this.userData.friendRequests[userName];
+    removeRequestFriend(id) {
+        delete this.userData.friendRequests[id];
         this.updateProfileData();
     }
 
-    addFriend(userName) {
-        let friend = this.main.userList.users.find((user) => user.userName === userName);
-        friend.friends[this.userData.userName] = true;
-        this.userData.friends[userName] = true;
-        this.removeRequestFriend(userName);
+    addFriend(id) {
+        let friend = this.main.userList.users.find((user) => user.id === id);
+        friend.friends[this.userData.id] = true;
+        this.userData.friends[id] = true;
+        this.removeRequestFriend(id);
         api.profileData.changeProfileData(friend, friend.id);
     }
 
-    removeFriend(userName) {
-        let profileName = this.main.profileData.profile.userName;
-        let friend = this.main.userList.users.find((user) => user.userName === profileName);
-        delete friend.friends[userName];
-        delete this.userData.friends[profileName];
+    removeFriend(id) {
+        let idProfile = this.main.profileData.profile.id;
+        let friend = this.main.userList.users.find((user) => user.id === idProfile);
+        delete friend.friends[id];
+        delete this.userData.friends[idProfile];
         api.profileData.changeProfileData(friend, friend.id);
         this.updateProfileData();
     }

@@ -70,12 +70,12 @@ class ProfileData {
         }
     }
 
-    getButtons(isAskFriend, isAccept, isFriend, userName, profileName, id) {
-        let addAskFriend = () => this.addAskFriend(userName, id);
-        let removeFriend = () => this.main.user.removeFriend(userName);
-        let cancelAsk = () => this.cancelAsk(userName, id);
-        let addFriend = () => this.main.user.addFriend(profileName);
-        let removeRequest = () => this.main.user.removeRequestFriend(profileName);
+    getButtons(isAskFriend, isAccept, isFriend, idUser, idProfile) {
+        let addAskFriend = () => this.addAskFriend(idUser);
+        let removeFriend = () => this.main.user.removeFriend(idUser);
+        let cancelAsk = () => this.cancelAsk(idUser);
+        let addFriend = () => this.main.user.addFriend(idProfile);
+        let removeRequest = () => this.main.user.removeRequestFriend(idProfile);
 
         switch(true) {
             case isAskFriend === true : return [{ func : cancelAsk, text : "Cancel ask" }];
@@ -90,18 +90,18 @@ class ProfileData {
         let profileName = this.profile?.userName;
         let userName = this.main.user?.userData?.userName;
         this.isUser = userName === profileName || this.profile.isUser;
-        let isAccept = this.main.user.userData.friendRequests[profileName] === true;
-
+        let idProfile = this.profile?.id;
+        let isAccept = this.main.user.userData.friendRequests[idProfile] === true;
+        let idUser = this.main.user.userData?.id;
         let isFriend = false;
         let isAskFriend = false;
-        let id;
+
         if (profileName !== '@deleted') {
-            isFriend = this.profile?.friends[userName] === true;
-            isAskFriend = this.profile?.friendRequests[userName] === true;
-            id = this.main.userList.users.find((user) => user.userName === profileName).id;
+            isFriend = this.profile?.friends[idUser] === true;
+            isAskFriend = this.profile?.friendRequests[idUser] === true;
         }
 
-        let buttonList = this.getButtons(isAskFriend, isAccept, isFriend, userName, profileName, id);
+        let buttonList = this.getButtons(isAskFriend, isAccept, isFriend, idUser, idProfile);
 
         return buttonList.map((button) => {
                     let id = this.main.getId();
@@ -113,14 +113,14 @@ class ProfileData {
                     })    
     }
 
-    addAskFriend(userName, id) {
-        this.profile.friendRequests[userName] = true;
-        api.profileData.changeProfileData(this.profile, id);
+    addAskFriend(id) {
+        this.profile.friendRequests[id] = true;
+        api.profileData.changeProfileData(this.profile, this.profile.id);
     }
 
-    cancelAsk(userName, id) {
-        delete this.profile.friendRequests[userName];
-        api.profileData.changeProfileData(this.profile, id);
+    cancelAsk(id) {
+        delete this.profile.friendRequests[id];
+        api.profileData.changeProfileData(this.profile, this.profile.id);
     }
 
     changeVisibleProfile() {

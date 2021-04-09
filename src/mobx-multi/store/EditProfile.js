@@ -22,7 +22,7 @@ class EditProfile {
     }
 
     initValues() {
-        let userData = this.main.user.userData;
+        let userData = Object.assign({}, this.main.user.userData);
         userData.userName = userData.userName.replace('@', '');
         options.forEach((option) => this.values[option] = userData[option]);
     }
@@ -84,8 +84,15 @@ class EditProfile {
 
     checkData(event) {
         event.preventDefault();
-        let userName = '@' + this.values.userName;
-        let isValid = this.main.userList.userNames.includes(userName);
+        let userName = '@' +  this.values.userName;
+        let oldUserName = this.main.user.userData.userName;
+        let isValid = this.main.userList.userNames.find((name) => {
+            if (name !== oldUserName) {
+                return name ===  userName;
+            }
+            return false;
+        });
+
         if (!isValid) {
             this.isWrong = false;
             this.saveProfile(userName);

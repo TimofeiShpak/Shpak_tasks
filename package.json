@@ -20,7 +20,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start": "react-scripts start",
-    "api": "json-server -p 3001 -w db.json --routes routes.json"
+    "api": "json-server -p 3001 -w db.json"
   },
   "eslintConfig": {
     "extends": [

@@ -3,8 +3,8 @@ import UserItem from '../../components/navigation/UserItem';
 
 function RequestItem(props) {
     let { className, data } = props;
-    let addFriend = () => store.user.addFriend(data.userName);
-    let removeRequest = () => store.user.removeRequestFriend(data.userName);
+    let addFriend = () => store.user.addFriend(data.id);
+    let removeRequest = () => store.user.removeRequestFriend(data.id);
 
     return (
         <div className="request">
