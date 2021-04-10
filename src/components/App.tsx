@@ -4,16 +4,13 @@ import {
   Link,
   Switch
 } from "react-router-dom";
-import { useState } from 'react';
+import React from 'react';
 
 import Player from './Player';
 import Modal from './Modal';
 import History from './History';
 
-function App() {
-  let [isShowModal, setShowModal] = useState(false);
-  let [allActivities, setAllActivities] = useState([]);
-
+function App() : JSX.Element {
   return (
     <Router>
       <div className="App">
@@ -21,16 +18,12 @@ function App() {
         <Switch>
           <Route path="/history">
             <Link className="link" to="/">Игра</Link>
-            <History allActivities={allActivities} />
+            <History />
           </Route>
           <Route path="/">
             <Link className="link" to="/history">История</Link>
-              <Player 
-                setAllActivities={setAllActivities} 
-                setShowModal={setShowModal} 
-                allActivities={allActivities} 
-              />
-              <Modal isShowModal={isShowModal} setShowModal={setShowModal} />
+              <Player />
+              <Modal />
           </Route>
         </Switch>
       </div>

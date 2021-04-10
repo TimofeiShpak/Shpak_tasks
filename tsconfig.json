@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "checkJs": false,
+        "module": "CommonJS",
+        "esModuleInterop": true,
+        "baseUrl": "./",
+        "jsx": "react",
+        "target": "ES5",
+        "outDir": "build"    
+    }
+}
