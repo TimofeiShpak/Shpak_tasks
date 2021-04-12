@@ -1,16 +1,16 @@
 const funcApi = api => {
     api.messages = {
         getMessages(name) {
-            return api.request.get(`${api.path}/messages-${name}`);
+            return api.request.get(`/messages-${name}`);
         },
         addMessages(name, data) {
-            return api.request.post(`${api.path}/messages-${name}`, data);
+            return api.request.post(`/messages-${name}`, data);
         },
         updateMessage(name, data, id) {
-            return api.request.put(`${api.path}/messages-${name}/${id}`, data);
+            return api.request.put(`/messages-${name}/${id}`, data);
         },
         deleteMessage(name, id) {
-            return api.request.delete(`${api.path}/messages-${name}/${id}`);
+            return api.request.delete(`/messages-${name}/${id}`);
         }
     }
 }

@@ -1,16 +1,16 @@
 const funcApi = api => {
     api.profileData = {
         getProfileData(id) {
-            return api.request.get(`${api.path}/userList/${id}`);
+            return api.request.get(`/userList/${id}`);
         },
         changeProfileData(data, id) {
-            return api.request.put(`${api.path}/userList/${id}`, data);
+            return api.request.put(`/userList/${id}`, data);
         },
         addProfileData(data) {
-            return api.request.post(`${api.path}/userList/`, data);
+            return api.request.post('/userList/', data);
         },
         deleteProfileData(id) {
-            return api.request.delete(`${api.path}/userList/${id}`);
+            return api.request.delete(`/userList/${id}`);
         }
     }
 }

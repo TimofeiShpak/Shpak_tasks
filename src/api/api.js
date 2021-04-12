@@ -4,6 +4,8 @@ const PATH = "http://localhost:3001";
 
 const requireServices = require.context('./services', true, /.service.js$/);
 
+axios.defaults.baseURL = PATH;
+
 class API {
     request = axios.create();
 
@@ -20,8 +22,6 @@ class API {
                 return Promise.reject(error);
             }
         );
-
-        this.path = PATH;
     }
 }
 
