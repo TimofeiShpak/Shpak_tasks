@@ -8,7 +8,7 @@ const EditProfile = observer(() => {
     let checkData = (event) => store.editProfile.checkData(event);
     let isWrong = store.editProfile.isWrong;
     let elements = elementsData.map((data) => {
-        return <input {...data} />
+        return <input key={data.id} {...data} />
     });
     let labelsData = store.editProfile.getLabelsData();
     let labels = labelsData.map((data) => {

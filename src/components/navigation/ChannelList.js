@@ -6,7 +6,7 @@ import ChannelItem from '../../components/navigation/ChannelItem';
 const ChannelList = observer(() => {
     let dataList = store.channelData.getChannelsList();
     let elements = dataList.map((data) => {
-        return <ChannelItem {...data} />
+        return <ChannelItem key={data.key} {...data} />
     });
     
     return (

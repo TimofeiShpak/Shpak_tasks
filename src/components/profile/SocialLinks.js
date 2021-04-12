@@ -10,7 +10,8 @@ const SocialLinks = observer(() => {
                 className={`social-icon ${data.name}-icon`} 
                 href={data.href} 
                 target="_blank"
-                rel="noreferrer"> 
+                rel="noreferrer"
+                key={data.key}> 
             </a>
         );
     });

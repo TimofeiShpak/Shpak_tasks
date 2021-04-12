@@ -3,6 +3,7 @@ import axios from "axios";
 const PATH = "http://localhost:3001";
 
 const requireServices = require.context('./services', true, /.service.js$/);
+
 class API {
     request = axios.create();
 
