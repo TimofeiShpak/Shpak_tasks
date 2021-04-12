@@ -3,14 +3,14 @@ import { observer } from 'mobx-react';
 import store from '../../mobx-multi/store';
 
 const InputMessage = observer(() => {
-    let textarea = store.inputMessage.getTextarea();
+    let textareaData = store.inputMessage.getTextareaData();
     let handleClickBtn = store.inputMessage.changeVisibleSmileContainer;
     let smiles = store.inputMessage.getSmiles();
     let isVisible = store.inputMessage.isVisible;
 
     return (
         <div className="input-message">
-            {textarea}
+            <textarea {...textareaData} />
             <div className="smiles">
                 <button className="smiles__btn" onClick={handleClickBtn}></button>
                 { isVisible && (

@@ -2,9 +2,13 @@ import { observer } from 'mobx-react';
 import store from '../../mobx-multi/store';
 
 import RegisterForm from './RegisterForm';
+import UserItem from '../navigation/UserItem';
 
 const Authorization = observer(() => {
-    let listElements = store.userList.getFreeUsers();
+    let listData = store.userList.getFreeUsers();
+    let listElements = listData.map((data) => {
+        return  <UserItem key={data.key} {...data} />
+    });
     
     return (
         <div className="authorization-wrapper">

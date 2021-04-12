@@ -2,8 +2,6 @@ import classNames from "classnames";
 import { makeAutoObservable } from "mobx";
 import api from "../../api/api";
 
-import FormItem from '../../components/authorization/FormItem';
-
 const mainOptions = ['userName', 'fullName', 'specialty','twitter', 'instagram', 
     'facebook', 'linkedin', 'Email', 'Skype'];
 const requiredOptions = ['userName', 'fullName'];
@@ -60,21 +58,14 @@ class RegisterForm {
         this.checkData(data, elem);
     }
 
-    getFormList() {
+    getFormListData() {
         let list = mainOptions.map((option) => {
             let isRequired = requiredOptions.includes(option);
             let classNameLabel = classNames({
                 "required" : isRequired,
             });
             let key = this.main.getId();
-            return (
-                <FormItem 
-                    option={option}
-                    classNameLabel={classNameLabel} 
-                    isRequired={isRequired}
-                    key={key}
-                />
-            )
+            return { key, classNameLabel, isRequired, option };
         });
         return list;
     }

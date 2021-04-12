@@ -1,9 +1,13 @@
 import { observer } from 'mobx-react';
 
 import store from '../../mobx-multi/store';
+import UserItem from './UserItem';
 
 const Friends = observer(() => {
-    let listElements = store.userList.getFriends();
+    let listData = store.userList.getFriends();
+    let listElements = listData.map((data) => {
+        return  <UserItem key={data.key} {...data} />
+    });
     
     return (
         <div className="friends">

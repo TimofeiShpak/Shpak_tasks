@@ -2,7 +2,6 @@ import { makeAutoObservable, runInAction } from "mobx";
 import classNames from 'classnames';
 
 import api from '../../api/api';
-import Message from '../../components/main/Message';
 
 const TIME_UPDATE = 5000;
 const DAY_TODAY = "Today";
@@ -17,7 +16,7 @@ class MessageList {
         this.main = main;
 
         this.updateData();
-    };
+    }
 
     getData(isCheck) {
         let index = this.main.channelData.index;
@@ -73,7 +72,7 @@ class MessageList {
             runInAction(() => this.value = index)
             this.changeData(name);
         }
-    };
+    }
 
     getDate() {
         let currentDate = new Date();
@@ -97,37 +96,29 @@ class MessageList {
         return { isNewDate, dateMessage };
     }
 
-    createMessage(item, date, today, yesterday) {
+    createMessageData(item, date, today, yesterday) {
         let { isNewDate, dateMessage } = this.checkDate(item, date, today, yesterday);
         let className = classNames({
             "message" : true,
             "message_active" : item.id === this.main.message.idActive
-        })
-        return ( 
-            <Message 
-                key={item.id}
-                data={item}
-                date={dateMessage}
-                isNewDate={isNewDate}
-                className={className}
-                isActive={item.id === this.idActive}
-            />
-        );
+        });
+        let isActive = item.id === this.idActive;
+        return { id: item.id, data: item, date: dateMessage, isNewDate, className, isActive };
     }
 
-    getListElements() {
-        let listElements = [];
+    getListElementsData() {
+        let listElementsData = [];
         this.getData();
         if (this.messages.length) {
             let { today, yesterday } = this.getDate();
             let date;
-            listElements = this.messages.map((item) => {
-                let element = this.createMessage(item, date, today, yesterday);
+            listElementsData = this.messages.map((item) => {
+                let data = this.createMessageData(item, date, today, yesterday);
                 date = item.date;
-                return element;
+                return data;
             });
         }
-        return listElements;
+        return listElementsData;
     }
 
     resetActive() {

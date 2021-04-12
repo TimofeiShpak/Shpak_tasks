@@ -1,8 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import api from "../../api/api";
 
-import ItemInfo from '../../components/profile/ItemInfo';
-
 const nameIcons = ['facebook', 'instagram', 'linkedin', 'twitter'];
 const nameExtraInfo = ['userName', 'Email', 'Skype'];
 
@@ -18,14 +16,14 @@ class ProfileData {
         this.changeVisibleProfile = this.changeVisibleProfile.bind(this);
     };
 
-    getExtraInfo() {
+    getExtraInfoData() {
         let itemsInfo = [];
         for (let name of nameExtraInfo) {
             let dataElem = this.profile[name];
             if (dataElem) {
                 let key = this.main.getId();
-                let elem = <ItemInfo key={key} type={name} value={dataElem}/>
-                itemsInfo.push(elem);
+                let elemData = { key, type: name, value: dataElem };
+                itemsInfo.push(elemData);
             }
         }
         return itemsInfo;
@@ -35,24 +33,17 @@ class ProfileData {
         return this.profile;
     }
 
-    getSocialIcons() {
-        let icons = [];
+    getSocialLinksData() {
+        let linksData = [];
         for (let name of nameIcons) {
             let data = this.profile[name];
             if (data) {
                 let key = this.main.getId();
-                let elem = (
-                    <a 
-                        className={`social-icon ${name}-icon`} 
-                        key={key} href={data} 
-                        target="_blank"
-                        rel="noreferrer"> 
-                    </a>
-                    );
-                icons.push(elem);
+                let elemData = { name, key, href: data} 
+                linksData.push(elemData);
             }
         }
-        return icons;
+        return linksData;
     }
 
     changeProfile(id) {
@@ -104,13 +95,9 @@ class ProfileData {
         let buttonList = this.getButtons(isAskFriend, isAccept, isFriend, idUser, idProfile);
 
         return buttonList.map((button) => {
-                    let id = this.main.getId();
-                    return ( 
-                            <button key={id} className="btn" onClick={button.func}>
-                                {button.text}
-                            </button>
-                        )
-                    })    
+            let id = this.main.getId();
+            return { id, button }
+        })    
     }
 
     addAskFriend(id) {

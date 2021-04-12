@@ -105,19 +105,17 @@ class InputMessage {
         this.main.messageList.messages.push(messageData);
     }
 
-    getTextarea() {
+    getTextareaData() {
         let placeholder = `Message in #${this.main.channelData.getName()}`;
 
-        return (
-            <textarea
-                ref={this.inputElement}
-                className="input-message__textarea" 
-                type="text" 
-                placeholder={placeholder} 
-                onInput={this.onInput}
-                value={this.value}
-            />
-        );
+        return {
+            ref: this.inputElement,
+            className: "input-message__textarea",
+            type: "text",
+            placeholder: placeholder,
+            onInput: this.onInput,
+            value: this.value,
+        }
     }
 
     changeVisibleSmileContainer() {

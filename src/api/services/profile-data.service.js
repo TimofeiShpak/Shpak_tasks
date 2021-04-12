@@ -1,16 +1,16 @@
 const funcApi = api => {
     api.profileData = {
         getProfileData(id) {
-            return api.request.get(`http://localhost:3001/userList/${id}`);
+            return api.request.get(`${api.path}/userList/${id}`);
         },
         changeProfileData(data, id) {
-            return api.request.put(`http://localhost:3001/userList/${id}`, data);
+            return api.request.put(`${api.path}/userList/${id}`, data);
         },
         addProfileData(data) {
-            return api.request.post('http://localhost:3001/userList/', data);
+            return api.request.post(`${api.path}/userList/`, data);
         },
         deleteProfileData(id) {
-            return api.request.delete(`http://localhost:3001/userList/${id}`);
+            return api.request.delete(`${api.path}/userList/${id}`);
         }
     }
 }

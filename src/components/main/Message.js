@@ -1,11 +1,13 @@
-import store from '../../mobx-multi/store';
+import { observer } from 'mobx-react';
 
-function Message(props) {
+import store from '../../mobx-multi/store';
+import MessageButtons from './MessageButtons';
+
+const Message = observer((props) => {
     let { date, className, isNewDate, data : { avatarSrc, time, author, userName, id,
         addressee, text, idUser, idAddressee, isEdit } } = props;
 
     let handleClick = (event) => store.message.handleClick(event, id, userName, idUser, idAddressee);
-    let buttonsEdit = store.message.getButtonsEdit(id, idUser);
 
     return (
         <div className="message-wrapper" onClick={handleClick} >
@@ -32,7 +34,7 @@ function Message(props) {
                         </div>
                         <div>{time}</div>
                         {isEdit && <div>edited</div>}
-                        {buttonsEdit}
+                        <MessageButtons id={id} idUser={idUser} />
                     </div>
                     <div className="message__text-wrapper">
                     <span className="message__addressee">
@@ -44,6 +46,6 @@ function Message(props) {
             </div>
         </div>
     );
-}
+})
 
 export default Message;

@@ -79,6 +79,7 @@ class User {
         let data = this.main.userList.users[this.userDataIndex];
         data.status = 'offline';
         this.changeStatus(data);
+        this.main.message.idActive = -1;
     }
 
     deleteFromFriends(id) {

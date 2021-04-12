@@ -1,17 +1,20 @@
 import { observer } from 'mobx-react';
 
 import store from '../../mobx-multi/store';
+import RequestItem from './RequestItem';
 
 const RequestFriends = observer(() => {    
-    let listElements = store.userList.getFriendRequests();
-    let length = Object.keys(listElements).length;
+    let listData = store.userList.getFriendRequests();
+    let listElements = listData.map((data) => {
+        return  <RequestItem key={data.key} {...data} />
+    });
     
-    return length > 0 && (
+    return listElements.length > 0 && (
         <div className="friends">
             <div className="navigation__title">
                 Friend requests
                 <span className="number-channels">
-                    {length}
+                    {listElements.length}
                 </span>
             </div>
             <ul>

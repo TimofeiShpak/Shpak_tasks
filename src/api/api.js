@@ -1,10 +1,10 @@
 import axios from "axios";
 
+const PATH = "http://localhost:3001";
+
 const requireServices = require.context('./services', true, /.service.js$/);
 class API {
-    request = axios.create({
-        baseUrl: "http://localhost:3001/"
-    });
+    request = axios.create();
 
     constructor() {
         requireServices.keys().forEach(filename => {
@@ -19,6 +19,8 @@ class API {
                 return Promise.reject(error);
             }
         );
+
+        this.path = PATH;
     }
 }
 

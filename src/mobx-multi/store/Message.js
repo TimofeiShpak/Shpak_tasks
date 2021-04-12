@@ -102,21 +102,11 @@ class Message {
         this.idActive = -1;
     }
 
-    getButtonsEdit(id, idUser) {
-        if (this.idActive === id) {
-            let isPresent = this.main.userList.users.findIndex((user) => user.id === idUser) === -1;
-            if (this.main.user.userData.id === idUser) {
-                return (
-                    <div className="message__button-list">
-                        <button className="message__btn btn_edit">Edit</button>
-                        <button className="message__btn btn_cancel hide">Cancel</button> 
-                        <button className="message__btn btn_delete">Delete</button> 
-                    </div>
-                )
-            } else if(!isPresent) {
-                return  <button className="message__btn btn_answer">Write</button> 
-            }
-        }
+    getButtonsData(id, idUser) { 
+        let isActive = this.idActive === id;
+        let isPresent = this.main.userList.users.findIndex((user) => user.id === idUser) !== -1;
+        let isMayEdit = this.main.user.userData.id === idUser;
+        return { isActive, isMayEdit, isPresent };
     }
 
     changeMessagesActive(id) {

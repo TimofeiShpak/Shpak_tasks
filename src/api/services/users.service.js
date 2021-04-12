@@ -1,7 +1,7 @@
 const funcApi = api => {
     api.users = {
         getUsers() {
-            return api.request.get('http://localhost:3001/userList');
+            return api.request.get(`${api.path}/userList`);
         }
     }
 }

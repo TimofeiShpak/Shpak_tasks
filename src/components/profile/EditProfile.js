@@ -1,12 +1,20 @@
 import { observer } from 'mobx-react';
 
 import store from '../../mobx-multi/store';
+import LabelItem from './LabelItem';
 
 const EditProfile = observer(() => {
-    let elements = store.editProfile.getElements();
+    let elementsData = store.editProfile.getElementsData();
     let checkData = (event) => store.editProfile.checkData(event);
     let isWrong = store.editProfile.isWrong;
-    
+    let elements = elementsData.map((data) => {
+        return <input {...data} />
+    });
+    let labelsData = store.editProfile.getLabelsData();
+    let labels = labelsData.map((data) => {
+        return  <LabelItem key={data.id} option={data.option} />
+    });
+
     return (
         <div className="edit-profile">
             <form className="form" onSubmit={checkData}>
@@ -14,7 +22,7 @@ const EditProfile = observer(() => {
                     <legend>Change profile: </legend>
                     <div className="list-wrapper">
                         <div className="label-list">
-                            {store.editProfile.getLabelList()}
+                            {labels}
                         </div>
                         <div className="input-list">
                         { isWrong && (

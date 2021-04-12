@@ -1,14 +1,15 @@
 import { observer } from 'mobx-react';
 
 import store from '../../mobx-multi/store';
+import SocialLinks from './SocialLinks';
+import ExtraInfo from './ExtraInfo';
+import ProfileButtons from './ProfileButtons';
+import AllUsers from './AllUsers';
 
 const Profile = observer(() => {
-    let { src, fullName, specialty, status, userName } = store.profileData.getData();
-    let buttons = store.profileData.getProfileButtons();
-    let userList = store.userList.getUserList();
+    let { src, fullName, specialty, status } = store.profileData.getData();
     let changeVisibleProfile = store.profileData.changeVisibleProfile;
-    let addAddressee = () => store.inputMessage.addAddressee(userName);
-    let { isVisible, isUser } = store.profileData;
+    let { isVisible } = store.profileData;
     
     return ( isVisible &&
         <div className="profile-wrapper">
@@ -21,30 +22,11 @@ const Profile = observer(() => {
                         <div className={`profile__title ${status}`}>{fullName}</div>
                         <div className="subtitle">{specialty}</div>
                     </div>
-                    <ul className="social-icons">
-                        {store.profileData.getSocialIcons()}
-                    </ul>
-                   { !isUser && (
-                        <div className="profile__group-btn">
-                            <button className="btn" onClick={addAddressee}>Message</button>
-                            {buttons} 
-                        </div> 
-                    )}
-                    <div className="extra-info">
-                        {store.profileData.getExtraInfo()}
-                    </div>
+                    <SocialLinks />
+                    <ProfileButtons />
+                    <ExtraInfo />
                 </div>
-                <div className="users">
-                    <div className="users__title">
-                        Users 
-                        <span className="user__numbers">
-                            {userList.length}
-                        </span>
-                    </div>
-                    <ul>
-                        {userList}
-                    </ul>
-                </div>
+                <AllUsers />
             </div>
             <button className="close-profile" onClick={changeVisibleProfile}></button>
         </div>

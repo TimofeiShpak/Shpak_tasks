@@ -2,8 +2,6 @@ import { makeAutoObservable, runInAction } from "mobx";
 import classNames from 'classnames';
 
 import api from '../../api/api';
-import UserItem from '../../components/navigation/UserItem';
-import RequestItem from '../../components/navigation/RequestItem';
 
 const TIME_UPDATE = 3000;
 const NUMBER_FOR_COOKIE = 9;
@@ -74,22 +72,18 @@ class UserList {
         let elements = [];
         let requests = this.main.user.userData.friendRequests;
         let friendRequests = this.users.filter((user) => requests[user.id] === true);
-        elements = this.getUserList(friendRequests, true);
+        elements = this.getUserList(friendRequests);
         return elements;
     }
 
-    getUserList(data, isRequest) {
+    getUserList(data) {
         let users = data || this.users;
         let listElements = users.map((item) => {
             let className = classNames({
                 "user-item": true,
                 "user-item-active" : item.status === 'online'
             });
-            return  !isRequest ? (
-                    <UserItem className={className} key={item.id} data={item} />
-                ) : (
-                    <RequestItem className={className} key={item.id} data={item} />
-                )
+            return  { className, key: item.id, data: item }
         });
         return listElements;
     }

@@ -2,7 +2,6 @@ import { makeAutoObservable, runInAction } from "mobx";
 import classNames from 'classnames';
 
 import api from '../../api/api';
-import ChannelItem from '../../components/navigation/ChannelItem';
 
 class ChannelData {
     channels = [];
@@ -39,12 +38,8 @@ class ChannelData {
                 "channel-item": true,
                 "channel-item_active" : activeIndex === index
             });
-            return <ChannelItem 
-                key={this.main.getId()} 
-                text={channel.name}
-                index={index}
-                className={className}
-            />
+            let key = this.main.getId();
+            return { key, text : channel.name, index, className }
         });
         return listElements;
     }
