@@ -1,0 +1,135 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.score {
+    padding: 20px;
+}
+
+.player {
+    display: flex;
+}
+
+.player > :nth-child(n) {
+    margin-right: 40px;
+}
+
+.player > :last-child {
+    margin-right: 0;
+}
+
+.button-group > :nth-child(n) {
+    margin-bottom: 11px;
+}
+
+.button-group > :last-child {
+    margin-bottom: 0;
+}
+
+.indicators, 
+.button-group {
+    border: 1px solid gray;
+    width: 380px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.indicators {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.indicator__title {
+    padding: 5px 0;
+}
+
+.indicator__name {
+    margin-bottom: 5px;
+}
+
+.progress-bar {
+    border: 1px solid black;
+}
+
+.progress {
+    height: 10px;
+}
+
+.progress-bar_health {
+    border-color: #E74C3C;
+}
+
+.progress-bar_thirst {
+    border-color: #3498DB;
+}
+
+.progress-bar_hunger {
+    border-color: #E67E22;
+}
+
+.progress-bar_tire {
+    border-color: #95A5A6;
+}
+
+.progress_health,
+.btn_eat {
+    background-color: #E74C3C;
+}
+
+.progress_thirst,
+.btn_drink {
+    background-color: #3498DB;
+}
+
+.progress_hunger,
+.btn_rest {
+    background-color: #E67E22;
+}
+
+.progress_tire,
+.btn_work {
+    background-color: #95A5A6;
+}
+
+.btn {
+    width: 100%;
+    height: 30px;
+    color: #fff;
+    border-radius: 10px;
+    outline: none;
+}
+
+.btn_rest {
+    background-color: #398809;
+}
+
+.activities {
+    width: 350px;
+    overflow: auto;
+    padding: 20px;
+}
+
+.action {
+    min-height: 20px;
+}
+
+@media (max-width:1140px) {
+    .indicators, 
+    .button-group {
+        width: 320px;
+    }
+}
+
+@media (max-width:768px) {
+    .player {
+        flex-direction: column;
+    }
+
+    .player > :first-child {
+        margin-bottom: 34px;
+    }
+}
