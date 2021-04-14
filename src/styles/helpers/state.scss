@@ -1,0 +1,31 @@
+::placeholder {
+  @include font-source(12px, #90A0B7, Montserrat, 15px, 0.01em);
+}
+
+.user__notifications_active::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #ff0000;
+  position: absolute;
+  left: 12px;
+  top: 0px;
+}
+
+$progressList: ('pending':#f2994a, 'in-progress':#56CCF2, 'completed':#27AE60, 'cancelled':#EB5757);
+
+@each $name, $color in $progressList {
+  .todo__progress_#{$name} {
+      @include font-source(11px, $color, 'SF UI Text', 17px);
+      background-color: rgba($color, 0.2);
+  }
+}
+
+$statusList: ('minor':#219653, 'normal':#F2C94C, 'critical':#EB5757);
+
+@each $name, $color in $statusList {
+  .todo__status_#{$name}::before {
+    border: 2px solid $color;
+  }
+}

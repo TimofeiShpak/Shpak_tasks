@@ -1,0 +1,68 @@
+.main-item {
+  @include margin('', bottom, 28px, true);
+
+  &__title {
+    @include font-source(18px, #1D262C, Poppins, 27px);
+    @include flex(('a-i':center));
+  }
+}
+
+.todo {
+  @include flex(('j-c':space-between));
+  @include margin('', right, 40px, true, true);
+  @include margin('', left, 40px, false, true);
+
+  background: url('src/assets/icons/todoIndicator.svg') 0 center no-repeat;
+  padding: 17px 30px 17px 17px;
+  border-bottom: 1px solid #E0E0E0;
+
+  &__text {
+    @include font-source(14px, #000, Montserrat, 17px);
+
+    width: 360px;
+  }
+
+  &__progress {
+    border-radius: 8px;
+    padding: 0 15px;
+    height: fit-content;
+    width: 77px;
+    text-align: center;
+  }
+
+  &__status {
+    @include font-source(12px, #5C626D, Montserrat, 15px);
+
+    width: 70px;
+  }
+
+  &__status::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 4px;
+  }
+
+  &__buttons {
+    width: 22px;
+    height: 22px;
+    background: url('src/assets/icons/dots-menu.svg') center no-repeat;
+    background-color: #F2F2F2;
+    border-radius: 50%;
+  }
+}
+
+.inactive {
+  @include font-source(10px, #EB5757, 'SF UI Text', 18px);
+
+  background-color: rgba(235, 87, 87, 0.2);
+  margin: 0 10px;
+  padding: 0 10px;
+  border-radius: 8px;
+}
+
+.main-item_inactive ul {
+  opacity: 0.3;
+}

@@ -1,0 +1,35 @@
+.main-wrapper {
+  @include margin('', right, 40px, true);
+
+  display: flex;
+}
+
+.main {
+  @include margin('', bottom, 40px, true);
+
+  padding-top: 30px;
+
+  &__header {
+    @include flex(('a-i':center));
+    @include margin('', right, 18px, true);
+  }
+
+  &__title {
+    @include font-source(36px, #1D262C, Poppins, 54px, false, bold);
+  }
+
+  .todo-number {
+    color: #F3477A;
+  }
+
+  &__btn {
+    @include font-source(12px, #fff, Poppins);
+
+    background: url('src/assets/icons/addBtn.svg') 30px center no-repeat;
+    background-color: #884CB2;
+    border-radius: 10px;
+    padding: 12px 32px 12px 52px;
+    padding: 8px 30px 8px 50px;
+    height: fit-content;
+  }
+}
