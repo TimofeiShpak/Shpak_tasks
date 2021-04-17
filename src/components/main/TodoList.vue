@@ -10,7 +10,14 @@
         :key="todo.id"
         :text="todo.text"
         :status="todo.status"
+        :statusClass="statusClass(todo.status)"
         :progress="todo.progress"
+        :progressClass="progressClass(todo.progress)"
+        :author="todo.author"
+        :creator="todo.creator"
+        :userList="userList(todo.author, todo.creator, todo.comments)"
+        :id="todo.id"
+        :isActive="isActive"
       />
     </ul>
   </section>
@@ -23,14 +30,20 @@ import { useStore } from '../../store/store'
 
 export default defineComponent({
   props: {
-    isActive: {type: Boolean, default: false }
+    isActive: { type: Boolean, default: false }
   },
   setup(props) {
     let store = useStore();
     let todoList = computed(() => store.getters.todoList(props.isActive));
-    
+    let progressClass = store.getters.progressClass;
+    let statusClass = store.getters.statusClass;
+    let userList = store.getters.getTodoUsers;
+
     return {
-      todoList
+      todoList,
+      progressClass,
+      statusClass,
+      userList,
     }
   },
   components: {

@@ -15,6 +15,9 @@
         {{ text }}
         <span class="action__subtext">{{ subtext }}</span>
       </div>
+      <div class="action__comment" v-if="comment">
+        {{ comment }}
+      </div>
     </div>
   </div>
 </template>
@@ -28,7 +31,8 @@ export default defineComponent({
     text: String,
     time: String,
     userSrc: String,
-    subtext: String
+    subtext: String,
+    comment: String 
   }
 })
 </script>

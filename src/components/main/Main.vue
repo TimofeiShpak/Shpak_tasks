@@ -6,10 +6,13 @@
         <span class="todo-number"> 7 task </span> 
         today
       </div>
-      <button class="main__btn">Add New</button>
+      <button class="main__btn" @click="changeVisibilityEditTodo">Add New</button>
     </div>
-    <TodoList :isActive="true">On Hold</TodoList>
-    <TodoList :isActive="false">Completed</TodoList>
+    <div class="all-todos">
+      <TodoList :isActive="true">On Hold</TodoList>
+      <TodoList :isActive="false">Completed</TodoList>
+    </div>
+    <EditTodo v-if="isShowEditTodo" />
   </main>
 </template>
 
@@ -17,17 +20,24 @@
 import { defineComponent, computed } from 'vue'
 import TodoList from './TodoList.vue'
 import { useStore } from '../../store/store'
+import EditTodo from './EditTodo.vue'
+import { mapMutations } from 'vuex'
 
 export default defineComponent({
   setup () {
-     const store = useStore()
+     const store = useStore();
+     store.commit('setUserData');
     
     return {
-      // todoList: computed(() => store.state.onHold),
+      isShowEditTodo: computed(() => store.state.isShowEditTodo),
     }
   },
+  methods: {
+    ...mapMutations(['changeVisibilityEditTodo'])
+  },
   components: {
-    TodoList
+    TodoList,
+    EditTodo
   },
 })
 </script>

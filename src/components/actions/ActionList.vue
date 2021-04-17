@@ -8,6 +8,7 @@
         :time="action.time"
         :userSrc="action.userSrc"
         :subtext="action.subtext"
+        :comment="action.comment"
       />
   </div>
 </template>

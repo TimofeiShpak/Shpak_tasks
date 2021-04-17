@@ -7,19 +7,24 @@
   }
 }
 
+.all-todos {
+  @include margin('', bottom, 25px, true);
+
+  overflow: auto;
+}
+
 .todo {
-  @include flex(('j-c':space-between));
-  @include margin('', right, 40px, true, true);
-  @include margin('', left, 40px, false, true);
+  @include flex(('a-i':center, 'j-c':space-between));
+  @include margin('', right, 1%, true);
 
   background: url('src/assets/icons/todoIndicator.svg') 0 center no-repeat;
-  padding: 17px 30px 17px 17px;
+  padding: 17px 3% 17px 17px;
   border-bottom: 1px solid #E0E0E0;
 
   &__text {
     @include font-source(14px, #000, Montserrat, 17px);
 
-    width: 360px;
+    width: 40%;
   }
 
   &__progress {
@@ -33,7 +38,7 @@
   &__status {
     @include font-source(12px, #5C626D, Montserrat, 15px);
 
-    width: 70px;
+    width: 60px;
   }
 
   &__status::before {
@@ -45,11 +50,55 @@
     margin-right: 4px;
   }
 
-  &__buttons {
+  &__button {
     width: 22px;
     height: 22px;
     background: url('src/assets/icons/dots-menu.svg') center no-repeat;
-    background-color: #F2F2F2;
+    background-color: #b0b0b0;
+    border-radius: 50%;
+  }
+
+  &__button-wrapper {
+    width: 22px;
+    height: 22px;
+    background: url('src/assets/icons/dots-menu.svg') center no-repeat;
+    background-color: #b0b0b0;
+    border-radius: 50%;
+    position: relative;
+  }
+
+  .button-list {
+    position: absolute;
+    border: 1px solid #000;
+    border-radius: 5px;
+    top: -7px;
+    right: 30px;
+    z-index: 10;
+    background-color: #fff;
+    display: flex;
+    overflow: hidden;
+
+    &__item {
+      padding: 10px;
+    }
+
+    &__item:hover {
+      background-color: #5C626D;
+    }
+  }
+
+  &__userList {
+    display: flex;
+    width: 110px;
+  }
+
+  &__user {
+    @include font-source(12px, #eaedf3, Montserrat, 22px);
+
+    text-align: center;
+    width: 22px;
+    height: 22px;
+    background-color: #884cb2;
     border-radius: 50%;
   }
 }

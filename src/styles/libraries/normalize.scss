@@ -348,6 +348,10 @@ template {
   display: none;
 }
 
+input {
+  outline: none;
+}
+
 ul {
   list-style: none;
 }
@@ -359,6 +363,11 @@ ul {
 
 button {
   border: none;
+
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 a {

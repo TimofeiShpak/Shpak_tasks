@@ -1,0 +1,58 @@
+.modal-wrapper {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  background-color: rgba(92, 91, 91, 0.2);
+  left: 0;
+  top: 0;
+  z-index: 99;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  z-index: 100;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+
+  &__item {
+    @include flex(('j-c':space-between));
+    @include margin('', right, 10px, true);
+
+    margin: 5px;
+  }
+
+  .label-list,
+  .input-list {
+    @include flex(column);
+  }
+
+  .label-list {
+    & > :nth-child(n) {
+      margin: 6px;
+    }
+
+    .description {
+      margin: 19px 0;
+    }
+  }
+
+  .input-list {
+    & > :nth-child(n) {
+      margin: 5px;
+    }
+  }
+
+  &__content {
+    display: flex;
+  }
+
+  &__textarea {
+    padding: 5px;
+    resize: none;
+    width: 300px;
+  }
+}

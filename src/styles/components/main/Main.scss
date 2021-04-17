@@ -1,13 +1,18 @@
 .main-wrapper {
-  @include margin('', right, 40px, true);
+  @include margin('', right, 3%, true);
 
   display: flex;
+  overflow: hidden;
+  flex: 1;
 }
 
 .main {
   @include margin('', bottom, 40px, true);
-
+  @include flex(column);
+  
+  width: 100%;
   padding-top: 30px;
+  flex: 1;
 
   &__header {
     @include flex(('a-i':center));
@@ -22,14 +27,24 @@
     color: #F3477A;
   }
 
-  &__btn {
+  &__btn,
+  .modal__btn {
+    background: url('src/assets/icons/addBtn.svg') 30px center no-repeat;
+    padding: 8px 30px 8px 50px;
+  }
+
+  &__btn,
+  .modal__btn,
+  .modal__btn_cancel {
     @include font-source(12px, #fff, Poppins);
 
-    background: url('src/assets/icons/addBtn.svg') 30px center no-repeat;
     background-color: #884CB2;
     border-radius: 10px;
-    padding: 12px 32px 12px 52px;
-    padding: 8px 30px 8px 50px;
     height: fit-content;
+    margin: 5px;
+  }
+
+  .modal__btn_cancel {
+    padding: 8px 30px;
   }
 }
