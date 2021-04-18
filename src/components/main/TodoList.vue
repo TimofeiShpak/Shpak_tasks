@@ -17,7 +17,7 @@
         :creator="todo.creator"
         :userList="userList(todo.author, todo.creator, todo.comments)"
         :id="todo.id"
-        :isActive="isActive"
+        :comments="todo.comments"
       />
     </ul>
   </section>
@@ -37,7 +37,7 @@ export default defineComponent({
     let todoList = computed(() => store.getters.todoList(props.isActive));
     let progressClass = store.getters.progressClass;
     let statusClass = store.getters.statusClass;
-    let userList = store.getters.getTodoUsers;
+    let userList = store.getters.todoUsers;
 
     return {
       todoList,

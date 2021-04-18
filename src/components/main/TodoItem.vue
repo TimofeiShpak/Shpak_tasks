@@ -1,6 +1,6 @@
 <template>
   <select
-    :id="inputListData[index+2]"
+    :id="INPUT_LIST_DATA[index+2]"
     :value="newTodo[index+1]" 
     @change="change">
     <option
@@ -22,12 +22,12 @@ export default defineComponent({
   },
   setup() {
     let store = useStore();
-    let inputListData = computed(() => store.state.inputListData);
+    let INPUT_LIST_DATA = computed(() => store.state.INPUT_LIST_DATA);
     let newTodo = computed(() => store.state.newTodo);
     let lists = computed(() => store.state.lists);
 
     return {
-      inputListData,
+      INPUT_LIST_DATA,
       newTodo,
       lists
     }

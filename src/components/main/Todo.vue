@@ -16,7 +16,7 @@
         class="todo__button" 
         @click="changeIdActiveButton(id)">
       </button>
-      <ul class="button-list" v-if="isActive && idActiveButton === id">
+      <ul class="button-list" v-if="idActiveButton === id">
         <li>
           <button 
             class="button-list__item" 
@@ -26,7 +26,19 @@
           </button>
         </li>
         <li>
-          <button class="button-list__item">Comments</button>
+          <button 
+            class="button-list__item" 
+            @click="openComments({ comments, id })">
+            Comments
+          </button>
+        </li>
+        <li>
+           <button 
+            v-if="isUser"
+            class="button-list__item" 
+            @click="deleteTodo(id)">
+            Delete
+          </button>
         </li>
       </ul>
     </div>
@@ -34,7 +46,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref, reactive } from 'vue'
+import { defineComponent, computed } from 'vue'
 import { mapActions, mapMutations } from 'vuex';
 import { useStore } from '../../store/store';
 
@@ -48,8 +60,8 @@ export default defineComponent({
     author: String,
     creator: String,
     id: String,
-    isActive: Boolean,
     userList: Array,
+    comments: Array,
   },
   setup(props) {
     let { progress, status, author, creator, text } = props;
@@ -67,8 +79,8 @@ export default defineComponent({
     }
   },
   methods: {
-    ...mapMutations(['changeIdActiveButton']),
-    ...mapActions(['openEditTodo'])
+    ...mapMutations(['changeIdActiveButton', 'deleteTodo']),
+    ...mapActions(['openEditTodo', 'openComments'])
   }
 })
 </script>

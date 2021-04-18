@@ -6,7 +6,7 @@
         <div class="modal__content">
           <div class="label-list">
             <label 
-              v-for="inputData in inputListData"
+              v-for="inputData in INPUT_LIST_DATA"
               :key="inputData"
               :for="inputData"
               :class="inputData">
@@ -18,7 +18,7 @@
             <textarea
               class="modal__textarea" 
               type="text" 
-              :id="inputListData[1]" 
+              :id="INPUT_LIST_DATA[1]" 
               :value="newTodo[0]" 
               @input="(event) => updateNewTodo(event, 0)"
               required
@@ -31,12 +31,12 @@
             />
           </div>
         </div>
-        <input type="submit" class="modal__btn" value="Save" />
+        <input type="submit" class="modal__btn_add" value="Save" />
         <input 
           type="reset" 
-          class="modal__btn_cancel" 
+          class="modal__btn" 
           value="Cancel" 
-          @click="changeVisibilityEditTodo" 
+          @click="closeEditTodo" 
         />
       </form>
     </div>
@@ -45,28 +45,27 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
-import { mapActions, mapMutations } from 'vuex'
+import { mapActions } from 'vuex'
 import { useStore } from '../../store/store'
 import TodoItem from './TodoItem.vue'
 
 export default defineComponent({
   setup() {
     let store = useStore();
-    let inputListData = computed(() => store.state.inputListData);
+    let INPUT_LIST_DATA = computed(() => store.state.INPUT_LIST_DATA);
     let author = computed(() => store.state.userData.userName);
     let newTodo = computed(() => store.state.newTodo);
-    let updateNewTodo = (event: any, index: number) => store.commit('updateNewTodo', ({ event, index }));
+    let updateNewTodo = (event: Event, index: number) => store.commit('updateNewTodo', ({ event, index }));
 
     return {
-      inputListData,
+      INPUT_LIST_DATA,
       author,
       updateNewTodo,
       newTodo,
     }
   },
   methods: {
-    ...mapActions(['saveTodo']),
-    ...mapMutations(['changeVisibilityEditTodo'])
+    ...mapActions(['saveTodo', 'closeEditTodo'])
   },
   components: {
     TodoItem

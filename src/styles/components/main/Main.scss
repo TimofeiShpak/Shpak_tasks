@@ -27,15 +27,15 @@
     color: #F3477A;
   }
 
-  &__btn,
-  .modal__btn {
+  &__btn_add,
+  .modal__btn_add {
     background: url('src/assets/icons/addBtn.svg') 30px center no-repeat;
     padding: 8px 30px 8px 50px;
   }
 
-  &__btn,
-  .modal__btn,
-  .modal__btn_cancel {
+  &__btn_add,
+  .modal__btn_add,
+  .modal__btn {
     @include font-source(12px, #fff, Poppins);
 
     background-color: #884CB2;
@@ -44,7 +44,38 @@
     margin: 5px;
   }
 
-  .modal__btn_cancel {
+  .modal__btn {
     padding: 8px 30px;
+  }
+
+  .comments-wrapper {
+    overflow: auto;
+  }
+
+  .comment {
+    @include flex(('a-i':center));
+    @include margin('', right, 10px, true);
+
+    margin: 20px;
+
+    &__userName {
+      font-weight: bold;
+    }
+
+    &__text {
+      text-align: initial;
+      background: #F3F3F3;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 10px;
+    }
+
+    &__time {
+      margin-left: 5px;
+    }
+
+    &__topic {
+      display: flex;
+    }
   }
 }

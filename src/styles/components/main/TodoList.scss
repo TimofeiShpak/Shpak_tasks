@@ -112,6 +112,10 @@
   border-radius: 8px;
 }
 
-.main-item_inactive ul {
-  opacity: 0.3;
+.main-item_inactive .todo {
+  opacity: 0.5;
+}
+
+.main-item_inactive .todo:hover {
+  opacity: 1;
 }

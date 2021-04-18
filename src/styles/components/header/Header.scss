@@ -45,3 +45,15 @@
   border-radius: 20px;
   width: 28px;
 }
+
+.results,
+.results__controls {
+  @include margin('', right, 10px, true);
+
+  display: flex;
+}
+
+.results__button {
+  background-color: transparent;
+  margin: 0 5px;
+}
