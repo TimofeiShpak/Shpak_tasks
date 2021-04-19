@@ -1,13 +1,18 @@
 export interface Comment {
   userName: string,
-  text: string
+  text: string,
+  userSrc: string,
+  id: string,
+  time: string,
+  taskName: string,
 }
+
 export interface Todo {
+  [key: string]: any,
   text: string,
   progress: string,
   status: string,
   id: string,
-  isCompleted: boolean,
   author: string,
   creator: string,
   comments: Array<Comment>
@@ -20,6 +25,8 @@ export interface Action {
   text: string,
   subtext: string,
   comment?: string,
+  id: string,
+  editedOptionList?: Array<EditedOption>
 }
 
 export interface userData {
@@ -41,6 +48,11 @@ export interface Search {
   isSearch: boolean,
 }
 
+export interface EditedOption {
+  name: string,
+  value: string,
+}
+
 export interface State { 
   todoList: Array<Todo>,
   actionList: Array<Action>,
@@ -57,4 +69,5 @@ export interface State {
   comments: Array<Comment>,
   comment: string,
   search: Search,
+  editedOptionList: Array<EditedOption>
 }

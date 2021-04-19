@@ -35,6 +35,13 @@ function  selectionText(state: State) {
   selection?.setBaseAndExtent(textElem, start, textElem, start + state.search.oldText.length);
 }
 
+function findResult(text: HTMLElement, state: State) {
+  let start = text.textContent?.search(state.search.searchText);
+  if (start !== -1) {
+      state.search.resultSearch.push(text);
+  }
+}
+
 function searchTodo(state: State) {
   if (!state.search.searchText.trim()) {
       return false;
@@ -44,12 +51,7 @@ function searchTodo(state: State) {
   state.search.index = 0;
   state.search.oldText = state.search.searchText;
   state.search.isSearch = true;
-  textElements.forEach((text) => {
-      let start = text.textContent?.search(state.search.searchText);
-      if (start !== -1) {
-          state.search.resultSearch.push(text);
-      }
-  });
+  textElements.forEach((text) => findResult(text, state));
   if (state.search.resultSearch.length) {
       selectionText(state);
       scrollBy(state);

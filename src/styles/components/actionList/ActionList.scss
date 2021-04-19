@@ -1,5 +1,6 @@
 .action-list {
   width: 300px;
+  overflow: auto
 }
 
 .action {
@@ -22,7 +23,7 @@
   }
 
   &__text {
-    @include font-source(10px, #555555, Poppins, 13px);
+    @include font-source(12px, #555555, Poppins, 13px);
   }
 
   &__subtext {
@@ -30,11 +31,24 @@
     font-weight: bold;
   }
 
-  &__comment {
-    background: #F3F3F3;
+  &__comment,
+  &__changes {
     border-radius: 10px;
-    padding: 15px;
+    padding: 10px;
     margin-top: 10px;
+  }
+
+  &__comment {
+    @include font-source(12px, #555555, Poppins, 20px);
+
+    background: #F3F3F3;
+  }
+
+  &__changes {
+    @include font-source(12px, #555555, Poppins);
+
+    background-color: rgb(86 204 242 / 20%);
+    padding: 10px;
   }
 }
 

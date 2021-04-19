@@ -20,7 +20,6 @@
       </div>
     </div>
     <div class="user">
-      <button class="user__notifications user__notifications_active"></button>
       <div class="icon-wrapper">
         <div 
           class="header__icon"

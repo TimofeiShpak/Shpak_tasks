@@ -9,6 +9,7 @@
         :userSrc="action.userSrc"
         :subtext="action.subtext"
         :comment="action.comment"
+        :editedOptionList="action.editedOptionList"
       />
   </div>
 </template>
@@ -21,7 +22,7 @@ import { useStore } from '../../store/store'
 export default defineComponent({
   setup() {
     let store = useStore();
-
+    
     return {
       actionList: computed(() => store.state.actionList)
     }

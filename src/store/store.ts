@@ -1,36 +1,34 @@
 import { InjectionKey } from 'vue'
 import { createStore, useStore as baseUseStore, Store } from 'vuex'
 
-import { State, Comment } from './helpers/interfaceList'
+import { State, Comment, EditedOption } from './helpers/interfaceList'
 import { getTime } from './helpers/helpers'
-import { INIT_TODO, INPUT_LIST_DATA, PROGRESS_LIST, STATUS_LIST, INIT_USER_DATA,
-  INIT_SEARCH } from './helpers/constants'
+import { INIT_TODO, INPUT_LIST_DATA, INIT_USER_DATA, INIT_SEARCH } from './helpers/constants'
 
-import { saveTodo, editTodo, createTodo, resetState } from './components/Todo'
+import { saveTodo, resetState, deleteTodo } from './components/Todo'
 import { changeIdActiveButton, getTodoList, getTodoUsers } from './components/TodoList'
 import { createComment } from './components/Comment'
-import { checkLogIn, logOut, setUserData } from './components/User'
+import { initApp, logOut, setUserData } from './components/User'
 import { searchTodo, nextResult, prevResult, updateSearchText } from './components/Search'
-
-import { userList, actionList, todoList, } from './dataBase'
 
 export const store = createStore<State>({
   state: {
     userData: Object.assign({}, INIT_USER_DATA), 
-    todoList: todoList,
-    actionList: actionList,
-    isLoading: false,
+    todoList: [],
+    actionList: [],
+    isLoading: true,
     isShowEditTodo: false,
     isShowComments: false,
     INPUT_LIST_DATA: INPUT_LIST_DATA,
-    userList: userList,
+    userList: [],
     newTodo: INIT_TODO.slice(),
-    lists: [PROGRESS_LIST, STATUS_LIST, userList.map((user) => user.userName)],
+    lists: [],
     idActiveButton: '',
     idEdit: '',
     comments: [],
     comment: '',
     search: Object.assign({}, INIT_SEARCH),
+    editedOptionList: []
   },
 
   mutations: {
@@ -46,18 +44,12 @@ export const store = createStore<State>({
     updateNewTodo(state, payload) {
       state.newTodo[payload.index] = payload.event.target.value;
     },
-    addTodo(state) {
-      createTodo(state);
-    },
     changeIdActiveButton(state, id) {
       changeIdActiveButton(state, id);
     },
     changeStateTodo(state, { data, id }) {
       state.newTodo = data;
       state.idEdit = id;
-    },
-    editTodo(state) {
-      editTodo(state);
     },
     changeVisibilityComments(state) {
       state.isShowComments = !state.isShowComments;
@@ -67,8 +59,7 @@ export const store = createStore<State>({
       state.comments = comments;
     },
     deleteTodo(state, id) {
-      let indexTodo = state.todoList.findIndex((todo) => todo.id === id);
-      state.todoList.splice(indexTodo, 1);
+      deleteTodo(state, id);
     }, 
     updateComment(state, event) {
       state.comment = event.target.value;
@@ -87,7 +78,7 @@ export const store = createStore<State>({
     }, 
     prevResult(state) {
       prevResult(state);
-    }
+    },
   },
 
   actions: {
@@ -110,9 +101,9 @@ export const store = createStore<State>({
       commit('changeVisibilityComments');
       resetState(state);
     },
-    checkLogIn({ commit }) {
-      checkLogIn(commit);
-    },
+    async initApp({ commit, state }) {
+      initApp(commit, state);
+    }
   },
 
   getters: {
@@ -133,7 +124,10 @@ export const store = createStore<State>({
     },
     resultText: (state) => {
       return `${state.search.index + 1}/${state.search.resultSearch.length}`;
-    }
+    },
+    optionName: () => (option: EditedOption) => {
+      return option.name === 'text' ? 'description' : option.name;
+    },
   },
 })
 
