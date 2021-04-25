@@ -1,0 +1,106 @@
+.main-wrapper {
+  @include margin('', right, 3%, true);
+
+  display: flex;
+  overflow: hidden;
+  flex: 1;
+}
+
+.main {
+  @include margin('', bottom, 40px, true);
+  @include flex(column);
+  
+  width: 100%;
+  padding-top: 30px;
+  flex: 1;
+
+  &__header {
+    @include flex(('a-i':center));
+    @include margin('', right, 18px, true);
+  }
+
+  &__title {
+    @include font-source(36px, #1D262C, Poppins, 54px, false, bold);
+  }
+
+  .todo-number {
+    color: #F3477A;
+  }
+
+  &__btn_add,
+  .modal__btn_add {
+    background: url('../../../assets/icons/addBtn.svg') 30px center no-repeat;
+    padding: 8px 30px 8px 50px;
+  }
+
+  &__btn_add,
+  .modal__btn_add,
+  .modal__btn {
+    @include font-source(12px, #fff, Poppins);
+
+    background-color: #884CB2;
+    border-radius: 10px;
+    height: fit-content;
+    margin: 5px;
+  }
+
+  .modal__btn {
+    padding: 8px 30px;
+  }
+
+  .comments-wrapper {
+    overflow: auto;
+  }
+
+  .comment {
+    @include flex(('a-i':center));
+    @include margin('', right, 10px, true);
+
+    padding: 20px;
+
+    &__userName {
+      font-weight: bold;
+    }
+
+    &__text,
+    &__input {
+      text-align: initial;
+      background: #F3F3F3;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 10px;
+    }
+
+    &__input {
+      border: none;
+    }
+
+    &__time {
+      margin-left: 5px;
+    }
+
+    &__topic {
+      display: flex;
+    }
+
+    &_active {
+      background-color: #b3d2e7;
+    }
+
+    &__info {
+      width: 100%;
+    }
+
+    &__buttons {
+      margin-left: auto;
+    }
+
+    &__button {
+      margin: 0 5px;
+      background-color: #884CB2;
+      border-radius: 2px;
+      color: #fff;
+      padding: 0 5px;
+    }
+  }
+}

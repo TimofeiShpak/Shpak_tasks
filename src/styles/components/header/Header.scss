@@ -1,0 +1,59 @@
+.header {
+  @include flex(('j-c':space-between));
+
+  &__icon {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+  }
+}
+
+.search {
+  @include flex(('a-i':center));
+
+  &__button {
+    background: url('../../../assets/icons/search.svg') center no-repeat;
+    width: 20px;
+    height: 20px;
+  }
+
+  &__input {
+    @include font-source(12px, #90A0B7, Montserrat, 15px, 0.01em);
+    
+    outline: none;
+    border: 1px solid transparent;
+    padding-left: 15px;
+    width: 200px;
+  }
+}
+
+.user {
+  @include flex(('j-c':space-between, 'a-i':center));
+  @include margin('', right, 37px, true);
+
+  &__notifications {
+    background: url('../../../assets/icons/notifications.svg') center no-repeat;
+    width: 20px;
+    height: 20px;
+    position: relative;
+  }
+}
+
+.icon-wrapper {
+  border:2px solid #FD648E;
+  border-radius: 20px;
+  width: 28px;
+}
+
+.results,
+.results__controls {
+  @include margin('', right, 10px, true);
+
+  display: flex;
+}
+
+.results__button {
+  background-color: transparent;
+  margin: 0 5px;
+}

@@ -1,0 +1,76 @@
+.action-list {
+  width: 300px;
+  overflow: auto;
+}
+
+.action {
+  @include margin('', right, 20px, true);
+
+  display: flex;
+  padding: 10px 10px 10px 4px;
+
+  &__topic {
+    @include margin('', right, 7px, true);
+    @include flex(('a-i':center));
+  }
+
+  &__userName {
+    @include font-source(12px, #24272C, Montserrat, 15px);
+  }
+
+  &__time {
+    @include font-source(10px, #7D859A, Poppins, 14px);
+  }
+
+  &__text {
+    @include font-source(12px, #555555, Poppins, 13px);
+  }
+
+  &__subtext {
+    color: #F3477A;
+    font-weight: bold;
+  }
+
+  &__comment,
+  &__changes {
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+  }
+
+  &__comment {
+    @include font-source(12px, #555555, Poppins, 20px);
+
+    background: #F3F3F3;
+  }
+
+  &__changes {
+    @include font-source(12px, #555555, Poppins);
+
+    background-color: rgba(86, 204, 242, 0.2);
+    padding: 10px;
+  }
+}
+
+.action,
+.comment,
+.user-link { 
+  .icon-wrapper {
+    border: 2px solid #3A91C1;
+    width: 38px;
+    height: 38px;
+    box-sizing: border-box;
+    align-self: flex-start;
+  }
+
+  .icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+  }
+
+  .icon_user {
+    border: 2px solid #FD648E;
+  }
+}

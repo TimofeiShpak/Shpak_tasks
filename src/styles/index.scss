@@ -1,0 +1,14 @@
+@import './libraries/normalize.scss';
+
+@import './helpers/fonts.scss';
+@import './helpers/mixin.scss';
+@import './helpers/state.scss';
+
+@import './components/App.scss';
+@import './components/header/Header.scss';
+@import './components/main/Main.scss';
+@import './components/main/TodoList.scss';
+@import './components/main/EditTodo.scss';
+@import './components/actionList/ActionList.scss';
+@import './components/loading/loading.scss';
+@import './components/authorization/authorization.scss';
