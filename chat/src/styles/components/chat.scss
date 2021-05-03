@@ -1,0 +1,23 @@
+.Chat,
+.authorization-wrapper {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  display: flex;
+  background-image: url('src/assets/images/background-vague.png');
+  background-size: cover;
+
+  ::-webkit-scrollbar {
+    width: 8px; 
+    background-color: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    width: 8px;
+  }
+}

@@ -1,0 +1,18 @@
+@import './libraries/normalize.scss';
+
+@import './helpers/mixin.scss';
+@import './helpers/state.scss';
+@import './helpers/fonts.scss';
+
+@import './components/chat.scss';
+@import './components/authorization/authorization.scss';
+
+@import './components/navigation/user.scss';
+@import './components/navigation/channels.scss';
+
+@import './components/profile/profile.scss';
+@import './components/profile/profile-buttons-form.scss';
+
+@import './components/main/main-header.scss';
+@import './components/main/messages.scss';
+@import './components/main/input-message.scss';

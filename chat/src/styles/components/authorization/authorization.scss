@@ -1,0 +1,63 @@
+.authorization-wrapper {
+    @include flex(column, ('a-i':center));
+
+    padding: 50px;
+    box-sizing: border-box;
+    background: none;
+}
+
+.authorization {
+    @include flex(('j-c':space-evenly,'a-i':center));
+
+    width: 100%;
+    height: 100%;
+}
+
+.authorization__choose-user {
+    @include flex(column);
+
+    &__title {
+        @include font-source(20px, bold);
+    }
+}
+
+.authorization__user-list > li::before {
+    display: none;
+}
+
+.authorization__user-list > li:hover {
+    background-color: rgba(0, 0, 0, 0.2)
+}
+
+.authorization__user-list > li {
+    padding: 10px;
+    margin: 0;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.form__item {
+    @include flex(('j-c':space-between));
+
+    position: relative;
+    margin: 10px;
+}
+
+.btn-submit {
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.required::before {
+    content: "*";
+    color: #ff0000;
+    position: absolute;
+    left: -10px;
+}
+
+.form__wrong {
+    color: #ff0000;
+}
+

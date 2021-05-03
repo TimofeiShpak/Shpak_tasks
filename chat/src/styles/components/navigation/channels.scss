@@ -1,0 +1,36 @@
+.channels {
+    margin-bottom: 10px;
+}
+
+.navigation__title,
+.users__title {
+    @include flex(('j-c':space-between));
+    @include font-source(12px, bold, #919191);
+
+    text-transform: uppercase;
+    width: 100%;
+    margin-bottom: 14px;
+}
+
+.channel-item {
+    padding: 7px 20px;
+    border-radius: 3px;
+
+    &::before {
+        content: '#';
+        position: relative;
+        left: -5px;
+    }
+
+    &_active {
+        @include font-source(false, bold, #FFFFFF);
+    }
+
+    &_active {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+}

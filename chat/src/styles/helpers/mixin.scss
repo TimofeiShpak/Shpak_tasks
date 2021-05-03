@@ -1,0 +1,68 @@
+@mixin font-source($size: false, $weight: false, $colour: false, $lh: false,) {
+    @if $size { font-size: $size; }
+    @if $weight { font-weight: $weight; }
+    @if $colour { color: $colour; }
+    @if $lh { line-height: $lh; }
+}
+
+@mixin margin($element, $direction, $value, $isLastChild: false, $isFirstChild: false) {
+    &#{$element} > :nth-child(n) {
+        margin-#{$direction}: $value;
+    }
+
+    @if $isLastChild {
+        &#{$element} > :last-child {
+            margin-#{$direction}: 0;
+        }
+    }
+
+    @if $isFirstChild {
+        &#{$element} > :first-child {
+            margin-#{$direction}: 0;
+        }
+    }
+}
+
+$flex-styles-reversed: (
+    'wrap': 'flex-wrap',
+    'nowrap': 'flex-wrap',
+    'wrap-reverse': 'flex-wrap',
+    'row': 'flex-direction',
+    'row-reverse': 'flex-direction',
+    'column': 'flex-direction',
+    'column-reverse': 'flex-direction'
+);
+
+$short-flex-styles: ('j-c', 'a-c', 'a-i');
+
+$flex-styles: (
+    'j-c':'justify-content',
+    'a-c': 'align-content',
+    'a-i': 'align-items',
+);
+
+@mixin flex-items($styles) {
+    @each $name in $short-flex-styles {
+        @if map-get($styles, $name) { 
+            $style: map-get($flex-styles, $name);
+            #{$style}: map-get($styles, $name);
+        }
+    }
+}
+
+@mixin flex($styles...) {
+    display: flex;
+    @each $name in $styles {
+        @if type-of($name) == string {
+            $style: map-get($flex-styles-reversed, $name);
+            #{$style}: $name;
+        } @else {
+            @include flex-items($name);
+        }
+    }
+}
+
+@mixin icon {
+    background-repeat: no-repeat;
+    background-position: center;
+}
