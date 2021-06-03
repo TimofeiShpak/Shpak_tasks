@@ -1,0 +1,19 @@
+.modal {
+  padding: 20px;
+  border: 1px solid gray;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  flex-direction: column;
+}
+
+.btn {
+  padding: 7px;
+  border-radius: 5px;
+  margin: 8px;
+  border: none;
+  color: white;
+  background-color: black;
+}

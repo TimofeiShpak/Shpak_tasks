@@ -1,0 +1,16 @@
+.btn {
+  width: 100%;
+  padding: 7px;
+  border-radius: 5px;
+  margin: 8px;
+  border: none;
+  color: white;
+}
+
+$options: ('drink': blue, 'eat': red, 'rest': gray, 'work': green);
+
+@each $option, $color in $options {
+  .btn_#{$option} {
+    background-color: $color;
+  }
+}

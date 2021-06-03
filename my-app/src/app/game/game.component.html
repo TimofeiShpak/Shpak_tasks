@@ -1,0 +1,20 @@
+<div class="game">
+  <li><a routerLink="/history" routerLinkActive="active">History</a></li>
+  <div class="main">
+    <div class="main__item">
+      <app-indicator-list></app-indicator-list>
+    </div>
+    <div class="main__item">
+      <app-button-list></app-button-list>
+    </div>
+  </div>
+  <div 
+    class="actions-wrapper"
+    *ngIf="isActions">
+    <app-actions></app-actions>
+  </div>
+  <div class="modal-wrapper" *ngIf="isShowModal">
+    <app-modal></app-modal>
+  </div>
+</div>
+

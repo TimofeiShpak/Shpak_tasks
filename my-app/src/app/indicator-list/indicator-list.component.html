@@ -1,0 +1,7 @@
+<div class="indicator-list" *mobxAutorun>
+  <app-indicator 
+    *ngFor="let indicator of options | keyvalue" 
+    [name]="indicator.key" 
+    [value]="indicator.value">
+  </app-indicator>
+</div>

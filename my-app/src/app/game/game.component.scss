@@ -1,0 +1,41 @@
+.game {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  display: flex;
+
+  & > :last-child {
+    margin-right: 0;
+  }
+
+  &__item {
+    margin-right: 40px;
+    border: 3px solid gray;
+    border-radius: 20px;
+    width: 100%;
+    padding: 20px;
+  }
+}
+
+.actions-wrapper {
+  overflow: auto;
+  margin: 20px;
+  border: 1px solid gray;
+  padding: 20px;
+}
+
+.modal-wrapper {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: rgb(199 199 198 / 70%);
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}

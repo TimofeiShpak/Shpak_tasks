@@ -1,0 +1,10 @@
+<div *mobxAutorun class="history-wrapper">
+  <li><a routerLink="/" routerLinkActive="active">Game</a></li>
+  <div class="history">
+    <div class="title">Действия</div>
+    <div 
+      *ngFor="let action of actions">
+      {{ action }}
+    </div>
+  </div>
+</div>

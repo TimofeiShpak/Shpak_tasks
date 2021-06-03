@@ -1,0 +1,16 @@
+.history-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.history {
+  overflow: auto;
+  border: 1px solid gray;
+  padding: 20px;
+}
+
+.title {
+  text-align: center;
+  font-size: 20px;
+}

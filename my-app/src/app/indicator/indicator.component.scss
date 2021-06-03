@@ -1,0 +1,24 @@
+.indicator {
+  &__progressBar {
+    height: 10px;
+    border-radius: 5px;
+  }
+
+  &__progress {
+    height: inherit;
+  }
+
+  $options: ('thirst': blue, 'hunger': red, 'tire': gray, 'health': green);
+
+  @each $option, $color in $options {
+    &__progressBar_#{$option} {
+      border: 1px solid $color;
+    }
+    &__progress_#{$option} {
+      background-color: $color;
+    }
+    &__title_#{$option} {
+      color: $color;
+    } 
+  }
+}
